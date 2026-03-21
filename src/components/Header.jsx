@@ -50,7 +50,7 @@ function Header() {
   };
 
   return (
-    <nav className="sticky top-0 py-2 backdrop-blur-md bg-white/30 border-b border-[#F0F4F4] flex items-center justify-between px-4 md:px-12 z-40">
+    <nav className="sticky top-0 py-2 backdrop-blur-md bg-white/90 border-b border-[#F0F4F4] flex items-center justify-between px-4 md:px-12 z-40">
       {/* Logo */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}

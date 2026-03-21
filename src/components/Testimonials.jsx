@@ -56,15 +56,15 @@ function Testimonials() {
           <div className="flex items-center justify-center gap-6 md:gap-12">
             {/* Previous Button */}
             {testimonialsList.length > 1 && (
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handlePrev}
-              className="flex-shrink-0 p-3 md:p-4 border border-gray-300 rounded-full hover:border-gray-400 transition-colors"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-black" />
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handlePrev}
+                className="flex-shrink-0 p-3 md:p-4 border border-gray-300 rounded-full hover:border-gray-400 transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-black" />
+              </motion.button>
             )}
 
             {/* Testimonial Card */}
@@ -88,35 +88,35 @@ function Testimonials() {
 
             {/* Next Button */}
             {testimonialsList.length > 1 && (
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleNext}
-              className="flex-shrink-0 p-3 md:p-4 border border-gray-300 rounded-full hover:border-gray-400 transition-colors"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-black" />
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleNext}
+                className="flex-shrink-0 p-3 md:p-4 border border-gray-300 rounded-full hover:border-gray-400 transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-black" />
+              </motion.button>
             )}
           </div>
 
           {/* Indicator Dots */}
           {testimonialsList.length > 1 && (
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonialsList.map((_, index) => (
-              <motion.button
-                key={index}
-                whileHover={{ scale: 1.2 }}
-                onClick={() => setCurrentIndex(index)}
-                className={`rounded-full transition-all ${
-                  index === currentIndex
-                    ? "bg-cyan-500 w-8 h-2"
-                    : "bg-gray-300 w-2 h-2 hover:bg-gray-400"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              ></motion.button>
-            ))}
-          </div>
+            <div className="flex justify-center gap-2 mt-8">
+              {testimonialsList.map((_, index) => (
+                <motion.button
+                  key={index}
+                  whileHover={{ scale: 1.2 }}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`rounded-full transition-all ${
+                    index === currentIndex
+                      ? "bg-cyan-500 w-8 h-2"
+                      : "bg-gray-300 w-2 h-2 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                ></motion.button>
+              ))}
+            </div>
           )}
         </div>
       </div>
@@ -144,20 +144,21 @@ function Testimonials() {
         </div>
 
         {/* View More Button */}
-        {visibleCount < testimonialsList.length && testimonialsList.length > 1 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex justify-center mt-8"
-          >
-            <button
-              onClick={handleViewMore}
-              className="text-cyan-600 hover:text-cyan-700 font-medium text-sm underline transition-colors"
+        {visibleCount < testimonialsList.length &&
+          testimonialsList.length > 1 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex justify-center mt-8"
             >
-              View more
-            </button>
-          </motion.div>
-        )}
+              <button
+                onClick={handleViewMore}
+                className="text-cyan-600 hover:text-cyan-700 font-medium text-sm underline transition-colors"
+              >
+                View more
+              </button>
+            </motion.div>
+          )}
       </div>
     </section>
   );
