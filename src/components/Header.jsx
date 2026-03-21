@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const routes = [
   {
@@ -39,38 +40,66 @@ function Header() {
     return pathname.startsWith(href);
   };
 
+  const navItemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.05, duration: 0.3 },
+    }),
+  };
+
   return (
-    <nav className="py-2 border-b border-[#F0F4F4] flex items-center justify-between px-4 md:px-12">
+    <nav className="sticky top-0 py-2 backdrop-blur-md bg-white/30 border-b border-[#F0F4F4] flex items-center justify-between px-4 md:px-12 z-40">
       {/* Logo */}
-      <Link href="/">
-        <Image
-          src="/myelin-logo.png"
-          alt="Myelin Logo"
-          height={50}
-          width={150}
-          className="h-auto w-auto"
-        />
-      </Link>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Link href="/">
+          <Image
+            src="/myelin-logo.png"
+            alt="Myelin Logo"
+            height={60}
+            width={140}
+          />
+        </Link>
+      </motion.div>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex gap-8">
-        {routes.map((route) => (
-          <Link
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+        className="hidden md:flex gap-4"
+      >
+        {routes.map((route, i) => (
+          <motion.div
             key={route.href}
-            href={route.href}
-            className={`text-sm font-medium transition-colors ${
-              isActive(route.href)
-                ? "text-black border-b-2 border-black pb-1"
-                : "text-gray-600 hover:text-black"
-            }`}
+            custom={i}
+            variants={navItemVariants}
+            initial="hidden"
+            animate="visible"
           >
-            {route.title}
-          </Link>
+            <Link
+              href={route.href}
+              className={`text-sm font-medium transition-colors ${
+                isActive(route.href)
+                  ? "text-black border-b-2 border-black pb-1"
+                  : "text-gray-600 hover:text-black"
+              }`}
+            >
+              {route.title}
+            </Link>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Mobile Hamburger Menu Button */}
-      <button
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
         className="md:hidden flex flex-col gap-1 cursor-pointer"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
@@ -90,31 +119,44 @@ function Header() {
             isMenuOpen ? "-rotate-45 -translate-y-2" : ""
           }`}
         ></span>
-      </button>
+      </motion.button>
 
       {/* Mobile Navigation Menu */}
-      <div
-        className={`fixed top-[70px] left-0 right-0 bg-white border-b border-[#F0F4F4] md:hidden z-50 transition-opacity duration-300 ${
-          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={
+          isMenuOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }
+        }
+        transition={{ duration: 0.3 }}
+        className="fixed top-[70px] left-0 right-0 bg-white border-b border-[#F0F4F4] md:hidden z-50"
       >
-        <div className="flex flex-col px-4 py-4 gap-4">
+        <motion.div
+          initial={{ y: -10 }}
+          animate={isMenuOpen ? { y: 0 } : { y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="flex flex-col px-4 py-4 gap-4"
+        >
           {routes.map((route) => (
-            <Link
+            <motion.div
               key={route.href}
-              href={route.href}
-              className={`text-sm font-medium transition-colors ${
-                isActive(route.href)
-                  ? "text-black border-l-2 border-black pl-2"
-                  : "text-gray-600 hover:text-black"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.98 }}
             >
-              {route.title}
-            </Link>
+              <Link
+                href={route.href}
+                className={`text-sm font-medium transition-colors ${
+                  isActive(route.href)
+                    ? "text-black border-l-2 border-black pl-2"
+                    : "text-gray-600 hover:text-black"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {route.title}
+              </Link>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </nav>
   );
 }
