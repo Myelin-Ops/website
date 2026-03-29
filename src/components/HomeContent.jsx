@@ -60,10 +60,19 @@ function HomeContent() {
         className="relative z-10 flex flex-col items-center self-center mt-55 md:mt-65 px-4 text-center"
       >
         {/* Mobile-tablet: all combined into one h1 */}
-        <h1 className="block xl:hidden text-3xl md:text-5xl font-extrabold leading-tight mb-6 ">
+        <h1 className="block xl:hidden text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6">
           {t('hero.title')}{' '}
-          <span className="text-[#13ECEC]">{t('hero.highlight')}</span>{' '}
-          {t('hero.subtitle')}
+          {t('hero.subtitle').split(' ').map((word, index) => (
+            <span
+              key={index}
+              className={
+                (word === t('hero.highlight') ? ' text-[#13ECEC]' : '')
+              }
+            >
+              {word}
+              {index < t('hero.subtitle').split(' ').length - 1 && ' '}
+            </span>
+          ))}
         </h1>
 
         {/* Desktop: two separate h1s */}

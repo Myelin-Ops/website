@@ -19,6 +19,7 @@ const enTranslations = {
   },
   testimonials: {
     label: 'TESTIMONIALS',
+    viewMore: 'View more',
     list: [
       {
         quote: "It was a privilege to collaborate with Myelin OPS. The company provided an insightful analysis on workplace stress and its impact on performance provided great value to our municipality's employees. Myelin OPS is an ideal partner for any organization seeking to enhance well-being and performance at work.",
@@ -105,6 +106,7 @@ const sqTranslations = {
   },
   testimonials: {
     label: 'DËSHMI',
+    viewMore: 'Shiko më shumë',
     list: [
       {
         quote: "Ishte një privilegj të bashkëpunonim me Myelin OPS. Kompania ofroi një analizë të thelluar mbi stresin në punë dhe ndikimin e tij në performancë, e cila solli vlerë të madhe për punonjësit e komunës sonë. Myelin OPS është një partner ideal për çdo organizatë që kërkon të përmirësojë mirëqenien dhe performancën në punë.",

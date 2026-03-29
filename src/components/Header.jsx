@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +11,19 @@ function Header() {
   const { t, i18n } = useTranslation();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    }
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMenuOpen]);
 
   const routes = [
     { href: "/", title: t('navigation.home') || "HOME" },
@@ -21,9 +34,7 @@ function Header() {
   ];
 
   const isActive = (href) => {
-    if (href === "/") {
-      return pathname === "/" || pathname === "/home";
-    }
+    if (href === "/") return pathname === "/" || pathname === "/home";
     return pathname.startsWith(href);
   };
 
@@ -37,7 +48,10 @@ function Header() {
   };
 
   return (
-    <nav className="sticky top-0 py-2 backdrop-blur-md bg-white/90 border-b border-[#F0F4F4] flex items-center justify-between px-4 md:px-12 z-40">
+    <nav
+      ref={menuRef}
+      className="sticky top-0 py-2 backdrop-blur-md bg-white/90 border-b border-[#F0F4F4] flex items-center justify-between px-4 md:px-12 z-40"
+    >
       {/* Logo */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -71,16 +85,16 @@ function Header() {
           >
             <Link
               href={route.href}
-              className={`text-sm font-medium transition-colors ${isActive(route.href)
+              className={`text-sm font-medium transition-colors ${
+                isActive(route.href)
                   ? "text-black border-b-2 border-black pb-1"
                   : "text-gray-600 hover:text-black"
-                }`}
+              }`}
             >
               {route.title}
             </Link>
           </motion.div>
         ))}
-        {/* Language Selector */}
         <motion.div
           custom={routes.length}
           variants={navItemVariants}
@@ -100,7 +114,7 @@ function Header() {
         </motion.div>
       </motion.div>
 
-      {/* Mobile Hamburger Menu Button */}
+      {/* Mobile Hamburger */}
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -108,26 +122,15 @@ function Header() {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
       >
-        <span
-          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-        ></span>
-        <span
-          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "opacity-0" : ""
-            }`}
-        ></span>
-        <span
-          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-        ></span>
+        <span className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+        <span className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "opacity-0" : ""}`} />
+        <span className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
       </motion.button>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Menu */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={
-          isMenuOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }
-        }
+        animate={isMenuOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }}
         transition={{ duration: 0.3 }}
         className="fixed top-[70px] left-0 right-0 bg-white border-b border-[#F0F4F4] md:hidden z-50"
       >
@@ -138,24 +141,20 @@ function Header() {
           className="flex flex-col px-4 py-4 gap-4"
         >
           {routes.map((route) => (
-            <motion.div
-              key={route.href}
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.98 }}
-            >
+            <motion.div key={route.href} whileHover={{ x: 5 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href={route.href}
-                className={`text-sm font-medium transition-colors ${isActive(route.href)
+                className={`text-sm font-medium transition-colors ${
+                  isActive(route.href)
                     ? "text-black border-l-2 border-black pl-2"
                     : "text-gray-600 hover:text-black"
-                  }`}
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {route.title}
               </Link>
             </motion.div>
           ))}
-          {/* Language Selector */}
           <motion.div
             custom={routes.length}
             variants={navItemVariants}
