@@ -3,11 +3,12 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import gallery1 from "@/assets/images/gallery/gallery1.png";
-import gallery2 from "@/assets/images/gallery/gallery2.png";
-import gallery3 from "@/assets/images/gallery/gallery3.png";
-import gallery4 from "@/assets/images/gallery/gallery4.png";
-import gallery5 from "@/assets/images/gallery/gallery5.png";
+import { useTranslation } from "react-i18next";
+import gallery1 from "../assets/images/gallery/gallery1.png";
+import gallery2 from "../assets/images/gallery/gallery2.png";
+import gallery3 from "../assets/images/gallery/gallery3.png";
+import gallery4 from "../assets/images/gallery/gallery4.png";
+import gallery5 from "../assets/images/gallery/gallery5.png";
 
 const galleryImages = [
   {
@@ -43,6 +44,7 @@ const galleryImages = [
 ];
 
 function Gallery() {
+  const { t } = useTranslation();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -73,8 +75,8 @@ function Gallery() {
         viewport={{ once: true }}
         className="text-center mb-12 md:mb-16"
       >
-        <h2 className="text-2xl md:text-4xl font-bold text-black tracking-widest ">
-          GALLERY
+        <h2 className="text-2xl md:text-4xl font-bold text-black tracking-widest uppercase">
+          {t('gallery.title')}
         </h2>
       </motion.div>
 

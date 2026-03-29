@@ -2,26 +2,35 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-
-const insights = [
-  {
-    id: 1,
-    title: "Leadership shapes collective cognition.",
-    description: "Effective leadership determines how teams perceive complexity and psychological safety.",
-  },
-  {
-    id: 2,
-    title: "Culture influences performance.",
-    description: "Cultural alignment directly impacts decision quality and operational clarity.",
-  },
-  {
-    id: 3,
-    title: "Intervention changes trajectories.",
-    description: "Evidence-based interventions shift organizations from reactive management to sustainable development.",
-  },
-];
+import { useTranslation } from "react-i18next";
+import whyItMatters2 from "../assets/images/background/why-it-matters-2.png";
+import whyItMatters3 from "../assets/images/background/why-it-matters-3.png";
+import whyItMatters4 from "../assets/images/background/why-it-matters-4.png";
+import Image from "next/image";
 
 function ScrollableInsights() {
+  const { t } = useTranslation();
+
+  const insights = [
+    {
+      id: 1,
+      title: t('scrollableInsights.card1.title'),
+      description: t('scrollableInsights.card1.description'),
+      image: whyItMatters2,
+    },
+    {
+      id: 2,
+      title: t('scrollableInsights.card2.title'),
+      description: t('scrollableInsights.card2.description'),
+      image: whyItMatters3,
+    },
+    {
+      id: 3,
+      title: t('scrollableInsights.card3.title'),
+      description: t('scrollableInsights.card3.description'),
+      image: whyItMatters4,
+    },
+  ];
   return (
     <section className="w-full py-16 md:py-24 px-4 bg-[#0F1419]">
       <div className="max-w-7xl mx-auto">
@@ -47,9 +56,13 @@ function ScrollableInsights() {
                   </p>
                 </div>
 
-                {/* Right Side - Placeholder for Background Image */}
-                <div className="relative w-full h-64 md:h-72 bg-gradient-to-br from-[#1a2a4a] to-[#0F1419] rounded-lg border border-gray-700 flex items-center justify-center">
-                  <p className="text-gray-500 text-sm">Background image placeholder</p>
+                {/* Right Side - Background Image */}
+                <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden">
+                  <Image
+                    src={insight.image}
+                    alt={insight.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </motion.div>
@@ -58,7 +71,7 @@ function ScrollableInsights() {
 
         {/* Scroll hint for mobile */}
         <p className="text-xs text-gray-500 mt-4 md:hidden">
-          Scroll down to see more
+          {t('scrollableInsights.scrollHint')}
         </p>
       </div>
     </section>

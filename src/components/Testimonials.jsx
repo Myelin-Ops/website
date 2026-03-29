@@ -3,17 +3,12 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const testimonialsList = [
-  {
-    id: 1,
-    quote:
-      "It was a privilege to collaborate with Myelin OPS. The company provided an insightful analysis on workplace stress and its impact on performance provided great value to our municipality's employees. Myelin OPS is an ideal partner for any organization seeking to enhance well-being and performance at work.",
-    author: "Municipality of Vushtrria",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function Testimonials() {
+  const { t } = useTranslation();
+  const testimonialsList = t('testimonials.list', { returnObjects: true });
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(2);
 
@@ -36,7 +31,7 @@ function Testimonials() {
   const visibleTestimonials = testimonialsList.slice(0, visibleCount);
 
   return (
-    <section className="w-full py-8 md:py-24 px-4">
+    <section className="w-full py-8 md:pb-64 px-4">
       {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -46,7 +41,7 @@ function Testimonials() {
         className="text-center mb-8 md:mb-12"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-black">
-          Testimonials
+          {t('testimonials.label')}
         </h2>
       </motion.div>
 
@@ -114,7 +109,7 @@ function Testimonials() {
                       : "bg-gray-300 w-2 h-2 hover:bg-gray-400"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
-                ></motion.button>
+                />
               ))}
             </div>
           )}
@@ -126,7 +121,7 @@ function Testimonials() {
         <div className="grid grid-cols-1 gap-4">
           {visibleTestimonials.map((testimonial, index) => (
             <motion.div
-              key={testimonial.id}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -144,21 +139,20 @@ function Testimonials() {
         </div>
 
         {/* View More Button */}
-        {visibleCount < testimonialsList.length &&
-          testimonialsList.length > 1 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex justify-center mt-8"
+        {visibleCount < testimonialsList.length && testimonialsList.length > 1 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex justify-center mt-8"
+          >
+            <button
+              onClick={handleViewMore}
+              className="text-cyan-600 hover:text-cyan-700 font-medium text-sm underline transition-colors"
             >
-              <button
-                onClick={handleViewMore}
-                className="text-cyan-600 hover:text-cyan-700 font-medium text-sm underline transition-colors"
-              >
-                View more
-              </button>
-            </motion.div>
-          )}
+              {t('testimonials.viewMore')}
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

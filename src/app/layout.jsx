@@ -1,5 +1,7 @@
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+import I18nProvider from "@/components/I18nProvider";
+import i18n from '@/i18n'; 
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -17,7 +19,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${montserrat.variable} antialiased`}
       >
-        {children}
+        <I18nProvider i18n={i18n}>
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );

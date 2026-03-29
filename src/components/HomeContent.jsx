@@ -3,8 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 function HomeContent() {
+  const { t } = useTranslation();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -13,15 +15,6 @@ function HomeContent() {
         staggerChildren: 0.1,
         duration: 0.3,
       },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: "easeOut" },
     },
   };
 
@@ -64,23 +57,37 @@ function HomeContent() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 flex flex-col items-center self-center mt-55 md:mt-50 px-4 text-center" 
+        className="relative z-10 flex flex-col items-center self-center mt-55 md:mt-65 px-4 text-center"
       >
-        <motion.h1
-          variants={itemVariants}
-          className="text-3xl md:text-6xl font-extrabold leading-tight md:leading-none max-w-4xl md:max-w-5xl mb-6 md:mb-8"
-        >
-          We are the protective layer that helps{" "}
-          <span className="text-[#13ECEC]">organizations</span> and people
-          thrive.
-        </motion.h1>
-        <motion.p
-          variants={itemVariants}
-          className="text-gray-500 text-base md:text-lg max-w-md md:max-w-xl"
-        >
-          Science-based strategies that protect your culture, elevate
-          leadership, and drive sustainable performance.
-        </motion.p>
+        {/* Mobile-tablet: all combined into one h1 */}
+        <h1 className="block xl:hidden text-3xl md:text-5xl font-extrabold leading-tight mb-6 ">
+          {t('hero.title')}{' '}
+          <span className="text-[#13ECEC]">{t('hero.highlight')}</span>{' '}
+          {t('hero.subtitle')}
+        </h1>
+
+        {/* Desktop: two separate h1s */}
+        <h1 className="hidden xl:block text-6xl font-extrabold leading-none mb-2">
+          {t('hero.title')}
+        </h1>
+        <h1 className="hidden xl:block text-6xl font-extrabold leading-none max-w-3/4 mb-8">
+          {t('hero.subtitle').split(' ').map((word, index) => (
+            <span
+              key={index}
+              className={
+                (word === 'thrive.' ? 'block' : '') +
+                (word === t('hero.highlight') ? ' text-[#13ECEC]' : '')
+              }
+            >
+              {word}
+              {index < t('hero.subtitle').split(' ').length - 1 && ' '}
+            </span>
+          ))}
+        </h1>
+
+        <p className="text-gray-500 text-base md:text-lg max-w-md md:max-w-xl">
+          {t('hero.description')}
+        </p>
       </motion.div>
     </div>
   );

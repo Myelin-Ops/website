@@ -3,35 +3,21 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import partner1 from "@/assets/images/partners/partner1.png";
 import partner2 from "@/assets/images/partners/partner2.png";
 import partner3 from "@/assets/images/partners/partner3.png";
 import partner4 from "@/assets/images/partners/partner4.png";
 
 const partners = [
-  {
-    id: 1,
-    src: partner1,
-    alt: "Partner 1",
-  },
-  {
-    id: 2,
-    src: partner2,
-    alt: "Partner 2",
-  },
-  {
-    id: 3,
-    src: partner3,
-    alt: "Partner 3",
-  },
-  {
-    id: 4,
-    src: partner4,
-    alt: "Partner 4",
-  },
+  { id: 1, src: partner1, alt: "Partner 1" },
+  { id: 2, src: partner2, alt: "Partner 2" },
+  { id: 3, src: partner3, alt: "Partner 3" },
+  { id: 4, src: partner4, alt: "Partner 4" },
 ];
 
 function Partners() {
+  const { t } = useTranslation();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,8 +48,8 @@ function Partners() {
         viewport={{ once: true }}
         className="text-center mb-12 md:mb-16"
       >
-        <h2 className="text-2xl md:text-4xl font-bold text-black tracking-widest">
-          OUR PARTNERS
+        <h2 className="text-2xl md:text-4xl font-bold text-black tracking-widest uppercase">
+          {t('partners.title')}
         </h2>
       </motion.div>
 

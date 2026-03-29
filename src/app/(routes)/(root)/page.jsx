@@ -13,11 +13,11 @@ export default function Page() {
     <>
       <Header />
       <HomeContent />
+      <Testimonials />
       <Gallery />
       <Partners />
       <WhyItMatters />
       <ScrollableInsights />
-      <Testimonials />
       <CTA />
       <Footer />
     </>

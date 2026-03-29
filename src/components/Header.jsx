@@ -5,33 +5,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
-const routes = [
-  {
-    href: "/",
-    title: "HOME",
-  },
-  {
-    href: "/about-us",
-    title: "ABOUT US",
-  },
-  {
-    href: "/services",
-    title: "SERVICES",
-  },
-  {
-    href: "/team",
-    title: "TEAM",
-  },
-  {
-    href: "/contact",
-    title: "CONTACT",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function Header() {
+  const { t, i18n } = useTranslation();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const routes = [
+    { href: "/", title: t('navigation.home') || "HOME" },
+    { href: "/about-us", title: t('navigation.aboutUs') || "ABOUT US" },
+    { href: "/services", title: t('navigation.servicesNav') || "SERVICES" },
+    { href: "/team", title: t('navigation.team') || "TEAM" },
+    { href: "/contact", title: t('navigation.contactNav') || "CONTACT" },
+  ];
 
   const isActive = (href) => {
     if (href === "/") {
@@ -72,7 +59,7 @@ function Header() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
-        className="hidden md:flex gap-4"
+        className="hidden md:flex gap-4 items-center"
       >
         {routes.map((route, i) => (
           <motion.div
@@ -84,16 +71,33 @@ function Header() {
           >
             <Link
               href={route.href}
-              className={`text-sm font-medium transition-colors ${
-                isActive(route.href)
+              className={`text-sm font-medium transition-colors ${isActive(route.href)
                   ? "text-black border-b-2 border-black pb-1"
                   : "text-gray-600 hover:text-black"
-              }`}
+                }`}
             >
               {route.title}
             </Link>
           </motion.div>
         ))}
+        {/* Language Selector */}
+        <motion.div
+          custom={routes.length}
+          variants={navItemVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex items-center gap-1 ml-2"
+        >
+          <span className="text-sm">🌐</span>
+          <select
+            value={i18n.language}
+            onChange={(e) => i18n.changeLanguage(e.target.value)}
+            className="text-sm bg-transparent border-none outline-none cursor-pointer text-gray-600 hover:text-black"
+          >
+            <option value="en">English</option>
+            <option value="sq">Shqip</option>
+          </select>
+        </motion.div>
       </motion.div>
 
       {/* Mobile Hamburger Menu Button */}
@@ -105,19 +109,16 @@ function Header() {
         aria-label="Toggle menu"
       >
         <span
-          className={`w-6 h-0.5 bg-black transition-all ${
-            isMenuOpen ? "rotate-45 translate-y-2" : ""
-          }`}
+          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
         ></span>
         <span
-          className={`w-6 h-0.5 bg-black transition-all ${
-            isMenuOpen ? "opacity-0" : ""
-          }`}
+          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "opacity-0" : ""
+            }`}
         ></span>
         <span
-          className={`w-6 h-0.5 bg-black transition-all ${
-            isMenuOpen ? "-rotate-45 -translate-y-2" : ""
-          }`}
+          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
         ></span>
       </motion.button>
 
@@ -144,17 +145,34 @@ function Header() {
             >
               <Link
                 href={route.href}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(route.href)
+                className={`text-sm font-medium transition-colors ${isActive(route.href)
                     ? "text-black border-l-2 border-black pl-2"
                     : "text-gray-600 hover:text-black"
-                }`}
+                  }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {route.title}
               </Link>
             </motion.div>
           ))}
+          {/* Language Selector */}
+          <motion.div
+            custom={routes.length}
+            variants={navItemVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex items-center gap-1 ml-2"
+          >
+            <span className="text-sm">🌐</span>
+            <select
+              value={i18n.language}
+              onChange={(e) => i18n.changeLanguage(e.target.value)}
+              className="text-sm bg-transparent border-none outline-none cursor-pointer text-gray-600 hover:text-black"
+            >
+              <option value="en">English</option>
+              <option value="sq">Shqip</option>
+            </select>
+          </motion.div>
         </motion.div>
       </motion.div>
     </nav>

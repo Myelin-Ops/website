@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
 
 function Footer() {
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -54,14 +55,13 @@ function Footer() {
               />
             </Link>
             <p className="text-sm text-gray-600">
-              Helping organizations build healthier teams, stronger leadership,
-              and workplaces where people thrive.
+              {t('footer.brand.description')}
             </p>
           </motion.div>
 
           {/* Contact Section */}
           <motion.div variants={itemVariants}>
-            <h3 className="font-semibold text-black mb-4">Contact</h3>
+            <h3 className="font-semibold text-black mb-4">{t('footer.contact.title')}</h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
                 <a href="mailto:info@myelinops.com" className="hover:text-black transition-colors">
@@ -78,16 +78,16 @@ function Footer() {
 
           {/* Legal Section */}
           <motion.div variants={itemVariants}>
-            <h3 className="font-semibold text-black mb-4">Legal</h3>
+            <h3 className="font-semibold text-black mb-4">{t('footer.legal.title')}</h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
                 <Link href="/privacy" className="hover:text-black transition-colors">
-                  Privacy Policy
+                  {t('footer.legal.privacy')}
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-black transition-colors">
-                  Terms of Service
+                  {t('footer.legal.terms')}
                 </Link>
               </li>
             </ul>
@@ -95,7 +95,7 @@ function Footer() {
 
           {/* Social Section */}
           <motion.div variants={itemVariants}>
-            <h3 className="font-semibold text-black mb-4">Find us on social</h3>
+            <h3 className="font-semibold text-black mb-4">{t('footer.social.title')}</h3>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
@@ -118,18 +118,12 @@ function Footer() {
 
         {/* Divider */}
         <div className="border-t border-gray-200 pt-8">
-          {/* Language and Copyright */}
+          {/* Copyright */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4"
+            className="flex justify-center items-center text-xs text-gray-500"
           >
-            <div className="flex items-center gap-2">
-              <span>🌐</span>
-              <select className="bg-transparent border-none outline-none cursor-pointer">
-                <option>English ⌄</option>
-              </select>
-            </div>
-            <p>© {currentYear} Myelin Ops. All rights reserved.</p>
+            <p>{t('footer.copyright', { year: currentYear })}</p>
           </motion.div>
         </div>
       </motion.div>
