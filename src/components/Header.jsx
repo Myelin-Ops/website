@@ -26,11 +26,11 @@ function Header() {
   }, [isMenuOpen]);
 
   const routes = [
-    { href: "/", title: t('navigation.home') || "HOME" },
-    { href: "/about-us", title: t('navigation.aboutUs') || "ABOUT US" },
-    { href: "/services", title: t('navigation.servicesNav') || "SERVICES" },
-    { href: "/team", title: t('navigation.team') || "TEAM" },
-    { href: "/contact", title: t('navigation.contactNav') || "CONTACT" },
+    { href: "/", title: t("navigation.home") || "HOME" },
+    { href: "/about-us", title: t("navigation.aboutuspage") || "ABOUT US" },
+    { href: "/services", title: t("navigation.servicesNav") || "SERVICES" },
+    { href: "/team", title: t("navigation.team") || "TEAM" },
+    { href: "/contact", title: t("navigation.contactNav") || "CONTACT" },
   ];
 
   const isActive = (href) => {
@@ -122,15 +122,25 @@ function Header() {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
       >
-        <span className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-        <span className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "opacity-0" : ""}`} />
-        <span className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+        <span
+          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+        />
+        <span
+          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "opacity-0" : ""}`}
+        />
+        <span
+          className={`w-6 h-0.5 bg-black transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+        />
       </motion.button>
 
       {/* Mobile Menu */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={isMenuOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }}
+        animate={
+          isMenuOpen
+            ? { opacity: 1, pointerEvents: "auto" }
+            : { opacity: 0, pointerEvents: "none" }
+        }
         transition={{ duration: 0.3 }}
         className="fixed top-[70px] left-0 right-0 bg-white border-b border-[#F0F4F4] md:hidden z-50"
       >
@@ -141,7 +151,11 @@ function Header() {
           className="flex flex-col px-4 py-4 gap-4"
         >
           {routes.map((route) => (
-            <motion.div key={route.href} whileHover={{ x: 5 }} whileTap={{ scale: 0.98 }}>
+            <motion.div
+              key={route.href}
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <Link
                 href={route.href}
                 className={`text-sm font-medium transition-colors ${

@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "title": "Our Interventions",
+    "subtitle": "Structured, evidence-based interventions designed to strengthen leadership, culture, and organizational performance."
+  },
+  "intro": {
+    "title": "Comprehensive Interventions",
+    "description": "Strategic support tailored to the specificities of organizational needs and industry dynamics."
+  },
+  "methodology": {
+    "title": "Our Methodology",
+    "subtitle": "How our work follows a structured, evidence-based process.",
+    "steps": {
+      "diagnostic": {
+        "title": "Diagnostic",
+        "description": "Identification of organizational gaps through data-driven assessment frameworks."
+      },
+      "strategy": {
+        "title": "Strategy",
+        "description": "Co-designing bespoke interventions aligned with the organization's strategic objectives."
+      },
+      "implementation": {
+        "title": "Implementation",
+        "description": "Guided application focused on sustainable change and skill transfer."
+      }
+    }
+  },
+  "list": {
+    "groupDynamics": {
+      "title": "Group Dynamics & Collective Intelligence",
+      "description": "Cultivate high-performance team behaviors while enhancing shared cognitive and decision-making capacities.",
+      "items": [
+        "Dynamics and team cohesion",
+        "Collaborative decision-making strategies",
+        "Conflict resolution and trust improvement"
+      ]
+    },
+    "neuroLeadership": {
+      "title": "Neuro-Leadership Development",
+      "description": "Leverage applied neuroscience to enhance leadership effectiveness and individual decision-making qualities.",
+      "items": [
+        "Emotional regulation and stress resilience",
+        "Executive presence and impact performance",
+        "Sustainable leadership energy"
+      ]
+    },
+    "migration": {
+      "title": "Migration & Repatriation Support",
+      "description": "Strategic support to facilitate smooth transitions into target markets or reintegration processes for international staff.",
+      "items": [
+        "Market entry cultural adaptation",
+        "Integration and retention strategies",
+        "Human assessment of potential and talent"
+      ]
+    },
+    "advancement": {
+      "title": "Organizational Advancement Strategy",
+      "description": "Long-term architecture for growth, transformation, and structural health through evolutionary system approaches.",
+      "items": [
+        "Governance and hierarchy transformation",
+        "Agile and adaptive team structure",
+        "Organizational culture calibration"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Let's design the right intervention for your organization.",
+    "description": "Schedule a consultation to understand how Myelin Ops can support your leadership and culture objectives.",
+    "button": "Schedule Consultation"
+  }
+}

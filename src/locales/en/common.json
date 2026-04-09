@@ -1,0 +1,38 @@
+{
+  "navigation": {
+    "home": "HOME",
+    "aboutuspage": "ABOUT US",
+    "servicesNav": "SERVICES",
+    "team": "TEAM",
+    "contactNav": "CONTACT"
+  },
+  "footer": {
+    "brand": {
+      "description": "Evidence-based interventions for organizational development, leadership, and sustainable performance."
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "info@myelinops.com",
+      "phone": "+383 49 287 070"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "social": {
+      "title": "Find us on social media"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "services": "Services",
+      "cases": "Cases"
+    },
+    "language": {
+      "english": "English",
+      "albanian": "Albanian"
+    },
+    "copyright": "© {{year}} Myelin Ops. All rights reserved."
+  }
+}

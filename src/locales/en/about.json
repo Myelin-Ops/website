@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "We Strengthen Organizations from the Inside Out",
+    "subtitle": "Through neuroscience and organizational psychology, we build resilient cultures, effective leadership, and sustainable performance."
+  },
+  "metaphor": {
+    "title": "The Myelin Metaphor",
+    "subtitle": "How biological efficiency translates to organizational excellence.",
+    "cards": {
+      "brain": {
+        "title": "Company = Brain",
+        "description": "Organizations are living systems that require effective coordination and alignment to function effectively."
+      },
+      "neurons": {
+        "title": "Employees = Neurons",
+        "description": "People are the drivers of performance. Their communication, state, and well-being determine organizational success."
+      },
+      "protective": {
+        "title": "Myelin OPS = Protective Layer",
+        "description": "We strengthen and accelerate organizational functioning, protecting culture, enhancing leadership, and improving collaboration."
+      }
+    }
+  },
+  "approach": {
+    "title": "Our Approach",
+    "description1": "At Myelin OPS, we combine:",
+    "items": [
+      "Organizational diagnostics and assessments",
+      "Neuroscience-based leadership development",
+      "Workplace mental health interventions",
+      "Research-backed group dynamics facilitation"
+    ],
+    "description2": "We do not offer generic training. We design tailored solutions based on your organization's structure, culture, and goals."
+  },
+  "partners": {
+    "title": "Trusted by Leading Institutions"
+  },
+  "values": {
+    "title": "Core Values",
+    "protection": {
+      "title": "Protection",
+      "description": "Safeguarding organizational health and culture"
+    },
+    "clarity": {
+      "title": "Clarity",
+      "description": "Evidence-based insights and transparent interventions"
+    },
+    "trust": {
+      "title": "Trust",
+      "description": "Science-based methodologies and integrity"
+    },
+    "accommodation": {
+      "title": "Accommodation",
+      "description": "Frameworks performance through systems"
+    }
+  },
+  "cta": {
+    "title": "Ready to strengthen your organization?",
+    "description": "Let's explore how neuroscience and organizational psychology can support your leadership, culture, and performance.",
+    "primaryButton": "Contact Us",
+    "secondaryButton": "Download Portfolio"
+  }
+}

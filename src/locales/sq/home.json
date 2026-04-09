@@ -1,0 +1,50 @@
+{
+  "hero": {
+    "title": "Ne jemi shtresa mbrojtëse",
+    "highlight": "organizatat",
+    "subtitle": "që ndihmon organizatat dhe individët të zhvillohen, të rriten dhe të lulëzojnë.",
+    "description": "Ndërhyrje të bazuara në evidencë që forcojnë lidershipin, kulturën dhe performancën organizative."
+  },
+  "testimonials": {
+    "label": "DËSHMI",
+    "viewMore": "Shiko më shumë",
+    "list": [
+      {
+        "quote": "Ishte një privilegj të bashkëpunonim me Myelin OPS. Kompania ofroi një analizë të thelluar mbi stresin në punë dhe ndikimin e tij në performancë, e cila solli vlerë të madhe për punonjësit e komunës sonë. Myelin OPS është një partner ideal për çdo organizatë që kërkon të përmirësojë mirëqenien dhe performancën në punë.",
+        "author": "Komuna e Vushtrrisë"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "STAFI"
+  },
+  "partners": {
+    "title": "Partnerët tanë"
+  },
+  "whyItMatters": {
+    "label": "PËRSE KA RËNDËSI",
+    "title": "Organizatat janë sisteme të gjalla.",
+    "description": "Ato funksionojnë përmes ndërveprimit të njerëzve, strukturave dhe kulturës. Kur një element ndryshon, ndikon në të gjithë sistemin."
+  },
+  "scrollableInsights": {
+    "card1": {
+      "title": "Lidershipi formëson mendimin kolektiv.",
+      "description": "Udhëheqja efektive përcakton si ekipet perceptojnë kompleksitetin dhe sigurinë psikologjike."
+    },
+    "card2": {
+      "title": "Kultura ndikon drejtpërdrejt në performancë.",
+      "description": "Një kulturë e shëndetshme krijon besim, angazhim dhe rezultate të qëndrueshme."
+    },
+    "card3": {
+      "title": "Ndërhyrja ndryshon trajektoret.",
+      "description": "Ndërhyrjet e duhura, të bazuara në analizë dhe evidencë, e zhvendosin organizatën nga menaxhimi reaktiv drejt zhvillimit të qëndrueshëm."
+    },
+    "scrollHint": "Rrëshqit poshtë për të parë më shumë"
+  },
+  "cta": {
+    "title": "Gati për të forcuar organizatën tuaj?",
+    "description": "Le të eksplorojmë se si mund t'ju ndihmojmë të ndërtoni një kulturë më rezistente dhe të lulëzuar organizative.",
+    "primaryButton": "Rezervo një konsultë",
+    "secondaryButton": "Eksploro Shërbimet"
+  }
+}

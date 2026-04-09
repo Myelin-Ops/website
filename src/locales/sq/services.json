@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "title": "Ndërhyrjet tona",
+    "subtitle": "Ndërhyrje të strukturuara, të bazuara në prova, të dizajnuara për të forcuar udhëheqjen, kulturën dhe performancën organizative."
+  },
+  "intro": {
+    "title": "Ndërhyrjet Gjithëpërfshirëse",
+    "description": "Mbështetje strategjike e përshtatur për specifikat e nevojave organizative dhe dinamikave të industrisë."
+  },
+  "methodology": {
+    "title": "Metodologjia Jonë",
+    "subtitle": "Si puna jonë ndjek një proces të strukturuar dhe të bazuar në prova.",
+    "steps": {
+      "diagnostic": {
+        "title": "Diagnostikimi",
+        "description": "Identifikimi i boshllëqeve organizative përmes kornizave të vlerësimit të bazuara në të dhëna."
+      },
+      "strategy": {
+        "title": "Strategjia",
+        "description": "Bashkë-dizajnimi i ndërhyrjeve të personalizuara të rreshtuara me objektivat strategjike të organizatës."
+      },
+      "implementation": {
+        "title": "Zbatimi",
+        "description": "Aplikim i udhëhequr i fokusuar në ndryshimin e qëndrueshëm dhe transferimin e aftësive."
+      }
+    }
+  },
+  "list": {
+    "groupDynamics": {
+      "title": "Dinamika e Grupit dhe Inteligjenca Kolektive",
+      "description": "Kultivoni sjellje ekipore të performancës së lartë duke rritur kapacitetet e përbashkëta kognitive dhe vendimmarrëse.",
+      "items": [
+        "Dinamika dhe kohezioni i ekipit",
+        "Strategjitë e vendimmarrjes bashkëpunuese",
+        "Zgjidhja e konflikteve dhe përmirësimi i besimit"
+      ]
+    },
+    "neuroLeadership": {
+      "title": "Zhvillimi i Neuro-Lidershipit",
+      "description": "Shfrytëzoni neuroshkencën e aplikuar për të rritur efektivitetin e lidershipit dhe cilësitë individuale të vendimmarrjes.",
+      "items": [
+        "Rregullimi emocional dhe qëndrueshmëria ndaj stresit",
+        "Prezenca ekzekutive dhe performanca e ndikimit",
+        "Energjia e lidershipit të qëndrueshëm"
+      ]
+    },
+    "migration": {
+      "title": "Mbështetja për Emigrim dhe Riatdhesim",
+      "description": "Mbështetje strategjike për të lehtësuar tranzicionet e qeta në tregjet e synuara ose proceset e riintegrimit për stafin ndërkombëtar.",
+      "items": [
+        "Përshtatja kulturore e hyrjes në treg",
+        "Strategjitë e integrimit dhe mbajtjes",
+        "Vlerësimi njerëzor i potencialit dhe talentit"
+      ]
+    },
+    "advancement": {
+      "title": "Strategjia e Përparimit Organizativ",
+      "description": "Arkitektura afatgjatë për rritjen, transformimin dhe shëndetin strukturor përmes qasjeve të sistemeve evolucionare.",
+      "items": [
+        "Transformimi i qeverisjes dhe hierarkisë",
+        "Struktura e ekipit të shpejtë dhe adaptiv",
+        "Kalibrimi i kulturës organizative"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Le të dizajnojmë ndërhyrjen e duhur për organizatën tuaj.",
+    "description": "Caktoni një konsultë për të kuptuar se si Myelin Ops mund të mbështesë objektivat tuaja të lidershipit dhe kulturës.",
+    "button": "Cakto Konsultën"
+  }
+}
