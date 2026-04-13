@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "title": "The Minds Behind the Science",
+    "subtitle": "Our work is grounded in neuroscience, organizational psychology, and practical leadership expertise."
+  },
+  "sections": {
+    "visionary": "The Visionary",
+    "research": "Research & Strategy Team",
+    "research_subtitle": "Specialists dedicated to organizational optimization."
+  },
+  "members": {
+    "arnisa": {
+      "name": "Arnisa Aliqkaj",
+      "role": "FOUNDER & CEO | ORGANIZATIONAL & SOCIAL PSYCHOLOGIST",
+      "bio": "Arnisa is an Organizational and Social Psychologist with a specialization in neuro-leadership. She works with companies, donor organizations, and public institutions to strengthen leadership, organizational culture, and workplace wellbeing through structured, evidence-based interventions.",
+      "linkedin": "https://www.linkedin.com/in/arnisaaliqkaj/"
+    },
+    "zanfina": {
+      "name": "Zanfina Raja",
+      "role": "ORGANIZATIONAL DEVELOPMENT & WORKPLACE WELLBEING CONSULTANT",
+      "bio": "Psychologist and HR professional specializing in talent development, organizational culture, and workplace wellbeing. At Myelin Ops, she supports leadership initiatives and evidence-based programs grounded in organizational psychology.",
+      "linkedin": "https://www.linkedin.com/in/zanfinaraja/"
+    },
+    "ardita": {
+      "name": "Ardita Shabani",
+      "role": "WORKPLACE & COMMUNITY WELLBEING CONSULTANT",
+      "bio": "Ardita specializes in workplace and community wellbeing initiatives through research, grant program development, and psychological support strategies. Her work focuses on emotional wellbeing, resilience and strengthening supportive organizational environments.",
+      "linkedin": "https://www.linkedin.com/in/arditashabani/"
+    }
+  },
+  "cta": {
+    "title": "Partner with our experts",
+    "subtitle": "Ready to apply scientific rigor to your organizational challenges? Let's build a neuro-inclusive future together.",
+    "button": "Book a Consultation"
+  }
+}

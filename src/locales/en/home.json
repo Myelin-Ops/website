@@ -12,11 +12,23 @@
       {
         "quote": "It was a privilege to collaborate with Myelin OPS. The company provided an insightful analysis on workplace stress and its impact on performance provided great value to our municipality's employees. Myelin OPS is an ideal partner for any organization seeking to enhance well-being and performance at work.",
         "author": "Municipality of Vushtrria"
+      },
+      {
+        "quote": "The interactive activities were particularly engaging and practical. These tools provided our team with actionable strategies to incorporate into their daily routines. Additionally, the group work on identifying workplace stressors fostered open communication and collective problem solving.",
+        "author": "The Kosova Humanitarian and Charitable Society - Mother Teresa"
+      },
+      {
+        "quote": "Throughout the sessions, Myelin OPS exhibited an exceptional level of expertise and professionalism. Their facilitator demonstrated a profound grasp of the subject matter, effectively engaging participants and cultivating an environment conducive to learning and development. The interactive approach ensured active involvement from all attendees, resulting in valuable insights and actionable takeaways.",
+        "author": "University of Prishtina"
+      },
+      {
+        "quote": "Based on the feedback from the personnel who participated in the training, Myelin OPS demonstrated an exemplary level of expertise and professionalism throughout the engagement. Their trainer showed a deep understanding of the subject matter, effectively engaging participants and fostering a shared sense of learning. The interactive nature of the sessions ensured active participation from all attendees.",
+        "author": "Haxhi Zeka University"
       }
     ]
   },
   "gallery": {
-    "title": "TEAM"
+    "title": "GALLERY"
   },
   "partners": {
     "title": "Our partners"
@@ -44,7 +56,7 @@
   "cta": {
     "title": "Ready to strengthen your organization?",
     "description": "Let's explore how we can help you build a more resilient and thriving organizational culture.",
-    "primaryButton": "Book an exploration call",
-    "secondaryButton": "Learn more"
+    "primaryButton": "Schedule Consultation",
+    "secondaryButton": "Explore Services"
   }
 }

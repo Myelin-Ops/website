@@ -1,0 +1,37 @@
+{
+  "hero": {
+    "title": "Get in Touch",
+    "subtitle": "Tell us about your organization and your needs. We will respond with a suggested next step."
+  },
+  "info": {
+    "email": {
+      "title": "Email",
+      "subtitle": "For general inquiries and institutional partnerships.",
+      "value": "info@myelinops.com"
+    },
+    "phone": {
+      "title": "Phone",
+      "subtitle": "Available for consultation scheduling.",
+      "value": "+383 48 557 579"
+    },
+    "connect": "CONNECT WITH US",
+    "credits": "DEVELOPMENT CREDITS >"
+  },
+  "form": {
+    "title": "Send us a Message",
+    "name": {
+      "label": "Full Name",
+      "placeholder": "John Doe"
+    },
+    "email": {
+      "label": "Email Address",
+      "placeholder": "email@company.com"
+    },
+    "message": {
+      "label": "Message",
+      "placeholder": "Briefly describe your organization and the challenge you would like to address."
+    },
+    "submit": "Send Message",
+    "agreement": "By submitting this form, you agree to our Privacy Policy."
+  }
+}

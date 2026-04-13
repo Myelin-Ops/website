@@ -39,19 +39,19 @@
     "title": "Vlerat tona kryesore",
     "protection": {
       "title": "Mbrojtja",
-      "description": "Ruajtja e shëndetit dhe kulturës organizative"
+      "description": "Ruajtja e shëndetit mendor dhe kulturës"
     },
     "clarity": {
       "title": "Qartësia",
-      "description": "Vështrime të bazuara në evidencë dhe ndërhyrje transparente"
+      "description": "Vështrime të bazuara në dëshmi dhe ndërhyrje të strukturuara"
     },
     "trust": {
       "title": "Besimi",
-      "description": "Metodologji të bazuara në shkencë dhe integritet"
+      "description": "Konfidencialiteti, profesionalizmi dhe integriteti"
     },
-    "accommodation": {
-      "title": "Përshtatja",
-      "description": "Kornizat e performancës përmes sistemeve"
+    "acceleration": {
+      "title": "Përshpejtimi",
+      "description": "Performancë e qëndrueshme përmes shkencës"
     }
   },
   "cta": {
