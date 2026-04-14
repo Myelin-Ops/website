@@ -78,10 +78,10 @@ function HomeContent() {
         </h1>
 
         {/* Desktop: two separate h1s */}
-        <h1 className="hidden xl:block text-6xl font-extrabold leading-none mb-2">
+        <h1 className="hidden xl:block text-6xl font-black leading-none mb-2">
           {t("hero.title")}
         </h1>
-        <h1 className="hidden xl:block text-6xl font-extrabold leading-none max-w-3/4 mb-8">
+        <h1 className="hidden xl:block text-6xl font-black leading-none max-w-3/4 mb-8">
           {t("hero.subtitle")
             .split(" ")
             .map((word, index) => (
@@ -98,7 +98,7 @@ function HomeContent() {
             ))}
         </h1>
 
-        <p className="hidden md:block text-gray-500 text-base md:text-lg max-w-md md:max-w-xl">
+        <p className="hidden md:block text-gray-500 text-base md:mt-10 md:text-xl max-w-md md:max-w-2xl">
           {t("hero.description")}
         </p>
       </motion.div>

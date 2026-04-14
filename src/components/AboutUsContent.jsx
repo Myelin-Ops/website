@@ -89,7 +89,7 @@ function AboutUsContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight"
+            className="text-4xl md:text-6xl font-black text-gray-900 mb-8 leading-tight"
           >
             {t("about.hero.title")}
           </motion.h1>
@@ -424,7 +424,7 @@ function AboutUsContent() {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-linear-to-tr from-blue-500/10 to-transparent rounded-full -ml-48 -mb-48 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 py-16 md:py-24 px-8 md:px-20 text-center text-white">
-            <h2 className="text-2xl md:text-4xl font-bold mb-8">
+            <h2 className="text-2xl md:text-5xl font-black mb-8">
               {t("about.cta.title")}
             </h2>
             <p className="hidden md:block text-gray-400 text-base mb-12 max-w-3xl mx-auto">

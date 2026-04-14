@@ -102,7 +102,7 @@ function ServicesContent() {
           variants={fadeUp}
           className="relative z-10"
         >
-          <h1 className="text-3xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+          <h1 className="text-3xl md:text-7xl font-black text-gray-900 mb-8 leading-tight">
             {t("services.hero.title")}
           </h1>
           <p className="text-sm md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -250,7 +250,7 @@ function ServicesContent() {
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-linear-to-tr from-blue-500/5 to-transparent rounded-full -ml-64 -mb-64 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 py-24 px-4 text-center text-white">
-            <h2 className="text-2xl md:text-4xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+            <h2 className="text-2xl md:text-5xl font-black md:max-w-[600px] mb-8 max-w-4xl mx-auto leading-tight">
               {t("services.cta.title")}
             </h2>
             <p className="hidden md:block text-gray-400 text-sm md:text-base mb-12 max-w-2xl mx-auto leading-relaxed">
