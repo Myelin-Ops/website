@@ -439,7 +439,7 @@ function AboutUsContent() {
               <a
                 href="/portfolio.pdf"
                 download
-                className="px-8 py-4 border border-white/20 text-white font-bold rounded-md text-base hover:bg-white/10 transition-colors flex items-center justify-center w-full sm:w-[220px]"
+                className="px-auto py-4 border border-white/20 text-white font-bold rounded-md text-base hover:bg-white/10 transition-colors flex items-center justify-center w-full sm:w-[220px]"
               >
                 {t("about.cta.secondaryButton")}
               </a>
