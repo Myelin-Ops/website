@@ -79,7 +79,7 @@ function ServicesContent() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex flex-col justify-center px-4 md:px-12 text-center max-w-6xl mx-auto py-20 overflow-hidden">
+      <section className="relative min-h-[40vh] md:min-h-[60vh] flex flex-col justify-center px-4 md:px-12 text-center max-w-6xl mx-auto py-12 md:py-20 overflow-hidden">
         {/* Background Glow (Signature Style) */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -102,32 +102,32 @@ function ServicesContent() {
           variants={fadeUp}
           className="relative z-10"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+          <h1 className="text-3xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
             {t("services.hero.title")}
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             {t("services.hero.subtitle")}
           </p>
         </motion.div>
       </section>
 
       {/* Comprehensive Interventions Section */}
-      <section className="py-32 px-4 md:px-12 bg-[#F6F8F8] border-t border-gray-50">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="py-24 md:py-48 px-4 md:px-12 bg-[#F6F8F8] border-t border-gray-50 flex items-center min-h-[60vh]">
+        <div className="max-w-7xl mx-auto text-center w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
               {t("services.intro.title")}
             </h2>
-            <p className="text-gray-500 text-lg md:text-xl max-w-3xl mx-auto mb-20 leading-relaxed">
+            <p className="text-gray-500 text-sm md:text-xl max-w-4xl mx-auto mb-32 leading-relaxed">
               {t("services.intro.subtitle")}
             </p>
 
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-12 items-start">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-20 gap-x-12 md:gap-4 items-start">
               {categories.map((cat, i) => (
                 <motion.div
                   key={i}
@@ -135,12 +135,12 @@ function ServicesContent() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className="flex flex-col items-center gap-4 group"
+                  className={`flex flex-col items-center gap-4 group ${i === categories.length - 1 ? "col-span-2 lg:col-span-1" : ""}`}
                 >
-                  <span className="text-sm font-bold tracking-widest text-[#13ECEC]">
+                  <span className="text-xs md:text-base font-bold tracking-[0.3em] text-[#13ECEC] uppercase">
                     {cat.id}
                   </span>
-                  <span className="text-sm md:text-base font-bold text-gray-900 tracking-tight text-center">
+                  <span className="text-sm md:text-lg font-bold text-gray-900 tracking-tight text-center leading-snug max-w-[250px]">
                     {t(`services.intro.categories.${cat.key}`)}
                   </span>
                 </motion.div>
@@ -154,15 +154,15 @@ function ServicesContent() {
       <section className="py-24 px-4 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-6">
               {t("services.methodology.title")}
             </h2>
-            <p className="text-gray-500 text-lg">
+            <p className="text-gray-500 text-base md:text-xl">
               {t("services.methodology.subtitle")}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {methodology.map((step) => (
               <motion.div
                 key={step.key}
@@ -178,7 +178,7 @@ function ServicesContent() {
                 <h3 className="text-2xl font-bold mb-4">
                   {t(`services.methodology.steps.${step.key}.title`)}
                 </h3>
-                <p className="text-gray-500 leading-relaxed text-lg">
+                <p className="text-gray-500 leading-relaxed text-base">
                   {t(`services.methodology.steps.${step.key}.description`)}
                 </p>
               </motion.div>
@@ -195,7 +195,7 @@ function ServicesContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
           >
             {interventions.map((service) => (
               <motion.div
@@ -249,21 +249,23 @@ function ServicesContent() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-linear-to-bl from-[#13ECEC]/10 to-transparent rounded-full -mr-64 -mt-64 blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-linear-to-tr from-blue-500/5 to-transparent rounded-full -ml-64 -mb-64 blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 py-24 px-8 md:px-20 text-center text-white">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <div className="relative z-10 py-24 px-4 text-center text-white">
+            <h2 className="text-2xl md:text-4xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
               {t("services.cta.title")}
             </h2>
-            <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="hidden md:block text-gray-400 text-sm md:text-base mb-12 max-w-2xl mx-auto leading-relaxed">
               {t("services.cta.description")}
             </p>
             <Link href="/contact" className="inline-block mb-14">
-              <button className="px-12 py-5 bg-[#13ECEC] text-black font-extrabold rounded-md text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
+              <button className="px-4 py-4 md:px-12 md:py-5 bg-[#13ECEC] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
                 {t("services.cta.button")}
               </button>
             </Link>
             <div className="border-t border-white/5 pt-10">
-              <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-gray-500 uppercase">
-                Evidence-Based Frameworks • Professional Alignment
+              <p className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 text-[10px] font-bold tracking-[0.4em] text-gray-500 uppercase">
+                <span>Evidence-Based Frameworks</span>
+                <span className="md:mx-4">.</span>
+                <span>Professional Alignment</span>
               </p>
             </div>
           </div>

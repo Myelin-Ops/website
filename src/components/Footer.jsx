@@ -54,7 +54,7 @@ function Footer() {
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-7xl mx-auto px-4 md:px-12 py-12 md:py-16"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-12 md:gap-y-16 lg:gap-12 mb-12 text-center md:text-left justify-items-center md:justify-items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 md:gap-x-12 mb-12 text-center sm:text-left justify-items-center sm:justify-items-start">
           {/* Brand Section */}
           <motion.div
             variants={itemVariants}

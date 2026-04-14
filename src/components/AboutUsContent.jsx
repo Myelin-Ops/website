@@ -39,12 +39,12 @@ function AboutUsContent() {
     {
       src: uhzLogo,
       label: "University of Prishtina",
-      scale: "scale-120 md:scale-170",
+      scale: "scale-120 md:scale-100",
     },
     {
       src: upLogo,
       label: "University of Peja",
-      scale: "scale-100 md:scale-140",
+      scale: "scale-100 md:scale-100",
     },
     {
       src: vushtrriaLogo,
@@ -53,14 +53,14 @@ function AboutUsContent() {
     {
       src: cacttusLogo,
       label: "Cacttus Education",
-      scale: "scale-140",
+      scale: "scale-130",
     },
     {
       src: albiLogo,
       label: "Albi Fashion Group",
       scale: "scale-110 md:scale-140",
     },
-    { src: kosovajobLogo, label: "KosovaJob", scale: "scale-120 md:scale-150" },
+    { src: kosovajobLogo, label: "KosovaJob", scale: "scale-120 md:scale-120" },
   ];
 
   return (
