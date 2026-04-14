@@ -90,28 +90,29 @@ function WhyItMatters() {
                 </p>
               </motion.div>
 
-              {/* Grid Content (Original Design: Title/Desc Left, Image Right) */}
+              {/* Grid Content (Refined for mobile centering) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-                {/* Left Content */}
+                {/* Content */}
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
+                  className="text-center md:text-left"
                 >
-                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 md:mb-8 leading-tight">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 md:mb-8 leading-tight">
                     {section.title}
                   </h2>
-                  <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed italic">
+                  <p className="text-base md:text-lg lg:text-xl text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
                     {section.description}
                   </p>
                 </motion.div>
 
-                {/* Right Side - Image Area */}
+                {/* Right Side - Image Area (Hidden on mobile) */}
                 <motion.div
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="relative w-full h-72 md:h-96 lg:h-[32rem] rounded-2xl overflow-hidden shadow-2xl"
+                  className="hidden md:block relative w-full h-72 md:h-96 lg:h-[32rem] rounded-2xl overflow-hidden shadow-2xl"
                 >
                   <Image
                     src={section.image}

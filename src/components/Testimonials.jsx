@@ -59,7 +59,7 @@ function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-20 md:mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-black tracking-widest uppercase">
+          <h2 className="text-2xl md:text-5xl font-bold text-black tracking-widest uppercase">
             {t("testimonials.label")}
           </h2>
           <div className="w-16 h-1 bg-cyan-500 mx-auto mt-6 rounded-full" />
