@@ -22,7 +22,7 @@ function CreditsContent() {
           viewport={{ once: true }}
           variants={fadeUp}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
             {t("credits.hero.title")}
           </h1>
           <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">

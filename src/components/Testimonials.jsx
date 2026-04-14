@@ -10,11 +10,14 @@ const TICK_INTERVAL = 20; // Update every 20ms for smooth tracking
 
 function Testimonials() {
   const { t } = useTranslation();
-  const testimonialsList = t("testimonials.list", { returnObjects: true });
+  const testimonialsData = t("testimonials.list", { returnObjects: true });
+  const testimonialsList = Array.isArray(testimonialsData) ? testimonialsData : [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
+
+  if (testimonialsList.length === 0) return null;
 
   useEffect(() => {
     if (isPaused) return;
