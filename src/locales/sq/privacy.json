@@ -1,0 +1,36 @@
+{
+  "title": "Politika e Privatësisë",
+  "introduction": {
+    "title": "Hyrje",
+    "content": "Në Myelin Ops, ne jemi të përkushtuar ndaj mbrojtjes së privatësisë suaj dhe garantimit të sigurisë së të dhënave tuaja personale. Kjo Politikë e Privatësisë përshkruan se si ne mbledhim, përdorim dhe mbrojmë informacionin tuaj kur vizitoni faqen tonë dhe ndërveproni me shërbimet tona."
+  },
+  "dataCollection": {
+    "title": "Të dhënat që mbledhim",
+    "content": "Ne mund të mbledhim informacion personal si emri juaj, adresa e email-it, numri i telefonit dhe detajet organizative kur i jepni ato vullnetarisht përmes formave tona të kontaktit ose gjatë rezervimit të një konsulte. Ne gjithashtu mbledhim të dhëna jopersonale si lloji i shfletuesit dhe adresa IP për qëllime analitike."
+  },
+  "useOfData": {
+    "title": "Si i përdorim të dhënat tuaja",
+    "content": "Informacioni juaj përdoret për të ofruar dhe përmirësuar shërbimet tona të konsulencës, për t'iu përgjigjur kërkesave tuaja, për të dërguar njoftime rreth ofertave tona dhe për të analizuar performancën e faqes."
+  },
+  "security": {
+    "title": "Siguria e të dhënave",
+    "content": "Ne zbatojmë masa teknike dhe organizative të nivelit profesional për të mbrojur të dhënat tuaja personale kundër qasjes së paautorizuar, humbjes ose manipulimit."
+  },
+  "cookies": {
+    "title": "Cookies",
+    "content": "Faqja jonë përdor 'cookies' për të përmirësuar përvojën e përdoruesit dhe për të analizuar trafikun. Ju mund të zgjidhni të çaktivizoni 'cookies' përmes cilësimeve të shfletuesit tuaj, megjithëse disa veçori të faqes mund të mos funksionojnë saktë."
+  },
+  "thirdParties": {
+    "title": "Shpërndarja te palët e treta",
+    "content": "Ne nuk i shesim ose tregtojmë informacionet tuaja personale te palët e treta. Ne mund të shpërndajmë të dhëna me partnerë të besuar që na ndihmojnë në operimin e faqes sonë ose në kryerjen e biznesit tonë, me kusht që ata të bien dakord ta mbajnë këtë informacion konfidencial."
+  },
+  "rights": {
+    "title": "Të drejtat tuaja",
+    "content": "Ju keni të drejtë të keni qasje, të korrigjoni ose të kërkoni fshirjen e të dhënave tuaja personale. Për të ushtruar këto të drejta, ju lutemi na kontaktoni në info@myelinops.com."
+  },
+  "updates": {
+    "title": "Përditësimet e kësaj politike",
+    "content": "Ne mund të përditësojmë këtë Politikë të Privatësisë herë pas here. Versioni më i fundit do të postohet gjithmonë në këtë faqe me datën e hyrjes në fuqi."
+  },
+  "lastUpdated": "Përditësuar së fundmi: Prill 2024"
+}

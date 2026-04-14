@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "title": "Kreditet e Zhvillimit",
+    "description": "Kjo faqe interneti u zhvillua nga nxënësit e SHMT \"Lutfi Musiqi\" në bashkëpunim me Myelin OPS."
+  },
+  "supervisor": {
+    "label": "Mbikëqyrur nga",
+    "name": "Prof. Ilmi Bunjaku"
+  },
+  "team": {
+    "lead": {
+      "label": "Udhëheqësi i Ekipit:",
+      "name": "Bleon Nasufi"
+    },
+    "developers": {
+      "label": "Zhvilluesit:",
+      "names": "Edi Pajaziti, Elton Rexha, Argjend Pllana"
+    }
+  },
+  "outro": "Ne çmojmë kontributin e tyre në prezencën digjitale të Myelin OPS."
+}

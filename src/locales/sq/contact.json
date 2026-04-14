@@ -1,0 +1,37 @@
+{
+  "hero": {
+    "title": "Na kontaktoni",
+    "subtitle": "Na tregoni për organizatën dhe nevojat tuaja. Ne do të përgjigjemi me një hap të sugjeruar më pas."
+  },
+  "info": {
+    "email": {
+      "title": "Email",
+      "subtitle": "Për pyetje të përgjithshme dhe partneritete institucionale.",
+      "value": "info@myelinops.com"
+    },
+    "phone": {
+      "title": "Telefoni",
+      "subtitle": "Në dispozicion për caktimin e konsultimeve.",
+      "value": "+383 48 557 579"
+    },
+    "connect": "LIDHUNI ME NE",
+    "credits": "KREDITET E ZHVILLIMIT >"
+  },
+  "form": {
+    "title": "Na dërgoni një mesazh",
+    "name": {
+      "label": "Emri dhe Mbiemri",
+      "placeholder": "Filan Fisteku"
+    },
+    "email": {
+      "label": "Adresa e Emailit",
+      "placeholder": "email@kompania.com"
+    },
+    "message": {
+      "label": "Mesazhi",
+      "placeholder": "Përshkruani shkurtimisht organizatën tuaj dhe sfidën që dëshironi të adresoni."
+    },
+    "submit": "Dërgo Mesazhin",
+    "agreement": "Duke dërguar këtë formë, ju pajtoheni me Politikat tona të Privatësisë."
+  }
+}

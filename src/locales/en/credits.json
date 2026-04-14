@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "title": "Development Credits",
+    "description": "This website was developed by students of SHMT \"Lutfi Musiqi\" in collaboration with Myelin OPS."
+  },
+  "supervisor": {
+    "label": "Supervised by",
+    "name": "Prof. Ilmi Bunjaku"
+  },
+  "team": {
+    "lead": {
+      "label": "Team Lead:",
+      "name": "Bleon Nasufi"
+    },
+    "developers": {
+      "label": "Developers:",
+      "names": "Edi Pajaziti, Elton Rexha, Argjend Pllana"
+    }
+  },
+  "outro": "We appreciate their contribution to the digital presence of Myelin OPS."
+}

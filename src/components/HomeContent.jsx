@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -19,7 +19,7 @@ function HomeContent() {
   };
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden">
+    <div className="relative w-full min-h-[45vh] md:min-h-screen overflow-hidden">
       {/* Left Background Blur */}
       <motion.div
         initial={{ opacity: 0, x: -100 }}
@@ -57,45 +57,49 @@ function HomeContent() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 flex flex-col items-center self-center mt-55 md:mt-65 px-4 text-center"
+        className="relative z-10 flex flex-col items-center self-center mt-32 md:mt-65 px-4 text-center"
       >
         {/* Mobile-tablet: all combined into one h1 */}
         <h1 className="block xl:hidden text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-          {t('hero.title')}{' '}
-          {t('hero.subtitle').split(' ').map((word, index) => (
-            <span
-              key={index}
-              className={
-                (word === t('hero.highlight') ? ' text-[#13ECEC]' : '')
-              }
-            >
-              {word}
-              {index < t('hero.subtitle').split(' ').length - 1 && ' '}
-            </span>
-          ))}
+          {t("hero.title")}{" "}
+          {t("hero.subtitle")
+            .split(" ")
+            .map((word, index) => (
+              <span
+                key={index}
+                className={
+                  word === t("hero.highlight") ? " text-[#13ECEC]" : ""
+                }
+              >
+                {word}
+                {index < t("hero.subtitle").split(" ").length - 1 && " "}
+              </span>
+            ))}
         </h1>
 
         {/* Desktop: two separate h1s */}
         <h1 className="hidden xl:block text-6xl font-extrabold leading-none mb-2">
-          {t('hero.title')}
+          {t("hero.title")}
         </h1>
         <h1 className="hidden xl:block text-6xl font-extrabold leading-none max-w-3/4 mb-8">
-          {t('hero.subtitle').split(' ').map((word, index) => (
-            <span
-              key={index}
-              className={
-                (word === 'thrive.' ? 'block' : '') +
-                (word === t('hero.highlight') ? ' text-[#13ECEC]' : '')
-              }
-            >
-              {word}
-              {index < t('hero.subtitle').split(' ').length - 1 && ' '}
-            </span>
-          ))}
+          {t("hero.subtitle")
+            .split(" ")
+            .map((word, index) => (
+              <span
+                key={index}
+                className={
+                  (word === "thrive." ? "block" : "") +
+                  (word === t("hero.highlight") ? " text-[#13ECEC]" : "")
+                }
+              >
+                {word}
+                {index < t("hero.subtitle").split(" ").length - 1 && " "}
+              </span>
+            ))}
         </h1>
 
-        <p className="text-gray-500 text-base md:text-lg max-w-md md:max-w-xl">
-          {t('hero.description')}
+        <p className="hidden md:block text-gray-500 text-base md:text-lg max-w-md md:max-w-xl">
+          {t("hero.description")}
         </p>
       </motion.div>
     </div>

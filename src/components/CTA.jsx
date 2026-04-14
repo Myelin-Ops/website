@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 function CTA() {
   const { t } = useTranslation();
@@ -28,20 +29,25 @@ function CTA() {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-3 md:py-4 bg-cyan-400 text-black font-semibold rounded-lg hover:bg-cyan-300 transition-colors w-full sm:w-auto"
-            >
-              {t('cta.primaryButton')}
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-3 md:py-4 border border-gray-500 text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
-            >
-              {t('cta.secondaryButton')}
-            </motion.button>
+            <Link href="/contact" className="w-full sm:w-auto">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 md:px-8 py-3 md:py-4 bg-cyan-400 text-black font-semibold rounded-lg hover:bg-cyan-300 transition-colors w-full"
+              >
+                {t('cta.primaryButton')}
+              </motion.button>
+            </Link>
+            
+            <Link href="/services" className="w-full sm:w-auto">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 md:px-8 py-3 md:py-4 border border-gray-500 text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors w-full"
+              >
+                {t('cta.secondaryButton')}
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

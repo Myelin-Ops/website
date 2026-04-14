@@ -1,0 +1,36 @@
+{
+  "title": "Kushtet e Shërbimit",
+  "acceptance": {
+    "title": "Pranimi i Kushteve",
+    "content": "Duke hyrë dhe përdorur faqen dhe shërbimet e Myelin Ops, ju pranoni se keni lexuar, kuptuar dhe jeni dakord të zbatoni këto Kushte të Shërbimit. Nëse nuk jeni dakord me këto kushte, ju luteni të mos përdorni faqen tonë."
+  },
+  "services": {
+    "title": "Përshkrimi i Shërbimeve",
+    "content": "Myelin Ops ofron konsulencë profesionale organizative, zhvillim të lidershipit dhe shërbime të vlerësimit kulturor. Të gjitha shërbimet ofrohen në varësi të këtyre Kushteve dhe çdo marrëveshjeje specifike të nënshkruar me klientët tanë."
+  },
+  "ip": {
+    "title": "Pronësia Intelektuale",
+    "content": "Gjithë përmbajtja, metodologjia, mjetet dhe materialet e prezantuara në këtë faqe janë pronë intelektuale e Myelin Ops, përveç rasteve kur specifikohet ndryshe. Përdorimi, riprodhimi ose shpërndarja e paautorizuar është rreptësisht e ndaluar."
+  },
+  "userConduct": {
+    "title": "Sjellja e Përdoruesit",
+    "content": "Përdoruesit bien dakord ta përdorin faqen tonë vetëm për qëllime të ligjshme. Çdo përpjekje për të cenuar sigurinë, për të nxjerrë të dhëna (scraping) ose për të përdorur platformën tonë për aktivitete mashtruese do të rezultojë në ndërprerjen e menjëhershme të qasjes dhe masa të mundshme ligjore."
+  },
+  "disclaimer": {
+    "title": "Mohimi i Garancive",
+    "content": "Shërbimet tona të konsulencës ofrohen në bazën 'siç është' dhe 'siç ofrohet'. Ndonëse ne synojmë përsosmërinë, Myelin Ops nuk garanton rezultate specifike organizative, pasi rezultatet e performancës varen nga zbatimi i brendshëm dhe faktorët e jashtëm."
+  },
+  "liability": {
+    "title": "Kufizimi i Përgjegjësisë",
+    "content": "Myelin Ops nuk do të jetë përgjegjës për asnjë dëm të drejtpërdrejtë, të tërthortë, të rastësishëm ose rrjedhimor që rezulton nga përdorimi ose pamundësia për të përdorur shërbimet ose faqen tonë."
+  },
+  "governingLaw": {
+    "title": "Ligji Zbatues",
+    "content": "Këto Kushte rregullohen dhe interpretohen në përputhje me ligjet e Kosovës. Çdo mosmarrëveshje në lidhje me këto kushte do të jetë subjekt i juridiksionit ekskluziv të gjykatave të Kosovës."
+  },
+  "changes": {
+    "title": "Ndryshimet në Kushte",
+    "content": "Ne rezervojmë të drejtën për të modifikuar këto Kushte në çdo kohë. Përdorimi i vazhdueshëm i faqes pas çdo ndryshimi përbën pranimin tuaj të Kushteve të reja."
+  },
+  "lastUpdated": "Përditësuar së fundmi: Prill 2024"
+}

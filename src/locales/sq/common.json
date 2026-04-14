@@ -1,0 +1,38 @@
+{
+  "navigation": {
+    "home": "KRYESORE",
+    "aboutuspage": "RRETH NESH",
+    "servicesNav": "SHËRBIMET",
+    "team": "STAFI",
+    "contactNav": "KONTAKT"
+  },
+  "footer": {
+    "brand": {
+      "description": "Ndërhyrje të bazuara në evidencë për zhvillim organizativ, lidership dhe performancë të qëndrueshme."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "email": "info@myelinops.com",
+      "phone": "+383 49 287 070"
+    },
+    "legal": {
+      "title": "Ligjore",
+      "privacy": "Politika e Privatësisë",
+      "terms": "Kushtet e Shërbimit"
+    },
+    "social": {
+      "title": "Na gjeni në rrjete sociale"
+    },
+    "company": {
+      "title": "Kompania",
+      "about": "Rreth Nesh",
+      "services": "Shërbimet",
+      "cases": "Rastet"
+    },
+    "language": {
+      "english": "Anglisht",
+      "albanian": "Shqip"
+    },
+    "copyright": "© {{year}} Myelin Ops. Të gjitha të drejtat e rezervuara."
+  }
+}

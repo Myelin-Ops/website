@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "title": "Our Interventions",
+    "subtitle": "Structured, evidence-based interventions designed to strengthen leadership, culture, and organizational performance."
+  },
+  "intro": {
+    "title": "Comprehensive Interventions",
+    "subtitle": "Strategic support across the core pillars of organizational health and leadership excellence.",
+    "categories": {
+      "dynamics": "Group Dynamics",
+      "assessments": "Systemic Assessments",
+      "leadership": "Neuro-Leadership",
+      "reintegration": "Work Reintegration",
+      "tailored": "Tailored Services"
+    }
+  },
+  "methodology": {
+    "title": "Our Methodology",
+    "subtitle": "Our interventions follow a structured diagnostic-to-implementation process.",
+    "steps": {
+      "diagnostic": {
+        "title": "Diagnostic",
+        "description": "Systemic organizational analysis grounded in evidence-based frameworks."
+      },
+      "strategy": {
+        "title": "Strategy",
+        "description": "Clear intervention design aligned with leadership and cultural objectives."
+      },
+      "implementation": {
+        "title": "Implementation",
+        "description": "Practical alignment of governance, communication, and accountability structures."
+      }
+    }
+  },
+  "list": {
+    "groupDynamics": {
+      "title": "Group Dynamics & Collective Intelligence",
+      "description": "We facilitate structured dialogue to improve decision-making, collaboration, and alignment across teams.",
+      "items": [
+        "Strengthen team cohesion",
+        "Resolve complex interpersonal challenges",
+        "Enable shared accountability",
+        "Improve communication clarity"
+      ]
+    },
+    "neuroLeadership": {
+      "title": "Neuro-Leadership Development",
+      "description": "Leadership development grounded in neuroscience and applied behavioral science.",
+      "items": [
+        "Strengthen emotional regulation",
+        "Improve high-stakes decision-making",
+        "Enhance strategic clarity"
+      ]
+    },
+    "migration": {
+      "title": "Migration & Repatriation Support",
+      "description": "We support individuals and teams navigating complex cultural and professional transitions across global markets.",
+      "items": [
+        "Facilitate psychological adaptation",
+        "Strengthen cross-cultural integration",
+        "Maintain performance during transitions"
+      ]
+    },
+    "advancement": {
+      "title": "Organizational Advancement Strategy",
+      "description": "We align structure, leadership, and culture to enable sustainable organizational growth.",
+      "items": [
+        "Clarify strategic priorities",
+        "Strengthen execution frameworks",
+        "Improve internal accountability"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Let's design the right intervention for your organization.",
+    "description": "Schedule a consultation to explore how Myelin OPS can support your leadership and culture objectives.",
+    "button": "Schedule Consultation"
+  }
+}

@@ -1,63 +1,135 @@
-'use client'
+"use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import whyItMatters1 from "../assets/images/background/why-it-matters-1.png";
 import Image from "next/image";
+
+// Images
+import whyItMatters1 from "../assets/images/background/why-it-matters-1.png";
+import whyItMatters2 from "../assets/images/background/why-it-matters-2.png";
+import whyItMatters3 from "../assets/images/background/why-it-matters-3.png";
+import whyItMatters4 from "../assets/images/background/why-it-matters-4.png";
 
 function WhyItMatters() {
   const { t } = useTranslation();
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Sequential piling transforms
+  const y2 = useTransform(scrollYProgress, [0.22, 0.45], ["100vh", "0vh"]);
+  const y3 = useTransform(scrollYProgress, [0.48, 0.72], ["100vh", "0vh"]);
+  const y4 = useTransform(scrollYProgress, [0.75, 0.98], ["100vh", "0vh"]);
+
+  const sections = [
+    {
+      id: 1,
+      label: t("whyItMatters.label"),
+      title: t("whyItMatters.title"),
+      description: t("whyItMatters.description"),
+      image: whyItMatters1,
+      y: 0,
+      zIndex: 10,
+    },
+    {
+      id: 2,
+      title: t("scrollableInsights.card1.title"),
+      description: t("scrollableInsights.card1.description"),
+      image: whyItMatters2,
+      y: y2,
+      zIndex: 20,
+    },
+    {
+      id: 3,
+      title: t("scrollableInsights.card2.title"),
+      description: t("scrollableInsights.card2.description"),
+      image: whyItMatters3,
+      y: y3,
+      zIndex: 30,
+    },
+    {
+      id: 4,
+      title: t("scrollableInsights.card3.title"),
+      description: t("scrollableInsights.card3.description"),
+      image: whyItMatters4,
+      y: y4,
+      zIndex: 40,
+    },
+  ];
+
   return (
-    <section className="w-full py-16 md:py-24 px-4 bg-[#0F1419]">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <p className="text-xs md:text-sm font-semibold text-gray-400 tracking-widest uppercase">
-            {t('whyItMatters.label')}
-          </p>
-        </motion.div>
-
-        {/* Content Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-          {/* Left Content */}
+    <div
+      ref={containerRef}
+      className="relative h-[400vh] bg-[#030708] overflow-visible"
+    >
+      {/* Sticky Container */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {sections.map((section, index) => (
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            key={section.id}
+            style={{
+              y: section.y,
+              zIndex: section.zIndex,
+            }}
+            className="absolute inset-0 w-full h-full bg-[#0F1419] flex items-center shadow-[0_-10px_40px_rgba(0,0,0,0.7)]"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              {t('whyItMatters.title')}
-            </h2>
-            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-              {t('whyItMatters.description')}
-            </p>
-          </motion.div>
+            <div className="max-w-7xl mx-auto w-full px-4 md:px-8">
+              {/* Section Label (Original Design: Top Centered) */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="text-center mb-6"
+              >
+                <p className="text-xs md:text-xl font-semibold text-gray-400 tracking-widest uppercase">
+                  {section.label}
+                </p>
+              </motion.div>
 
-          {/* Right Side - Background Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="relative w-full h-80 md:h-96 rounded-lg overflow-hidden"
-          >
-            <Image
-              src={whyItMatters1}
-              alt="Why it matters background"
-              className="w-full h-full object-cover"
-            />
+              {/* Grid Content (Refined for mobile centering) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+                {/* Content */}
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center md:text-left"
+                >
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 md:mb-8 leading-tight">
+                    {section.title}
+                  </h2>
+                  <p className="text-base md:text-lg lg:text-xl text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
+                    {section.description}
+                  </p>
+                </motion.div>
+
+                {/* Right Side - Image Area (Hidden on mobile) */}
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="hidden md:block relative w-full h-72 md:h-96 lg:h-[32rem] rounded-2xl overflow-hidden shadow-2xl"
+                >
+                  <Image
+                    src={section.image}
+                    alt={section.title}
+                    fill
+                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    priority={index === 0}
+                  />
+                  {/* Subtle gradient for depth */}
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0F1419]/40 to-transparent pointer-events-none" />
+                </motion.div>
+              </div>
+            </div>
           </motion.div>
-        </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
 

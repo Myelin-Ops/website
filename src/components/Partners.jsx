@@ -16,67 +16,55 @@ const partners = [
   { id: 4, src: partner4, alt: "Partner 4" },
 ];
 
+// Double the partners for seamless looping
+const doubledPartners = [...partners, ...partners];
+
 function Partners() {
   const { t } = useTranslation();
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        duration: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 },
-    },
-  };
 
   return (
-    <section className="w-full py-12 md:py-20 px-4 bg-white">
-      {/* Heading */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        viewport={{ once: true }}
-        className="text-center mb-12 md:mb-16"
-      >
-        <h2 className="text-2xl md:text-4xl font-bold text-black tracking-widest uppercase">
+    <section className="w-full py-12 md:py-24 bg-white border-y border-gray-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 mb-12">
+        <h2 className="text-center text-sm font-bold tracking-[0.3em] text-gray-400 uppercase">
           {t('partners.title')}
         </h2>
-      </motion.div>
+      </div>
 
-      {/* Partners Grid */}
-      <div className="max-w-6xl mx-auto">
+      {/* Infinite Scroll Container */}
+      <div className="relative flex overflow-hidden group">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center"
+          animate={{
+            x: ["0%", "-50%"],
+          }}
+          transition={{
+            duration: 25,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+          className="flex whitespace-nowrap"
+          // Pause on hover
+          whileHover={{ animationPlayState: "paused" }}
         >
-          {partners.map((partner) => (
-            <motion.div
-              key={partner.id}
-              variants={itemVariants}
-              className="relative w-full h-32 md:h-40 flex items-center justify-center"
+          {doubledPartners.map((partner, index) => (
+            <div
+              key={`${partner.id}-${index}`}
+              className="flex-shrink-0 w-[250px] md:w-[350px] px-10 flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
             >
-              <Image
-                src={partner.src}
-                alt={partner.alt}
-                fill
-                className="object-contain"
-              />
-            </motion.div>
+              <div className="relative w-full h-16 md:h-20">
+                <Image
+                  src={partner.src}
+                  alt={partner.alt}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
           ))}
         </motion.div>
+
+        {/* Gradient Overlays for smooth edges */}
+        <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
       </div>
     </section>
   );

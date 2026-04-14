@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "title": "Mendjet prapa shkencës",
+    "subtitle": "Puna jonë bazohet në neuroshkencë, psikologji organizative dhe ekspertizë praktike të lidershipit."
+  },
+  "sections": {
+    "visionary": "Vizionarja",
+    "research": "Ekipi i Kërkimit dhe Strategjisë",
+    "research_subtitle": "Specialistë të përkushtuar ndaj optimizimit organizativ."
+  },
+  "members": {
+    "arnisa": {
+      "name": "Arnisa Aliqkaj",
+      "role": "THEMELUESE & CEO | PSIKOLOGE ORGANIZATIVE DHE SOCIALE",
+      "bio": "Arnisa është Psikologe Organizative dhe Sociale me specializim në Neuroleadership. Ajo punon me kompani, organizata donatore dhe institucione publike për të forcuar lidershipin, kulturën organizative dhe mirëqenien në vendin e punës përmes ndërhyrjeve të strukturuara dhe të bazuara në prova.",
+      "linkedin": "https://www.linkedin.com/in/arnisa-aliqkaj/"
+    },
+    "zanfina": {
+      "name": "Zanfina Raja",
+      "role": "KONSULTANTE E ZHVILLIMIT ORGANIZATIV DHE MIRËQENIES NË VENDIN E PUNËS",
+      "bio": "Psikologe dhe profesioniste e Burimeve Njerëzore e specializuar në zhvillimin e talentit, kulturën organizative dhe mirëqenien në vendin e punës. Në Myelin OPS, ajo mbështet iniciativat e lidershipit dhe programet e bazuara në prova të rrënjosura në psikologjinë organizative.",
+      "linkedin": "https://www.linkedin.com/in/zanfina-raja-170b4a298/"
+    },
+    "ardita": {
+      "name": "Ardita Shabani",
+      "role": "KONSULTANTE E MIRËQENIES NË VENDIN E PUNËS DHE KOMUNITET",
+      "bio": "Ardita kontribuon në iniciativat e mirëqenies në vendin e punës dhe komunitet përmes zhvillimit të programeve të bazuara në kërkim dhe strategjive të mbështetjes psikologjike. Puna e saj fokusohet në mirëqenien emocionale, reziliencën dhe forcimin e mjediseve mbështetëse organizative.",
+      "linkedin": "https://www.linkedin.com/in/ardita-shabani-341487270/"
+    }
+  },
+  "cta": {
+    "title": "Partneriteti me ekspertët tanë",
+    "subtitle": "Gati për të aplikuar rigorozitetin shkencor në sfidat tuaja organizative? Le të ndërtojmë së bashku një të ardhme neuro-përfshirëse.",
+    "button": "Cakto një Konsultë"
+  }
+}

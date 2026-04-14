@@ -1,0 +1,36 @@
+{
+  "title": "Terms of Service",
+  "acceptance": {
+    "title": "Acceptance of Terms",
+    "content": "By accessing and using the Myelin Ops website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these terms, please refrain from using our website."
+  },
+  "services": {
+    "title": "Description of Services",
+    "content": "Myelin Ops provides professional organizational consulting, leadership development, and cultural assessment services. All services are provided subject to these Terms and any specific agreements executed with our clients."
+  },
+  "ip": {
+    "title": "Intellectual Property",
+    "content": "All content, methodology, tools, and materials presented on this website are the intellectual property of Myelin Ops unless otherwise stated. Unauthorized use, reproduction, or distribution is strictly prohibited."
+  },
+  "userConduct": {
+    "title": "User Conduct",
+    "content": "Users agree to use our website for lawful purposes only. Any attempt to compromise security, scrape data, or use our platform for fraudulent activities will result in immediate termination of access and potential legal action."
+  },
+  "disclaimer": {
+    "title": "Disclaimer of Warranties",
+    "content": "Our consulting services are provided on an 'as is' and 'as available' basis. While we strive for excellence, Myelin Ops does not guarantee specific organizational outcomes, as performance results depend on internal implementation and external factors."
+  },
+  "liability": {
+    "title": "Limitation of Liability",
+    "content": "Myelin Ops shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use our services or website."
+  },
+  "governingLaw": {
+    "title": "Governing Law",
+    "content": "These Terms are governed by and construed in accordance with the laws of Kosovo. Any disputes relating to these terms will be subject to the exclusive jurisdiction of the courts of Kosovo."
+  },
+  "changes": {
+    "title": "Changes into Terms",
+    "content": "We reserve the right to modify these Terms at any time. Your continued use of the website following any changes constitutes your acceptance of the new Terms."
+  },
+  "lastUpdated": "Last Updated: April 2026"
+}

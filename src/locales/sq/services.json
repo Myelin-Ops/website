@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "title": "Ndërhyrjet tona",
+    "subtitle": "Ndërhyrje të strukturuara, të bazuara në dëshmi, të dizajnuara për të forcuar lidershipin, kulturën dhe performancën organizative."
+  },
+  "intro": {
+    "title": "Ndërhyrjet Gjithëpërfshirëse",
+    "subtitle": "Mbështetje strategjike nëpër kolonat kryesore të shëndetit organizativ dhe ekselencës në lidership.",
+    "categories": {
+      "dynamics": "Dinamika e Grupit",
+      "assessments": "Vlerësimet Sistemike",
+      "leadership": "Neuro-Lidershipi",
+      "reintegration": "Riintegrimi në Punë",
+      "tailored": "Shërbime të Personalizuara"
+    }
+  },
+  "methodology": {
+    "title": "Metodologjia Jonë",
+    "subtitle": "Ndërhyrjet tona ndjekin një proces të strukturuar nga diagnostikimi deri te zbatimi.",
+    "steps": {
+      "diagnostic": {
+        "title": "Diagnostikimi",
+        "description": "Analiza organizative sistemike e bazuar në kornizat e bazuara në dëshmi."
+      },
+      "strategy": {
+        "title": "Strategjia",
+        "description": "Dizajni i qartë i ndërhyrjes i rreshtuar me objektivat e lidershipit dhe kulturës."
+      },
+      "implementation": {
+        "title": "Zbatimi",
+        "description": "Rreshtimi praktik i strukturave të qeverisjes, komunikimit dhe llogaridhënies."
+      }
+    }
+  },
+  "list": {
+    "groupDynamics": {
+      "title": "Dinamika e Grupit dhe Inteligjenca Kolektive",
+      "description": "Ne lehtësojmë dialogun e strukturuar për të përmirësuar vendimmarrjen, bashkëpunimin dhe rreshtimin ndër-ekipe.",
+      "items": [
+        "Forcimi i kohezionit të ekipit",
+        "Zgjidhja e sfidave komplekse ndërpersonale",
+        "Mundësimi i llogaridhënies së përbashkët",
+        "Përmirësimi i qartësisë së komunikimit"
+      ]
+    },
+    "neuroLeadership": {
+      "title": "Zhvillimi i Neuro-Lidershipit",
+      "description": "Zhvillimi i lidershipit i bazuar në neuroshkencë dhe shkencën e sjelljes së aplikuar.",
+      "items": [
+        "Forcimi i rregullimit emocional",
+        "Përmirësimi i vendimmarrjes me rrezik të lartë",
+        "Rritja e qartësisë strategjike"
+      ]
+    },
+    "migration": {
+      "title": "Mbështetja për Migrim dhe Riatdhesim",
+      "description": "Ne mbështesim individët dhe ekipet që lundrojnë në tranzicione komplekse kulturore dhe profesionale në tregjet globale.",
+      "items": [
+        "Lehtësimi i adaptimit psikologjik",
+        "Forcimi i integrimit ndër-kulturor",
+        "Ruajtja e performancës gjatë tranzicioneve"
+      ]
+    },
+    "advancement": {
+      "title": "Strategjia e Përparimit Organizativ",
+      "description": "Ne rreshtojmë strukturën, lidershipin dhe kulturën për të mundësuar rritje të qëndrueshme organizative.",
+      "items": [
+        "Qartësimi i prioriteteve strategjike",
+        "Forcimi i kornizave të ekzekutimit",
+        "Përmirësimi i llogaridhënies së brendshme"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Le të dizajnojmë ndërhyrjen e duhur për organizatën tuaj.",
+    "description": "Caktoni një konsultë për të eksploruar se si Myelin OPS mund të mbështesë objektivat tuaja të lidershipit dhe kulturës.",
+    "button": "Cakto Konsultën"
+  }
+}
