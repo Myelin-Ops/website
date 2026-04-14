@@ -5,67 +5,75 @@
   },
   "intro": {
     "title": "Comprehensive Interventions",
-    "description": "Strategic support tailored to the specificities of organizational needs and industry dynamics."
+    "subtitle": "Strategic support across the core pillars of organizational health and leadership excellence.",
+    "categories": {
+      "dynamics": "Group Dynamics",
+      "assessments": "Systemic Assessments",
+      "leadership": "Neuro-Leadership",
+      "reintegration": "Work Reintegration",
+      "tailored": "Tailored Services"
+    }
   },
   "methodology": {
     "title": "Our Methodology",
-    "subtitle": "How our work follows a structured, evidence-based process.",
+    "subtitle": "Our interventions follow a structured diagnostic-to-implementation process.",
     "steps": {
       "diagnostic": {
         "title": "Diagnostic",
-        "description": "Identification of organizational gaps through data-driven assessment frameworks."
+        "description": "Systemic organizational analysis grounded in evidence-based frameworks."
       },
       "strategy": {
         "title": "Strategy",
-        "description": "Co-designing bespoke interventions aligned with the organization's strategic objectives."
+        "description": "Clear intervention design aligned with leadership and cultural objectives."
       },
       "implementation": {
         "title": "Implementation",
-        "description": "Guided application focused on sustainable change and skill transfer."
+        "description": "Practical alignment of governance, communication, and accountability structures."
       }
     }
   },
   "list": {
     "groupDynamics": {
       "title": "Group Dynamics & Collective Intelligence",
-      "description": "Cultivate high-performance team behaviors while enhancing shared cognitive and decision-making capacities.",
+      "description": "We facilitate structured dialogue to improve decision-making, collaboration, and alignment across teams.",
       "items": [
-        "Dynamics and team cohesion",
-        "Collaborative decision-making strategies",
-        "Conflict resolution and trust improvement"
+        "Strengthen team cohesion",
+        "Resolve complex interpersonal challenges",
+        "Enable shared accountability",
+        "Improve communication clarity"
       ]
     },
     "neuroLeadership": {
       "title": "Neuro-Leadership Development",
-      "description": "Leverage applied neuroscience to enhance leadership effectiveness and individual decision-making qualities.",
+      "description": "Leadership development grounded in neuroscience and applied behavioral science.",
       "items": [
-        "Emotional regulation and stress resilience",
-        "Executive presence and impact performance",
-        "Sustainable leadership energy"
+        "Strengthen emotional regulation",
+        "Improve high-stakes decision-making",
+        "Enhance strategic clarity"
       ]
     },
     "migration": {
       "title": "Migration & Repatriation Support",
-      "description": "Strategic support to facilitate smooth transitions into target markets or reintegration processes for international staff.",
+      "description": "We support individuals and teams navigating complex cultural and professional transitions across global markets.",
       "items": [
-        "Market entry cultural adaptation",
-        "Integration and retention strategies",
-        "Human assessment of potential and talent"
+        "Facilitate psychological adaptation",
+        "Strengthen cross-cultural integration",
+        "Maintain performance during transitions"
       ]
     },
     "advancement": {
       "title": "Organizational Advancement Strategy",
-      "description": "Long-term architecture for growth, transformation, and structural health through evolutionary system approaches.",
+      "description": "We align structure, leadership, and culture to enable sustainable organizational growth.",
       "items": [
-        "Governance and hierarchy transformation",
-        "Agile and adaptive team structure",
-        "Organizational culture calibration"
+        "Clarify strategic priorities",
+        "Strengthen execution frameworks",
+        "Improve internal accountability"
       ]
     }
   },
   "cta": {
     "title": "Let's design the right intervention for your organization.",
-    "description": "Schedule a consultation to understand how Myelin Ops can support your leadership and culture objectives.",
+    "description": "Schedule a consultation to explore how Myelin OPS can support your leadership and culture objectives.",
     "button": "Schedule Consultation"
   }
 }

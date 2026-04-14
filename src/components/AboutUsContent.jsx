@@ -416,14 +416,14 @@ function AboutUsContent() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/contact">
-                <button className="px-10 py-5 bg-[#00E5E5] text-black font-bold rounded-full text-lg hover:scale-105 transition-transform w-full sm:w-auto">
+                <button className="px-10 py-5 bg-[#00E5E5] text-black font-bold rounded-md text-lg hover:scale-105 transition-transform w-full sm:w-[240px]">
                   {t("about.cta.primaryButton")}
                 </button>
               </Link>
-              <a 
-                href="/portfolio.pdf" 
+              <a
+                href="/portfolio.pdf"
                 download
-                className="px-10 py-5 border border-white/20 text-white font-bold rounded-full text-lg hover:bg-white/10 transition-colors inline-block w-full sm:w-auto"
+                className="px-10 py-5 border border-white/20 text-white font-bold rounded-md text-lg hover:bg-white/10 transition-colors inline-block w-full sm:w-auto"
               >
                 {t("about.cta.secondaryButton")}
               </a>
