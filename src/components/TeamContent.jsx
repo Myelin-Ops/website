@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 import { Linkedin } from "lucide-react";
 
 // Team images
@@ -29,7 +30,7 @@ function TeamContent() {
   ];
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[#F6F8F8] min-h-screen">
       {/* Hero Section */}
       <section className="min-h-[50vh] flex flex-col justify-center px-4 md:px-12 text-center max-w-5xl mx-auto py-20">
         <motion.h1
@@ -53,11 +54,11 @@ function TeamContent() {
       </section>
 
       {/* The Visionary Section */}
-      <section className="py-24 px-4 md:px-12 bg-[#F9FAFB]">
+      <section className="py-24 px-4 md:px-12 bg-[#F6F8F8]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-12">
             <span className="w-8 h-[2px] bg-cyan-400" />
-            <span className="text-sm font-bold tracking-widest text-gray-900 uppercase">
+            <span className="text-xl font-bold tracking-widest text-gray-900 uppercase">
               {t("team.sections.visionary")}
             </span>
           </div>
@@ -69,7 +70,7 @@ function TeamContent() {
             variants={fadeUp}
             className="bg-white rounded-[40px] overflow-hidden shadow-sm border border-gray-100 flex flex-col lg:flex-row items-stretch"
           >
-            <div className="lg:w-2/5 relative h-80 lg:h-auto">
+            <div className="lg:w-2/5 relative h-80 lg:h-[520px]">
               <Image
                 src={arnisaImg}
                 alt={t("team.members.arnisa.name")}
@@ -81,7 +82,7 @@ function TeamContent() {
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 {t("team.members.arnisa.name")}
               </h2>
-              <span className="text-cyan-500 font-bold text-xs tracking-widest uppercase mb-8 block">
+              <span className="text-cyan-500 font-bold text-base tracking-widest uppercase mb-8 block">
                 {t("team.members.arnisa.role")}
               </span>
               <p className="text-gray-600 leading-relaxed mb-10 text-lg">
@@ -101,12 +102,12 @@ function TeamContent() {
       </section>
 
       {/* Research & Strategy Team Section */}
-      <section className="py-24 px-4 md:px-12">
+      <section className="py-24 px-4 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-4">
               <span className="w-8 h-[2px] bg-cyan-400" />
-              <span className="text-sm font-bold tracking-widest text-gray-900 uppercase">
+              <span className="text-xl font-bold tracking-widest text-gray-900 uppercase">
                 {t("team.sections.research")}
               </span>
             </div>
@@ -168,7 +169,7 @@ function TeamContent() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="max-w-6xl mx-auto rounded-[60px] bg-[#0A1A1A] overflow-hidden relative"
+          className="max-w-6xl mx-auto rounded-[16] bg-[#0A1A1A] overflow-hidden relative"
         >
           {/* Decorative gradients */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-linear-to-bl from-[#00E5E5]/10 to-transparent rounded-full -mr-64 -mt-64 blur-3xl pointer-events-none" />
@@ -181,9 +182,11 @@ function TeamContent() {
             <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
               {t("team.cta.subtitle")}
             </p>
-            <button className="px-12 py-5 bg-[#00E5E5] text-black font-extrabold rounded-full text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
-              {t("team.cta.button")}
-            </button>
+            <Link href="/contact" className="inline-block">
+              <button className="px-12 py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
+                {t("team.cta.button")}
+              </button>
+            </Link>
           </div>
         </motion.div>
       </section>

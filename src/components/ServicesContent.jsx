@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 import {
   Users,
   Brain,
@@ -255,9 +256,11 @@ function ServicesContent() {
             <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
               {t("services.cta.description")}
             </p>
-            <button className="px-12 py-5 bg-[#13ECEC] text-black font-extrabold rounded-md text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95 mb-14">
-              {t("services.cta.button")}
-            </button>
+            <Link href="/contact" className="inline-block mb-14">
+              <button className="px-12 py-5 bg-[#13ECEC] text-black font-extrabold rounded-md text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
+                {t("services.cta.button")}
+              </button>
+            </Link>
             <div className="border-t border-white/5 pt-10">
               <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-gray-500 uppercase">
                 Evidence-Based Frameworks • Professional Alignment

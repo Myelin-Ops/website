@@ -54,7 +54,7 @@ function ContactContent() {
       </section>
 
       {/* Main Content Section */}
-      <section className="pb-32 px-4 md:px-12 max-w-7xl mx-auto">
+      <section className="pb-32 px-4 md:px-12 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Column: Info */}
           <motion.div
@@ -65,7 +65,7 @@ function ContactContent() {
             className="space-y-12"
           >
             {/* Email Box */}
-            <div className="bg-white p-8 rounded-2xl border border-gray-50 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white p-8 rounded-md border border-gray-50 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex gap-6 items-start">
                 <div className="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center text-cyan-500 shrink-0">
                   <Mail size={24} />
@@ -88,7 +88,7 @@ function ContactContent() {
             </div>
 
             {/* Phone Box */}
-            <div className="bg-white p-8 rounded-2xl border border-gray-50 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white p-8 rounded-md border border-gray-50 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex gap-6 items-start">
                 <div className="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center text-cyan-500 shrink-0">
                   <Phone size={24} />
@@ -117,9 +117,18 @@ function ContactContent() {
               </span>
               <div className="flex gap-4 mb-16">
                 {[
-                  { icon: Linkedin, link: "https://www.linkedin.com/company/myelin-ops/posts/?feedView=all" },
-                  { icon: Instagram, link: "https://www.instagram.com/myelinops/" },
-                  { icon: Facebook, link: "https://www.facebook.com/profile.php?id=61556761803602" },
+                  {
+                    icon: Linkedin,
+                    link: "https://www.linkedin.com/company/myelin-ops/posts/?feedView=all",
+                  },
+                  {
+                    icon: Instagram,
+                    link: "https://www.instagram.com/myelinops/",
+                  },
+                  {
+                    icon: Facebook,
+                    link: "https://www.facebook.com/profile.php?id=61556761803602",
+                  },
                 ].map((item, i) => (
                   <a
                     key={i}
@@ -147,7 +156,7 @@ function ContactContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="bg-white p-8 md:p-12 rounded-[40px] shadow-2xl shadow-gray-200/50 border border-gray-50"
+            className="bg-white p-8 md:p-12 rounded-md shadow-2xl shadow-gray-200/50 border border-gray-50"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-10">
               {t("contact.form.title")}
@@ -165,7 +174,7 @@ function ContactContent() {
                   onChange={handleChange}
                   placeholder={t("contact.form.name.placeholder")}
                   required
-                  className="w-full bg-gray-50 border-none rounded-xl p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all"
+                  className="w-full bg-gray-50 border-none rounded-md p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all"
                 />
               </div>
 
@@ -180,7 +189,7 @@ function ContactContent() {
                   onChange={handleChange}
                   placeholder={t("contact.form.email.placeholder")}
                   required
-                  className="w-full bg-gray-50 border-none rounded-xl p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all"
+                  className="w-full bg-gray-50 border-none rounded-md p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all"
                 />
               </div>
 
@@ -195,13 +204,13 @@ function ContactContent() {
                   placeholder={t("contact.form.message.placeholder")}
                   required
                   rows={6}
-                  className="w-full bg-gray-50 border-none rounded-xl p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all resize-none"
+                  className="w-full bg-gray-50 border-none rounded-md p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-cyan-400/20"
+                className="w-full py-5 bg-cyan-400 text-black font-extrabold rounded-md hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-cyan-400/20"
               >
                 {t("contact.form.submit")}
               </button>
