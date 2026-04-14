@@ -32,13 +32,13 @@ function TeamContent() {
   return (
     <div className="bg-[#F6F8F8] min-h-screen">
       {/* Hero Section */}
-      <section className="min-h-[50vh] flex flex-col justify-center px-4 md:px-12 text-center max-w-5xl mx-auto py-20">
+      <section className="min-h-[40vh] lg:min-h-[50vh] flex flex-col justify-center px-4 md:px-8 text-center max-w-5xl mx-auto py-20">
         <motion.h1
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight"
+          className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 leading-tight"
         >
           {t("team.hero.title")}
         </motion.h1>
@@ -47,7 +47,7 @@ function TeamContent() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+          className="text-sm md:text-base lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
         >
           {t("team.hero.subtitle")}
         </motion.p>
@@ -58,7 +58,7 @@ function TeamContent() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-12">
             <span className="w-8 h-[2px] bg-cyan-400" />
-            <span className="text-xl font-bold tracking-widest text-gray-900 uppercase">
+            <span className="text-lg md:text-xl font-bold tracking-widest text-gray-900 uppercase">
               {t("team.sections.visionary")}
             </span>
           </div>
@@ -79,13 +79,13 @@ function TeamContent() {
               />
             </div>
             <div className="lg:w-3/5 p-8 md:p-16 flex flex-col justify-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                 {t("team.members.arnisa.name")}
               </h2>
-              <span className="text-cyan-500 font-bold text-base tracking-widest uppercase mb-8 block">
+              <span className="text-cyan-500 font-bold text-sm md:text-base tracking-widest uppercase mb-8 block">
                 {t("team.members.arnisa.role")}
               </span>
-              <p className="text-gray-600 leading-relaxed mb-10 text-lg">
+              <p className="text-gray-600 leading-relaxed mb-10 text-sm md:text-lg">
                 {t("team.members.arnisa.bio")}
               </p>
               <a
@@ -107,11 +107,11 @@ function TeamContent() {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-4">
               <span className="w-8 h-[2px] bg-cyan-400" />
-              <span className="text-xl font-bold tracking-widest text-gray-900 uppercase">
+              <span className="text-base md:text-xl font-bold tracking-widest text-gray-900 uppercase">
                 {t("team.sections.research")}
               </span>
             </div>
-            <p className="text-gray-500 ml-11">
+            <p className="text-gray-500 ml-11 text-sm md:text-lg">
               {t("team.sections.research_subtitle")}
             </p>
           </div>
@@ -121,7 +121,7 @@ function TeamContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
           >
             {members.map((member) => (
               <motion.div
@@ -138,10 +138,10 @@ function TeamContent() {
                   />
                 </div>
                 <div className="p-10 flex flex-col flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                     {t(`team.members.${member.key}.name`)}
                   </h3>
-                  <span className="text-cyan-500 font-bold text-xs tracking-widest uppercase mb-6 block min-h-[32px]">
+                  <span className="text-cyan-500 font-bold text-sm md:text-base tracking-widest uppercase mb-8 block">
                     {t(`team.members.${member.key}.role`)}
                   </span>
                   <p className="text-gray-600 leading-relaxed mb-10">
@@ -176,14 +176,14 @@ function TeamContent() {
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-linear-to-tr from-blue-500/5 to-transparent rounded-full -ml-64 -mb-64 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 py-24 px-8 md:px-20 text-center text-white">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+            <h2 className="text-xl md:text-3xl lg:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
               {t("team.cta.title")}
             </h2>
-            <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="hidden md:block text-gray-400 text-base mb-12 max-w-2xl mx-auto leading-relaxed">
               {t("team.cta.subtitle")}
             </p>
             <Link href="/contact" className="inline-block">
-              <button className="px-12 py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
+              <button className="px-8 py-4 md:px-12 md:py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
                 {t("team.cta.button")}
               </button>
             </Link>
