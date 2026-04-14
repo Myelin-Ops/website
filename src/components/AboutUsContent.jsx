@@ -89,7 +89,7 @@ function AboutUsContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-4xl md:text-6xl font-black text-gray-900 mb-8 leading-tight"
+            className="text-4xl max-[329px]:text-3xl md:text-6xl font-black text-gray-900 mb-8 leading-tight"
           >
             {t("about.hero.title")}
           </motion.h1>
@@ -98,7 +98,7 @@ function AboutUsContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
             {t("about.hero.subtitle")}
           </motion.p>
@@ -113,7 +113,7 @@ function AboutUsContent() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+              className="text-3xl md:text-4xl font-black text-gray-900 mb-6"
             >
               {t("about.metaphor.title")}
             </motion.h2>
@@ -245,11 +245,11 @@ function AboutUsContent() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={stagger}
-              className="grid grid-cols-2 gap-4 relative"
+              className="grid grid-cols-2 gap-2 sm:gap-4 reslative"
             >
               <motion.div
                 variants={fadeUp}
-                className="rounded-3xl overflow-hidden shadow-lg h-64 md:h-80"
+                className="rounded-3xl overflow-hidden shadow-lg aspect-square h-auto sm:aspect-auto sm:h-64 md:h-80"
               >
                 <Image
                   src={gallery1}
@@ -261,7 +261,7 @@ function AboutUsContent() {
               </motion.div>
               <motion.div
                 variants={fadeUp}
-                className="rounded-3xl overflow-hidden shadow-lg h-64 md:h-80 mt-12"
+                className="rounded-3xl overflow-hidden shadow-lg aspect-square h-auto sm:aspect-auto sm:h-64 md:h-80 max-sm:mt-6 sm:mt-12"
               >
                 <Image
                   src={gallery2}
@@ -337,22 +337,21 @@ function AboutUsContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-[425px]:gap-2"
           >
             {/* Protection */}
             <motion.div
               variants={fadeUp}
-              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center"
+              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center max-[425px]:p-2 max-[425px]:justify-center max-[425px]:aspect-square"
             >
               <ShieldCheck
-                className="mb-6"
-                size={40}
+                className="w-10 h-10 mb-6 max-[425px]:w-8 max-[425px]:h-8 max-[425px]:mb-2"
                 style={{ color: "#13ECEC" }}
               />
-              <h3 className="text-xl font-bold mb-4">
+              <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
                 {t("about.values.protection.title")}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+              <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
                 {t("about.values.protection.description")}
               </p>
             </motion.div>
@@ -360,17 +359,16 @@ function AboutUsContent() {
             {/* Clarity */}
             <motion.div
               variants={fadeUp}
-              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center"
+              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center max-[425px]:p-2 max-[425px]:justify-center max-[425px]:aspect-square"
             >
               <Lightbulb
-                className="mb-6"
-                size={40}
+                className="w-10 h-10 mb-6 max-[425px]:w-8 max-[425px]:h-8 max-[425px]:mb-2"
                 style={{ color: "#13ECEC" }}
               />
-              <h3 className="text-xl font-bold mb-4">
+              <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
                 {t("about.values.clarity.title")}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+              <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
                 {t("about.values.clarity.description")}
               </p>
             </motion.div>
@@ -378,17 +376,16 @@ function AboutUsContent() {
             {/* Trust */}
             <motion.div
               variants={fadeUp}
-              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center"
+              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center max-[425px]:p-2 max-[425px]:justify-center max-[425px]:aspect-square"
             >
               <Handshake
-                className="mb-6"
-                size={40}
+                className="w-10 h-10 mb-6 max-[425px]:w-8 max-[425px]:h-8 max-[425px]:mb-2"
                 style={{ color: "#13ECEC" }}
               />
-              <h3 className="text-xl font-bold mb-4">
+              <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
                 {t("about.values.trust.title")}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+              <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
                 {t("about.values.trust.description")}
               </p>
             </motion.div>
@@ -396,13 +393,13 @@ function AboutUsContent() {
             {/* Acceleration */}
             <motion.div
               variants={fadeUp}
-              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center"
+              className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center max-[425px]:p-2 max-[425px]:justify-center max-[425px]:aspect-square"
             >
-              <Zap className="mb-6" size={40} style={{ color: "#13ECEC" }} />
-              <h3 className="text-xl font-bold mb-4">
+              <Zap className="w-10 h-10 mb-6 max-[425px]:w-8 max-[425px]:h-8 max-[425px]:mb-2" style={{ color: "#13ECEC" }} />
+              <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
                 {t("about.values.acceleration.title")}
               </h3>
-              <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+              <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
                 {t("about.values.acceleration.description")}
               </p>
             </motion.div>

@@ -154,7 +154,7 @@ function ServicesContent() {
       <section className="py-24 px-4 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-5xl font-black text-gray-900 mb-6">
               {t("services.methodology.title")}
             </h2>
             <p className="text-gray-500 text-base md:text-xl">
@@ -162,7 +162,7 @@ function ServicesContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-[339px]:gap-4">
             {methodology.map((step) => (
               <motion.div
                 key={step.key}
@@ -170,15 +170,15 @@ function ServicesContent() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="bg-[#F6F8F8] p-12 rounded-3xl border border-gray-100/50 hover:shadow-xl transition-all duration-500"
+                className="bg-[#F6F8F8] p-12 max-[339px]:p-5 rounded-3xl border border-gray-100/50 hover:shadow-xl transition-all duration-500"
               >
-                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-10 shadow-sm">
-                  <step.icon size={28} style={{ color: "#13ECEC" }} />
+                <div className="w-14 h-14 max-[339px]:w-10 max-[339px]:h-10 bg-white rounded-2xl flex items-center justify-center mb-10 max-[339px]:mb-4 shadow-sm">
+                  <step.icon className="w-7 h-7 max-[339px]:w-5 max-[339px]:h-5" style={{ color: "#13ECEC" }} />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-2xl max-[339px]:text-lg font-bold mb-4 max-[339px]:mb-2">
                   {t(`services.methodology.steps.${step.key}.title`)}
                 </h3>
-                <p className="text-gray-500 leading-relaxed text-base">
+                <p className="text-gray-500 leading-relaxed text-base max-[339px]:text-xs max-[339px]:leading-snug">
                   {t(`services.methodology.steps.${step.key}.description`)}
                 </p>
               </motion.div>
