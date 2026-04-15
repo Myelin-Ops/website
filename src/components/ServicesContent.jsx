@@ -137,7 +137,7 @@ function ServicesContent() {
                   variants={fadeUp}
                   className={`flex flex-col items-center gap-4 group ${i === categories.length - 1 ? "col-span-2 lg:col-span-1" : ""}`}
                 >
-                  <span className="text-xs md:text-base font-bold tracking-[0.3em] text-[#13ECEC] uppercase">
+                  <span className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-[0.3em] text-[#13ECEC] uppercase">
                     {cat.id}
                   </span>
                   <span className="text-sm md:text-lg font-bold text-gray-900 tracking-tight text-center leading-snug max-w-[250px]">
@@ -173,7 +173,10 @@ function ServicesContent() {
                 className="bg-[#F6F8F8] p-12 max-[339px]:p-5 rounded-3xl border border-gray-100/50 hover:shadow-xl transition-all duration-500"
               >
                 <div className="w-14 h-14 max-[339px]:w-10 max-[339px]:h-10 bg-white rounded-2xl flex items-center justify-center mb-10 max-[339px]:mb-4 shadow-sm">
-                  <step.icon className="w-7 h-7 max-[339px]:w-5 max-[339px]:h-5" style={{ color: "#13ECEC" }} />
+                  <step.icon
+                    className="w-7 h-7 max-[339px]:w-5 max-[339px]:h-5"
+                    style={{ color: "#13ECEC" }}
+                  />
                 </div>
                 <h3 className="text-2xl max-[339px]:text-lg font-bold mb-4 max-[339px]:mb-2">
                   {t(`services.methodology.steps.${step.key}.title`)}
@@ -263,9 +266,9 @@ function ServicesContent() {
             </Link>
             <div className="border-t border-white/5 pt-10">
               <p className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 text-[10px] font-bold tracking-[0.4em] text-gray-500 uppercase">
-                <span>Evidence-Based Frameworks</span>
-                <span className="md:mx-4">.</span>
-                <span>Professional Alignment</span>
+                <span>{t("services.cta.frameworks")}</span>
+                <span className="md:mx-4">•</span>
+                <span>{t("services.cta.alignment")}</span>
               </p>
             </div>
           </div>

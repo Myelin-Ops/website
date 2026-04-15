@@ -74,6 +74,8 @@
   "cta": {
     "title": "Let's design the right intervention for your organization.",
     "description": "Schedule a consultation to explore how Myelin OPS can support your leadership and culture objectives.",
-    "button": "Schedule Consultation"
+    "button": "Schedule Consultation",
+    "frameworks": "Evidence-Based Frameworks",
+    "alignment": "Professional Alignment"
   }
 }
