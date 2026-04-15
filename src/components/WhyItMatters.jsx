@@ -75,7 +75,7 @@ function WhyItMatters() {
               y: section.y,
               zIndex: section.zIndex,
             }}
-            className="absolute inset-0 w-full h-full bg-[#0F1419] flex items-center shadow-[0_-10px_40px_rgba(0,0,0,0.7)]"
+            className="absolute bg-[#0F1A24] inset-0 w-full h-full flex items-center shadow-[0_-10px_40px_rgba(0,0,0,0.7)]"
           >
             <div className="max-w-7xl mx-auto w-full px-4 md:px-8">
               {/* Section Label (Original Design: Top Centered) */}
@@ -109,20 +109,26 @@ function WhyItMatters() {
 
                 {/* Right Side - Image Area (Hidden on mobile) */}
                 <motion.div
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="hidden md:block relative w-full h-72 md:h-96 lg:h-[32rem] rounded-2xl overflow-hidden shadow-2xl"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.7 }}
+                  style={{
+                    maskImage:
+                      "radial-gradient(circle, black 40%, transparent 80%)",
+                    WebkitMaskImage:
+                      "radial-gradient(circle, black 40%, transparent 80%)",
+                  }}
+                  className="hidden md:block relative aspect-square mx-auto h-72 md:h-96 lg:h-[32rem] rounded-full overflow-hidden"
                 >
                   <Image
                     src={section.image}
                     alt={section.title}
                     fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    className="object-cover bg-[#0F1A24] opacity-80 mix-blend-screen transition-all duration-700"
                     priority={index === 0}
                   />
                   {/* Subtle gradient for depth */}
-                  <div className="absolute inset-0 bg-linear-to-t from-[#0F1419]/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0F1A24]/40 to-transparent pointer-events-none" />
                 </motion.div>
               </div>
             </div>

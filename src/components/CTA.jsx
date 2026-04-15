@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -19,12 +19,12 @@ function CTA() {
         >
           {/* Heading */}
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
-            {t('cta.title')}
+            {t("cta.title")}
           </h2>
 
           {/* Description */}
           <p className="text-gray-300 text-sm md:text-base mb-8 max-w-2xl mx-auto">
-            {t('cta.description')}
+            {t("cta.description")}
           </p>
 
           {/* Buttons */}
@@ -33,19 +33,19 @@ function CTA() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 md:px-8 py-3 md:py-4 bg-cyan-400 text-black font-semibold rounded-lg hover:bg-cyan-300 transition-colors w-full"
+                className="px-6 cursor-pointer md:px-8 py-3 md:py-4 bg-cyan-400 text-black font-semibold rounded-lg hover:bg-cyan-300 transition-colors w-full"
               >
-                {t('cta.primaryButton')}
+                {t("cta.primaryButton")}
               </motion.button>
             </Link>
-            
+
             <Link href="/services" className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 md:px-8 py-3 md:py-4 border border-gray-500 text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors w-full"
+                className="px-6 md:px-8 cursor-pointer py-3 md:py-4 border border-gray-500 text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors w-full"
               >
-                {t('cta.secondaryButton')}
+                {t("cta.secondaryButton")}
               </motion.button>
             </Link>
           </div>

@@ -1,62 +1,62 @@
 {
   "hero": {
     "title": "Ne i forcojmë organizatat nga brenda",
-    "subtitle": "Përmes neuroshkencës dhe psikologjisë organizative, ne ndërtojmë kultura rezistente, lidership efektiv dhe performancë të qëndrueshme."
+    "subtitle": "Përmes neuroshkencës dhe psikologjisë organizative, ne ndërtojmë kultura të qëndrueshme, lidership efektiv dhe performancë afatgjatë."
   },
   "metaphor": {
-    "title": "Metafora e Mielinës",
-    "subtitle": "Si përkthehet efikasiteti biologjik në ekselencë organizative.",
+    "title": "Metafora e Myelin-it",
+    "subtitle": "Si përkthehet efikasiteti biologjik në ekselencë organizative",
     "cards": {
       "brain": {
         "title": "Kompania = Truri",
-        "description": "Organizatat janë sisteme të gjalla që kërkojnë koordinim dhe rreshtim efektiv për të funksionuar siç duhet."
+        "description": "Organizatat janë sisteme të gjalla ku strategjia, kultura dhe struktura duhet të jenë të harmonizuara."
       },
       "neurons": {
         "title": "Punonjësit = Neuronet",
-        "description": "Njerëzit janë shtytësit e performancës. Komunikimi, gjendja dhe mirëqenia e tyre përcaktojnë suksesin organizativ."
+        "description": "Njerëzit janë njësitë e performancës, besimit, bashkëpunimit dhe zhvillimit."
       },
       "protective": {
         "title": "Myelin OPS = Shtresa Mbrojtëse",
-        "description": "Ne forcojmë dhe përshpejtojmë funksionimin organizativ, duke mbrojtur kulturën, rritur lidershipin dhe përmirësuar bashkëpunimin."
+        "description": "Forcojmë lidhjet, reduktojmë pengesat dhe përmirësojmë komunikimin."
       }
     }
   },
   "approach": {
     "title": "Qasja Jonë",
-    "description1": "Në Myelin OPS, ne kombinojmë:",
+    "description1": "Në Myelin OPS ne kombinojmë:",
     "items": [
-      "Diagnostikimin dhe vlerësimin organizativ",
-      "Zhvillimin e lidershipit të bazuar në neuroshkencë",
-      "Ndërhyrjet në shëndetin mendor në vendin e punës",
-      "Fasilitimin e dinamikave të grupit të mbështetur në kërkime"
+      "Diagnostikë dhe vlerësime organizative",
+      "Zhvillim të lidershipit të bazuar në neuroshkencë",
+      "Ndërhyrje për mirëqenien mendore në mjedisin e punës",
+      "Transformim kulture të mbështetur në kërkim shkencor"
     ],
-    "description2": "Ne nuk ofrojmë trajnime gjenerike. Ne dizajnojmë zgjidhje të personalizuara bazuar në strukturën, kulturën dhe qëllimet e organizatës suaj."
+    "description2": "Ne nuk ofrojmë trajnime të përgjithshme.Ne projektojmë zgjidhje të personalizuara, të bazuara në strukturën, kulturën dhe objektivat e organizatës suaj."
   },
   "partners": {
-    "title": "I besuar nga institucionet kryesore"
+    "title": "Të Besuar Nga Institucione Udhëheqëse"
   },
   "values": {
-    "title": "Vlerat tona kryesore",
+    "title": "Vlerat Themelore",
     "protection": {
-      "title": "Mbrojtja",
-      "description": "Ruajtja e shëndetit mendor dhe kulturës"
+      "title": "Mbrojtje",
+      "description": "Mbrojtja e mirëqenies mendore dhe kulturës së organizatës"
     },
     "clarity": {
-      "title": "Qartësia",
-      "description": "Vështrime të bazuara në dëshmi dhe ndërhyrje të strukturuara"
+      "title": "Qartësi",
+      "description": "Struktura të qarta dhe komunikim transparent."
     },
     "trust": {
-      "title": "Besimi",
-      "description": "Konfidencialiteti, profesionalizmi dhe integriteti"
+      "title": "Besim",
+      "description": "Ndërtim i sigurisë psikologjike dhe partneriteteve afatgjata."
     },
     "acceleration": {
-      "title": "Përshpejtimi",
-      "description": "Performancë e qëndrueshme përmes shkencës"
+      "title": "Përshpejtim",
+      "description": "Mbështetje për rritje të qëndrueshme dhe ndikim të matshëm."
     }
   },
   "cta": {
     "title": "Gati për të forcuar organizatën tuaj?",
-    "description": "Le të eksplorojmë se si neuroshkenca dhe psikologjia organizative mund të mbështesin lidershipin, kulturën dhe performancën tuaj.",
+    "description": "Le të zbulojmë si neuroshkenca dhe psikologjia organizative mund të forcojnë lidershipin, kulturën dhe performancën e organizatës suaj.",
     "primaryButton": "Na Kontaktoni",
     "secondaryButton": "Shkarko Portofolin"
   }

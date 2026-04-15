@@ -28,7 +28,7 @@
     ]
   },
   "gallery": {
-    "title": "STAFI"
+    "title": "Galeria"
   },
   "partners": {
     "title": "Partnerët tanë"
@@ -40,22 +40,22 @@
   },
   "scrollableInsights": {
     "card1": {
-      "title": "Lidershipi formëson mendimin kolektiv.",
-      "description": "Udhëheqja efektive përcakton si ekipet perceptojnë kompleksitetin dhe sigurinë psikologjike."
+      "title": "Lidershipi formëson mendësinë kolektive.",
+      "description": "Udhëheqja nuk është vetëm vendimmarrje është modelim i sjelljes, kulturës dhe drejtimit strategjik."
     },
     "card2": {
       "title": "Kultura ndikon drejtpërdrejt në performancë.",
       "description": "Një kulturë e shëndetshme krijon besim, angazhim dhe rezultate të qëndrueshme."
     },
     "card3": {
-      "title": "Ndërhyrja ndryshon trajektoret.",
+      "title": "Ndërhyrja ndryshon trajektoren.",
       "description": "Ndërhyrjet e duhura, të bazuara në analizë dhe evidencë, e zhvendosin organizatën nga menaxhimi reaktiv drejt zhvillimit të qëndrueshëm."
     },
     "scrollHint": "Rrëshqit poshtë për të parë më shumë"
   },
   "cta": {
-    "title": "Gati për të forcuar organizatën tuaj?",
-    "description": "Le të eksplorojmë se si mund t'ju ndihmojmë të ndërtoni një kulturë më rezistente dhe të lulëzuar organizative.",
+    "title": "Gati për ta forcuar organizatën tuaj?",
+    "description": "Le të ndërtojmë së bashku një sistem organizativ më të qëndrueshëm, më të qartë dhe me performancë të lartë.",
     "primaryButton": "Rezervo një konsultë",
     "secondaryButton": "Eksploro Shërbimet"
   }

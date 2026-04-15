@@ -11,7 +11,9 @@ const TICK_INTERVAL = 20; // Update every 20ms for smooth tracking
 function Testimonials() {
   const { t } = useTranslation();
   const testimonialsData = t("testimonials.list", { returnObjects: true });
-  const testimonialsList = Array.isArray(testimonialsData) ? testimonialsData : [];
+  const testimonialsList = Array.isArray(testimonialsData)
+    ? testimonialsData
+    : [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -76,7 +78,7 @@ function Testimonials() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={handlePrev}
-              className="hidden md:flex p-4 border border-gray-200 rounded-full text-gray-400 hover:text-cyan-500 hover:border-cyan-500 transition-all duration-300 flex-shrink-0"
+              className="hidden md:flex p-4 cursor-pointer border border-gray-200 rounded-full text-gray-400 hover:text-cyan-500 hover:border-cyan-500 transition-all duration-300 flex-shrink-0"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={30} />
@@ -132,7 +134,7 @@ function Testimonials() {
                       setCurrentIndex(index);
                       setTimeLeft(TOTAL_TIME);
                     }}
-                    className={`h-1.5 transition-all duration-500 rounded-full ${
+                    className={`h-1.5 transition-all cursor-pointer duration-500 rounded-full ${
                       index === currentIndex
                         ? "bg-cyan-500 w-12"
                         : "bg-gray-200 w-3 hover:bg-gray-300"
@@ -146,7 +148,7 @@ function Testimonials() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleNext}
-              className="hidden md:flex p-4 border border-gray-200 rounded-full text-gray-400 hover:text-cyan-500 hover:border-cyan-500 transition-all duration-300 flex-shrink-0"
+              className="hidden md:flex p-4 cursor-pointer border border-gray-200 rounded-full text-gray-400 hover:text-cyan-500 hover:border-cyan-500 transition-all duration-300 flex-shrink-0"
               aria-label="Next testimonial"
             >
               <ChevronRight size={30} />

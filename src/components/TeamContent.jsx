@@ -38,7 +38,7 @@ function TeamContent() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 leading-tight"
+          className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 mb-8 leading-tight"
         >
           {t("team.hero.title")}
         </motion.h1>
@@ -68,34 +68,40 @@ function TeamContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="bg-white rounded-[40px] overflow-hidden shadow-sm border border-gray-100 flex flex-col lg:flex-row items-stretch"
+            className="bg-white rounded-[40px] overflow-hidden shadow-sm border border-gray-100 flex flex-col lg:flex-row items-stretch max-w-full sm:max-w-xl lg:max-w-6xl mx-auto w-full"
           >
-            <div className="lg:w-2/5 relative h-80 lg:h-[520px]">
+            <div className="lg:w-2/5 w-full relative aspect-[19/20] lg:aspect-[2/3]">
               <Image
                 src={arnisaImg}
                 alt={t("team.members.arnisa.name")}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
                 fill
               />
             </div>
-            <div className="lg:w-3/5 p-8 md:p-16 flex flex-col justify-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                {t("team.members.arnisa.name")}
-              </h2>
-              <span className="text-cyan-500 font-bold text-sm md:text-base tracking-widest uppercase mb-8 block">
-                {t("team.members.arnisa.role")}
-              </span>
-              <p className="text-gray-600 leading-relaxed mb-10 text-sm md:text-lg">
-                {t("team.members.arnisa.bio")}
-              </p>
-              <a
-                href={t("team.members.arnisa.linkedin")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
-              >
-                <Linkedin size={20} />
-              </a>
+            <div className="lg:w-3/5 p-8 md:p-16 flex flex-col justify-between flex-1">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  {t("team.members.arnisa.name")}
+                </h2>
+                <span className="text-cyan-500 font-bold text-sm md:text-base tracking-widest uppercase block">
+                  {t("team.members.arnisa.role")}
+                </span>
+              </div>
+              <div className="flex flex-col justify-center flex-1 py-8">
+                <p className="text-gray-600 leading-relaxed text-sm md:text-lg m-0">
+                  {t("team.members.arnisa.bio")}
+                </p>
+              </div>
+              <div>
+                <a
+                  href={t("team.members.arnisa.linkedin")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-100 rounded-lg inline-flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
+                >
+                  <Linkedin size={20} />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -121,23 +127,23 @@ function TeamContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-56 max-w-6xl mx-auto"
           >
             {members.map((member) => (
               <motion.div
                 key={member.key}
                 variants={fadeUp}
-                className="bg-white rounded-[40px] overflow-hidden border border-gray-100 flex flex-col"
+                className="bg-white rounded-[40px] overflow-hidden flex flex-col h-full w-full max-w-xl mx-auto"
               >
-                <div className="relative h-[400px] w-full">
+                <div className="relative h-[450px] lg:h-[550px] w-full">
                   <Image
                     src={member.image}
                     alt={t(`team.members.${member.key}.name`)}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                     fill
                   />
                 </div>
-                <div className="p-10 flex flex-col flex-1">
+                <div className="p-6 md:p-8 flex flex-col flex-1">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                     {t(`team.members.${member.key}.name`)}
                   </h3>
@@ -183,7 +189,7 @@ function TeamContent() {
               {t("team.cta.subtitle")}
             </p>
             <Link href="/contact" className="inline-block">
-              <button className="px-8 py-4 md:px-12 md:py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
+              <button className="px-8 py-4 cursor-pointer md:px-12 md:py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
                 {t("team.cta.button")}
               </button>
             </Link>

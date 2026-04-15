@@ -1,0 +1,10 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular background for the 'round' look requested by user -->
+  <circle cx="64" cy="64" r="64" fill="white" />
+  <g transform="translate(64, 64) rotate(-35) translate(-64, -64)">
+    <!-- Tilted capsule logo -->
+    <rect x="40" y="32" width="48" height="64" rx="24" fill="#13ECEC" />
+    <!-- Inner cutout -->
+    <rect x="53" y="45" width="22" height="38" rx="11" fill="white" />
+  </g>
+</svg>
