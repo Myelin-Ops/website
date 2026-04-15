@@ -33,7 +33,13 @@
     "description2": "Ne nuk ofrojmë trajnime të përgjithshme.Ne projektojmë zgjidhje të personalizuara, të bazuara në strukturën, kulturën dhe objektivat e organizatës suaj."
   },
   "partners": {
-    "title": "Të Besuar Nga Institucione Udhëheqëse"
+    "title": "Të Besuar Nga Institucione Udhëheqëse",
+    "up": "Universiteti i Prishtinës",
+    "uhz": "Universiteti i Pejës",
+    "vushtrria": "Komuna e Vushtrrisë",
+    "cacttus": "Cacttus Education",
+    "albi": "Albi Fashion Group",
+    "kosovajob": "KosovaJob"
   },
   "values": {
     "title": "Vlerat Themelore",

@@ -33,7 +33,13 @@
     "description2": "We do not offer generic training. We design tailored solutions based on your organization's structure, culture, and goals."
   },
   "partners": {
-    "title": "Trusted by Leading Institutions"
+    "title": "Trusted by Leading Institutions",
+    "up": "University of Prishtina",
+    "uhz": "University of Peja",
+    "vushtrria": "Municipality of Vushtrria",
+    "cacttus": "Cacttus Education",
+    "albi": "Albi Fashion Group",
+    "kosovajob": "KosovaJob"
   },
   "values": {
     "title": "Core Values",

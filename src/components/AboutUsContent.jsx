@@ -38,29 +38,29 @@ function AboutUsContent() {
   const institutions = [
     {
       src: uhzLogo,
-      label: "University of Prishtina",
+      label: t("about.partners.up"),
       scale: "scale-120 md:scale-100",
     },
     {
       src: upLogo,
-      label: "University of Peja",
+      label: t("about.partners.uhz"),
       scale: "scale-100 md:scale-100",
     },
     {
       src: vushtrriaLogo,
-      label: "Municipality of Vushtrria",
+      label: t("about.partners.vushtrria"),
     },
     {
       src: cacttusLogo,
-      label: "Cacttus Education",
+      label: t("about.partners.cacttus"),
       scale: "scale-130",
     },
     {
       src: albiLogo,
-      label: "Albi Fashion Group",
+      label: t("about.partners.albi"),
       scale: "scale-110 md:scale-140",
     },
-    { src: kosovajobLogo, label: "KosovaJob", scale: "scale-120 md:scale-120" },
+    { src: kosovajobLogo, label: t("about.partners.kosovajob"), scale: "scale-120 md:scale-120" },
   ];
 
   return (
@@ -290,7 +290,7 @@ function AboutUsContent() {
             viewport={{ once: true }}
             className="text-xl md:text-4xl font-bold text-gray-900 mb-12 md:mb-20"
           >
-            Trusted by Leading Institutions
+            {t("about.partners.title")}
           </motion.h2>
           <motion.div
             animate="visible"
