@@ -260,7 +260,7 @@ function ServicesContent() {
               {t("services.cta.description")}
             </p>
             <Link href="/contact" className="inline-block mb-14">
-              <button className="px-4 py-4 md:px-12 md:py-5 bg-[#13ECEC] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
+              <button className="px-4 py-4 cursor-pointer md:px-12 md:py-5 bg-[#13ECEC] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
                 {t("services.cta.button")}
               </button>
             </Link>

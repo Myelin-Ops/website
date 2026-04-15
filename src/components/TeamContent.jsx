@@ -189,7 +189,7 @@ function TeamContent() {
               {t("team.cta.subtitle")}
             </p>
             <Link href="/contact" className="inline-block">
-              <button className="px-8 py-4 md:px-12 md:py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
+              <button className="px-8 py-4 cursor-pointer md:px-12 md:py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
                 {t("team.cta.button")}
               </button>
             </Link>

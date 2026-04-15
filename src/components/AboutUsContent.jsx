@@ -395,7 +395,10 @@ function AboutUsContent() {
               variants={fadeUp}
               className="p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center max-[425px]:p-2 max-[425px]:justify-center max-[425px]:aspect-square"
             >
-              <Zap className="w-10 h-10 mb-6 max-[425px]:w-8 max-[425px]:h-8 max-[425px]:mb-2" style={{ color: "#13ECEC" }} />
+              <Zap
+                className="w-10 h-10 mb-6 max-[425px]:w-8 max-[425px]:h-8 max-[425px]:mb-2"
+                style={{ color: "#13ECEC" }}
+              />
               <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
                 {t("about.values.acceleration.title")}
               </h3>
@@ -429,7 +432,7 @@ function AboutUsContent() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/contact" className="w-full sm:w-auto">
-                <button className="px-8 py-4 bg-[#00E5E5] text-black font-bold rounded-md text-base hover:scale-105 transition-transform w-full sm:w-[220px]">
+                <button className="px-8 py-4 cursor-pointer bg-[#00E5E5] text-black font-bold rounded-md text-base hover:scale-105 transition-transform w-full sm:w-[220px]">
                   {t("about.cta.primaryButton")}
                 </button>
               </Link>

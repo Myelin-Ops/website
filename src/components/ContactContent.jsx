@@ -54,7 +54,7 @@ function ContactContent() {
       </section>
 
       {/* Main Content Section */}
-      <section className="pb-32 px-4 md:px-12 mx-auto">
+      <section className="pb-32 px-4 md:px-12 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Column: Form */}
           <motion.div
@@ -116,7 +116,7 @@ function ContactContent() {
 
               <button
                 type="submit"
-                className="w-full py-5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-cyan-400/20"
+                className="w-full cursor-pointer py-5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-cyan-400/20"
               >
                 {t("contact.form.submit")}
               </button>
