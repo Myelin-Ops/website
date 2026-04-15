@@ -5,7 +5,7 @@
   },
   "intro": {
     "title": "Ndërhyrjet Gjithëpërfshirëse",
-    "subtitle": "Mbështetje strategjike nëpër kolonat kryesore të shëndetit organizativ dhe ekselencës në lidership.",
+    "subtitle": "Mbështetje strategjike në shtyllat kryesore të shëndetit organizativ dhe ekselencës në lidership.",
     "categories": {
       "dynamics": "Dinamika e Grupit",
       "assessments": "Vlerësimet Sistemike",
@@ -20,60 +20,60 @@
     "steps": {
       "diagnostic": {
         "title": "Diagnostikimi",
-        "description": "Analiza organizative sistemike e bazuar në kornizat e bazuara në dëshmi."
+        "description": "Analizë sistemike organizative e mbështetur në korniza të bazuara në evidencë shkencore."
       },
       "strategy": {
         "title": "Strategjia",
-        "description": "Dizajni i qartë i ndërhyrjes i rreshtuar me objektivat e lidershipit dhe kulturës."
+        "description": "Dizajnim i qartë i ndërhyrjeve, i harmonizuar me objektivat e lidershipit dhe kulturës organizative."
       },
       "implementation": {
         "title": "Zbatimi",
-        "description": "Rreshtimi praktik i strukturave të qeverisjes, komunikimit dhe llogaridhënies."
+        "description": "Harmonizim praktik i strukturave të qeverisjes, komunikimit dhe përgjegjësisë."
       }
     }
   },
   "list": {
     "groupDynamics": {
       "title": "Dinamika e Grupit dhe Inteligjenca Kolektive",
-      "description": "Ne lehtësojmë dialogun e strukturuar për të përmirësuar vendimmarrjen, bashkëpunimin dhe rreshtimin ndër-ekipe.",
+      "description": "Ne lehtësojmë dialog të strukturuar për të përmirësuar vendimmarrjen, bashkëpunimin dhe harmonizimin mes ekipeve.",
       "items": [
-        "Forcimi i kohezionit të ekipit",
-        "Zgjidhja e sfidave komplekse ndërpersonale",
-        "Mundësimi i llogaridhënies së përbashkët",
-        "Përmirësimi i qartësisë së komunikimit"
+        "Forcojmë kohezionin e ekipit",
+        "Zgjidhim sfida komplekse ndërpersonale",
+        "Mundësojmë përgjegjësi të përbashkët",
+        "Përmirësojmë qartësinë në komunikim"
       ]
     },
     "neuroLeadership": {
       "title": "Zhvillimi i Neuro-Lidershipit",
-      "description": "Zhvillimi i lidershipit i bazuar në neuroshkencë dhe shkencën e sjelljes së aplikuar.",
+      "description": "Zhvillim i lidershipit i mbështetur në neuroshkencë dhe shkencë të aplikuar të sjelljes.",
       "items": [
-        "Forcimi i rregullimit emocional",
-        "Përmirësimi i vendimmarrjes me rrezik të lartë",
-        "Rritja e qartësisë strategjike"
+        "Forcim i rregullimit emocional",
+        "Përmirësim i vendimmarrjes në situata me ndikim të lartë",
+        "Rritje e qartësisë strategjike"
       ]
     },
     "migration": {
-      "title": "Mbështetja për Migrim dhe Riatdhesim",
-      "description": "Ne mbështesim individët dhe ekipet që lundrojnë në tranzicione komplekse kulturore dhe profesionale në tregjet globale.",
+      "title": "Mbështetje për Tranzicione Ndërkombëtare",
+      "description": "Mbështesim individë dhe ekipe që kalojnë tranzicione komplekse kulturore dhe profesionale në tregje ndërkombëtare.",
       "items": [
-        "Lehtësimi i adaptimit psikologjik",
-        "Forcimi i integrimit ndër-kulturor",
-        "Ruajtja e performancës gjatë tranzicioneve"
+        "Lehtësim i adaptimit psikologjik",
+        "Forcim i integrimit ndërkulturor",
+        "Ruajtje e performancës gjatë tranzicioneve"
       ]
     },
     "advancement": {
-      "title": "Strategjia e Përparimit Organizativ",
-      "description": "Ne rreshtojmë strukturën, lidershipin dhe kulturën për të mundësuar rritje të qëndrueshme organizative.",
+      "title": "Strategji për Avancim Organizativ",
+      "description": "Harmonizojmë strukturën, lidershipin dhe kulturën për të mundësuar rritje të qëndrueshme organizative.",
       "items": [
-        "Qartësimi i prioriteteve strategjike",
-        "Forcimi i kornizave të ekzekutimit",
-        "Përmirësimi i llogaridhënies së brendshme"
+        "Qartësim i prioriteteve strategjike",
+        "Forcim i kornizave të zbatimit",
+        "Përmirësim i përgjegjësisë së brendshme"
       ]
     }
   },
   "cta": {
     "title": "Le të dizajnojmë ndërhyrjen e duhur për organizatën tuaj.",
-    "description": "Caktoni një konsultë për të eksploruar se si Myelin OPS mund të mbështesë objektivat tuaja të lidershipit dhe kulturës.",
-    "button": "Cakto Konsultën"
+    "description": "Rezervoni një konsultë për të eksploruar se si Myelin OPS mund të mbështesë objektivat tuaja të lidershipit dhe kulturës organizative.",
+    "button": "Rezervo Konsultë"
   }
 }
