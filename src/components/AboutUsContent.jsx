@@ -8,8 +8,8 @@ import Link from "next/link";
 import { Brain, ShieldCheck, Lightbulb, Handshake, Zap } from "lucide-react";
 
 // Import images
-import gallery1 from "@/assets/images/gallery/gallery1.png";
-import gallery2 from "@/assets/images/gallery/gallery2.png";
+import aboutus1 from "@/assets/images/aboutus/aboutus1.png";
+import aboutus2 from "@/assets/images/aboutus/aboutus2.png";
 
 // New icons for metaphor
 import neuronIcon from "@/assets/images/icons/neuron-icon.png";
@@ -249,26 +249,30 @@ function AboutUsContent() {
             >
               <motion.div
                 variants={fadeUp}
-                className="rounded-3xl overflow-hidden shadow-lg aspect-square h-auto sm:aspect-auto sm:h-64 md:h-80"
+                className="rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 border border-gray-100/30 aspect-square h-auto sm:aspect-auto sm:h-64 md:h-80"
               >
                 <Image
-                  src={gallery1}
-                  alt="Workshop illustration"
+                  src={aboutus1}
+                  alt="Presentation illustration"
                   width={400}
                   height={500}
-                  className="w-full h-full object-cover"
+                  quality={100}
+                  priority
+                  className="w-full h-full object-cover contrast-[1.05] brightness-[1.1] saturate-[1.1] transition-all duration-500"
                 />
               </motion.div>
               <motion.div
                 variants={fadeUp}
-                className="rounded-3xl overflow-hidden shadow-lg aspect-square h-auto sm:aspect-auto sm:h-64 md:h-80 max-sm:mt-6 sm:mt-12"
+                className="rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 border border-gray-100/30 aspect-square h-auto sm:aspect-auto sm:h-64 md:h-80 max-sm:mt-6 sm:mt-12"
               >
                 <Image
-                  src={gallery2}
+                  src={aboutus2}
                   alt="Meeting illustration"
                   width={400}
                   height={500}
-                  className="w-full h-full object-cover"
+                  quality={100}
+                  priority
+                  className="w-full h-full object-cover contrast-[1.05] brightness-[1.1] saturate-[1.1] transition-all duration-500"
                 />
               </motion.div>
             </motion.div>
