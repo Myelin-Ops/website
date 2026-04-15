@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -14,20 +14,20 @@ function ScrollableInsights() {
   const insights = [
     {
       id: 1,
-      title: t('scrollableInsights.card1.title'),
-      description: t('scrollableInsights.card1.description'),
+      title: t("scrollableInsights.card1.title"),
+      description: t("scrollableInsights.card1.description"),
       image: whyItMatters2,
     },
     {
       id: 2,
-      title: t('scrollableInsights.card2.title'),
-      description: t('scrollableInsights.card2.description'),
+      title: t("scrollableInsights.card2.title"),
+      description: t("scrollableInsights.card2.description"),
       image: whyItMatters3,
     },
     {
       id: 3,
-      title: t('scrollableInsights.card3.title'),
-      description: t('scrollableInsights.card3.description'),
+      title: t("scrollableInsights.card3.title"),
+      description: t("scrollableInsights.card3.description"),
       image: whyItMatters4,
     },
   ];
@@ -71,7 +71,7 @@ function ScrollableInsights() {
 
         {/* Scroll hint for mobile */}
         <p className="text-xs text-gray-500 mt-4 md:hidden">
-          {t('scrollableInsights.scrollHint')}
+          {t("scrollableInsights.scrollHint")}
         </p>
       </div>
     </section>

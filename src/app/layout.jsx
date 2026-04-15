@@ -1,7 +1,7 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "@/components/I18nProvider";
-import i18n from '@/i18n'; 
+import i18n from "@/i18n";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Myelin",
+  title: "Myelin Ops",
   description:
     "We are the protective layer that helps organizations and people thrive.",
 };
@@ -18,12 +18,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${montserrat.className} antialiased`}
-      >
-        <I18nProvider i18n={i18n}>
-          {children}
-        </I18nProvider>
+      <body className={`${montserrat.className} antialiased`}>
+        <I18nProvider i18n={i18n}>{children}</I18nProvider>
       </body>
     </html>
   );
