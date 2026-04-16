@@ -63,14 +63,15 @@ function TeamContent() {
             </span>
           </div>
 
+          {/* Desktop/Laptop Version (lg and up) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="bg-white rounded-[40px] overflow-hidden shadow-sm border border-gray-100 flex flex-col lg:flex-row items-stretch max-w-full sm:max-w-xl lg:max-w-6xl mx-auto w-full"
+            className="hidden lg:flex bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex-row items-stretch max-w-6xl mx-auto w-full isolate"
           >
-            <div className="lg:w-2/5 w-full relative aspect-[19/20] lg:aspect-[2/3]">
+            <div className="w-2/5 relative aspect-[2/3]">
               <Image
                 src={arnisaImg}
                 alt={t("team.members.arnisa.name")}
@@ -78,17 +79,17 @@ function TeamContent() {
                 fill
               />
             </div>
-            <div className="lg:w-3/5 p-8 md:p-16 flex flex-col justify-between flex-1">
+            <div className="w-3/5 p-16 flex flex-col justify-between flex-1">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">
                   {t("team.members.arnisa.name")}
                 </h2>
-                <span className="text-cyan-500 font-bold text-sm md:text-base tracking-widest uppercase block">
+                <span className="text-cyan-500 font-bold text-base tracking-widest uppercase block">
                   {t("team.members.arnisa.role")}
                 </span>
               </div>
               <div className="flex flex-col justify-center flex-1 py-8">
-                <p className="text-gray-600 leading-relaxed text-sm md:text-lg m-0">
+                <p className="text-gray-600 leading-relaxed text-lg m-0">
                   {t("team.members.arnisa.bio")}
                 </p>
               </div>
@@ -100,6 +101,47 @@ function TeamContent() {
                   className="w-10 h-10 bg-gray-100 rounded-lg inline-flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
                 >
                   <Linkedin size={20} />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Mobile/Tablet Version (below lg) */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="lg:hidden bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex flex-col max-w-xl mx-auto w-full isolate"
+          >
+            <div className="relative aspect-[4/5] w-full">
+              <Image
+                src={arnisaImg}
+                alt={t("team.members.arnisa.name")}
+                className="w-full h-full object-cover object-center"
+                fill
+              />
+            </div>
+            <div className="p-8 flex flex-col">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  {t("team.members.arnisa.name")}
+                </h2>
+                <span className="text-cyan-500 font-bold text-sm tracking-widest uppercase block">
+                  {t("team.members.arnisa.role")}
+                </span>
+              </div>
+              <p className="text-gray-600 leading-relaxed text-sm mb-8">
+                {t("team.members.arnisa.bio")}
+              </p>
+              <div>
+                <a
+                  href={t("team.members.arnisa.linkedin")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-100 rounded-lg inline-flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
+                >
+                  <Linkedin size={18} />
                 </a>
               </div>
             </div>
@@ -133,7 +175,7 @@ function TeamContent() {
               <motion.div
                 key={member.key}
                 variants={fadeUp}
-                className="bg-white rounded-[40px] overflow-hidden flex flex-col h-full w-full max-w-xl mx-auto"
+                className="bg-white rounded-3xl overflow-hidden flex flex-col h-full w-full max-w-xl mx-auto isolate"
               >
                 <div className="relative h-[450px] lg:h-[550px] w-full">
                   <Image
