@@ -76,7 +76,7 @@ function Gallery() {
         className="text-center mb-12 md:mb-16"
       >
         <h2 className="text-2xl md:text-4xl font-bold text-black tracking-widest uppercase">
-          {t('gallery.title')}
+          {t("gallery.title")}
         </h2>
       </motion.div>
 

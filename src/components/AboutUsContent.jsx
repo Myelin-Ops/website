@@ -12,8 +12,8 @@ import aboutus1 from "@/assets/images/aboutus/aboutus1.png";
 import aboutus2 from "@/assets/images/aboutus/aboutus2.png";
 
 // New icons for metaphor
-import neuronIcon from "@/assets/images/icons/neuron-icon.png";
-import shieldIcon from "@/assets/images/icons/shield-icon.png";
+import neuronIcon from "@/assets/images/icons/hub.svg";
+import shieldIcon from "@/assets/images/icons/shield.svg";
 
 // Institution Logos
 import upLogo from "@/assets/images/partners/up-logo.png";
@@ -60,7 +60,11 @@ function AboutUsContent() {
       label: t("about.partners.albi"),
       scale: "scale-110 md:scale-140",
     },
-    { src: kosovajobLogo, label: t("about.partners.kosovajob"), scale: "scale-120 md:scale-120" },
+    {
+      src: kosovajobLogo,
+      label: t("about.partners.kosovajob"),
+      scale: "scale-120 md:scale-120",
+    },
   ];
 
   return (
@@ -140,8 +144,8 @@ function AboutUsContent() {
               variants={fadeUp}
               className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-all text-center flex flex-col items-center min-h-0 lg:min-h-[460px]"
             >
-              <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6 md:mb-10 text-blue-500">
-                <Brain size={40} />
+              <div className="w-20 h-20 bg-cyan-50 rounded-full flex items-center justify-center mb-6 md:mb-10 text-blue-500">
+                <Brain size={40} color="#13ECEC" />
               </div>
               <h3 className="text-2xl font-bold mb-4 md:mb-6 italic">
                 {t("about.metaphor.cards.brain.title")}
