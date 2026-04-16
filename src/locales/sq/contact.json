@@ -15,7 +15,7 @@
       "value": "+383 48 557 579"
     },
     "connect": "LIDHUNI ME NE",
-    "credits": "KREDITET E ZHVILLIMIT >"
+    "credits": "MERITAT E ZHVILLIMIT TË APLIKACIONIT >"
   },
   "form": {
     "title": "Na dërgoni një mesazh",
@@ -32,6 +32,7 @@
       "placeholder": "Përshkruani shkurtimisht organizatën tuaj dhe sfidën që dëshironi të adresoni."
     },
     "submit": "Dërgo Mesazhin",
-    "agreement": "Duke dërguar këtë formë, ju pajtoheni me Politikat tona të Privatësisë."
+    "agreement": "Duke dërguar këtë formë, ju pajtoheni me ",
+    "privacy_link": "Politikat tona të Privatësisë."
   }
 }
