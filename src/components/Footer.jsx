@@ -93,10 +93,10 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+383-49-287-070"
+                  href="tel:+383-48-557-579"
                   className="hover:text-black transition-colors"
                 >
-                  +383 49 287 070
+                  +383 48 557 579
                 </a>
               </li>
             </ul>
