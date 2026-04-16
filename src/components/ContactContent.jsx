@@ -127,7 +127,7 @@ function ContactContent() {
                   href="/privacy"
                   className="underline hover:text-gray-900 transition-colors"
                 >
-                  Privacy Policy.
+                  {t("contact.form.privacy_link")}
                 </Link>
               </p>
             </form>
