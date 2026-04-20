@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Our Interventions | Myelin Ops",
-  description: "Explore our specialized interventions in group dynamics, neuro-leadership, migration support, and organizational advancement.",
+  description: "Explore our specialized interventions in group dynamics, neuro-leadership, and organizational advancement.",
 };
 
 export default function ServicesPage() {

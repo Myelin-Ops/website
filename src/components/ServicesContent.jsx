@@ -67,10 +67,6 @@ function ServicesContent() {
       icon: Brain,
     },
     {
-      key: "migration",
-      icon: Globe,
-    },
-    {
       key: "advancement",
       icon: Network,
     },
@@ -113,7 +109,7 @@ function ServicesContent() {
 
       {/* Comprehensive Interventions Section */}
       <section className="py-24 md:py-48 px-4 md:px-12 bg-[#F6F8F8] border-t border-gray-50 flex items-center min-h-[60vh]">
-        <div className="max-w-7xl mx-auto text-center w-full">
+        <div className="max-w-[1440px] mx-auto text-center w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -152,7 +148,7 @@ function ServicesContent() {
 
       {/* Methodology Section */}
       <section className="py-24 px-4 md:px-12 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-5xl font-black text-gray-900 mb-6">
               {t("services.methodology.title")}
@@ -192,13 +188,13 @@ function ServicesContent() {
 
       {/* Interventions Details Grid */}
       <section className="py-32 px-4 md:px-12 bg-[#F6F8F8]">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1840px] mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            className="grid grid-cols-1 2xl:grid-cols-3 gap-8"
           >
             {interventions.map((service) => (
               <motion.div
