@@ -94,7 +94,7 @@ function Gallery() {
             <motion.div
               key={image.id}
               variants={itemVariants}
-              className={`${image.span} rounded-2xl overflow-hidden cursor-pointer group relative`}
+              className={`${image.span} rounded-2xl overflow-hidden group relative`}
             >
               <Image
                 src={image.src}

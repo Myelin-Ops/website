@@ -57,7 +57,7 @@ function HomeContent() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 flex flex-col items-center self-center mt-32 md:mt-65 px-4 text-center"
+        className="relative z-10 flex flex-col items-center self-center mt-32 px-4 text-center"
       >
         {/* Mobile-tablet: all combined into one h1 */}
         <h1 className="block xl:hidden text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6">
