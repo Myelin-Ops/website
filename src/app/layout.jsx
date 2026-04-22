@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "@/components/I18nProvider";
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
         <I18nProvider i18n={i18n}>{children}</I18nProvider>
+        <Analytics />
       </body>
     </html>
   );
