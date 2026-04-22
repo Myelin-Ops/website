@@ -7,6 +7,11 @@ import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
 import Footer from "@/components/Footer";
 
+export const metadata = {
+  title: "Home | Elevating Performance",
+  description: "Myelin Ops is the protective layer for organizations. We help businesses thrive through operational excellence and strategic growth.",
+};
+
 export default function Page() {
   return (
     <>

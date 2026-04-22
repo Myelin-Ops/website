@@ -11,9 +11,54 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Myelin Ops",
+  title: {
+    default: "Myelin Ops | Elevating Human & Organizational Performance",
+    template: "%s | Myelin Ops",
+  },
   description:
-    "We are the protective layer that helps organizations and people thrive.",
+    "Myelin Ops is the protective layer that helps organizations and people thrive. We specialize in operational excellence, strategic growth, and performance optimization.",
+  keywords: [
+    "Myelin Ops",
+    "Operational Excellence",
+    "Business Optimization",
+    "Strategic Growth",
+    "Performance Management",
+    "Organizational Thrive",
+    "Consulting Services",
+  ],
+  authors: [{ name: "Myelin Ops Team" }],
+  creator: "Myelin Ops",
+  publisher: "Myelin Ops",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: "Myelin Ops | Elevating Human & Organizational Performance",
+    description: "The protective layer that helps organizations and people thrive.",
+    url: "https://myelinops.com",
+    siteName: "Myelin Ops",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Myelin Ops | Elevating Human & Organizational Performance",
+    description: "The protective layer that helps organizations and people thrive.",
+    creator: "@myelinops",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
