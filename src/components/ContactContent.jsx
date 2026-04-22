@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Mail, Phone, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, Linkedin, Instagram, Facebook, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -18,13 +19,43 @@ function ContactContent() {
     email: "",
     message: "",
   });
+  const [turnstileToken, setTurnstileToken] = useState(null);
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [errorMessage, setErrorMessage] = useState("");
+  const turnstileRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logic for form submission would go here
-    console.log("Form submitted:", formData);
-    alert("Thank you! Your message has been sent.");
-    setFormData({ name: "", email: "", message: "" });
+    if (!turnstileToken) {
+      setErrorMessage("Please complete the security check.");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, turnstileToken }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      setTurnstileToken(null);
+      if (turnstileRef.current) turnstileRef.current.reset();
+    } catch (err) {
+      setErrorMessage(err.message);
+      setStatus("error");
+    }
   };
 
   const handleChange = (e) => {
@@ -114,12 +145,61 @@ function ContactContent() {
                 />
               </div>
 
+              <div className="flex justify-center">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  onSuccess={(token) => {
+                    setTurnstileToken(token);
+                    if (status === "error") setStatus("idle");
+                  }}
+                />
+              </div>
+
               <button
                 type="submit"
-                className="w-full cursor-pointer py-5 bg-cyan-400 text-black font-extrabold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-cyan-400/20"
+                disabled={status === "loading" || status === "success"}
+                className={`w-full cursor-pointer py-5 flex items-center justify-center gap-3 text-black font-extrabold rounded-2xl transition-all shadow-lg ${
+                  status === "success" 
+                    ? "bg-green-400 shadow-green-400/20" 
+                    : "bg-cyan-400 hover:scale-[1.02] active:scale-95 shadow-cyan-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                }`}
               >
-                {t("contact.form.submit")}
+                {status === "loading" ? (
+                  <>
+                    <Loader2 className="animate-spin" size={20} />
+                    {t("contact.form.sending", "Sending...")}
+                  </>
+                ) : status === "success" ? (
+                  <>
+                    <CheckCircle2 size={20} />
+                    {t("contact.form.sent", "Message Sent!")}
+                  </>
+                ) : (
+                  t("contact.form.submit")
+                )}
               </button>
+
+              {status === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 p-4 bg-red-50 text-red-600 rounded-xl text-sm"
+                >
+                  <AlertCircle size={18} />
+                  <span>{errorMessage}</span>
+                </motion.div>
+              )}
+
+              {status === "success" && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center text-sm font-medium text-green-600"
+                >
+                  {t("contact.form.success_msg", "We'll get back to you shortly.")}
+                </motion.p>
+              )}
 
               <p className="text-center text-[11px] text-gray-400">
                 {t("contact.form.agreement")}{" "}
