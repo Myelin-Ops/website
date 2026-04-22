@@ -3,8 +3,8 @@ import TeamContent from "@/components/TeamContent";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Our Team | Myelin Ops",
-  description: "Meet the experts behind Myelin Ops. A team of psychologists and consultants dedicated to organizational development and workplace wellbeing.",
+  title: "Meet the Team",
+  description: "Meet the experts at Myelin Ops. Our psychologists and consultants work at the intersection of human behavior and business performance.",
 };
 
 export default function TeamPage() {

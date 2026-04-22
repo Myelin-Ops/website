@@ -3,8 +3,8 @@ import ContactContent from "@/components/ContactContent";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Contact Us | Myelin Ops",
-  description: "Get in touch with Myelin Ops for general inquiries, institutional partnerships, or to schedule a consultation.",
+  title: "Contact",
+  description: "Get in touch with Myelin Ops. Connect with us for consultations, partnerships, or professional inquiries.",
 };
 
 export default function ContactPage() {

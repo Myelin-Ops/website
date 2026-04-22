@@ -3,8 +3,8 @@ import CreditsContent from "@/components/CreditsContent";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Development Credits | Myelin Ops",
-  description: "Recognizing the student development team behind the Myelin Ops digital presence.",
+  title: "Credits",
+  description: "Acknowledge the team and partners who contributed to the development of the Myelin Ops digital experience.",
 };
 
 export default function CreditsPage() {

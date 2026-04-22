@@ -3,8 +3,8 @@ import AboutUsContent from "@/components/AboutUsContent";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "About Us | Myelin Ops",
-  description: "Learn more about Myelin Ops, our approach, mission, and how we strengthen organizations from the inside out.",
+  title: "About Us",
+  description: "Learn about Myelin Ops' mission to strengthen organizations. We specialize in psychological safety, operational resilience, and human performance.",
 };
 
 export default function AboutPage() {
