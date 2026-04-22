@@ -50,7 +50,7 @@ function Header() {
   return (
     <nav
       ref={menuRef}
-      className="sticky top-0 py-2 backdrop-blur-md bg-white/90 border-b border-[#F0F4F4] flex items-center justify-between px-4 md:px-12 z-40"
+      className="sticky top-0 py-2 backdrop-blur-md bg-white/90 border-b border-[#F0F4F4] flex items-center justify-between px-4 min-[800px]:px-12 z-40"
     >
       {/* Logo */}
       <motion.div
@@ -73,7 +73,7 @@ function Header() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
-        className="hidden md:flex gap-4 items-center"
+        className="hidden min-[800px]:flex gap-4 items-center"
       >
         {routes.map((route, i) => (
           <motion.div
@@ -85,11 +85,10 @@ function Header() {
           >
             <Link
               href={route.href}
-              className={`text-sm font-medium transition-colors ${
-                isActive(route.href)
+              className={`text-sm font-medium transition-colors ${isActive(route.href)
                   ? "text-black border-b-2 border-black pb-1"
                   : "text-gray-600 hover:text-black"
-              }`}
+                }`}
             >
               {route.title}
             </Link>
@@ -118,7 +117,7 @@ function Header() {
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="md:hidden flex flex-col gap-1 cursor-pointer"
+        className="min-[800px]:hidden flex flex-col gap-1 cursor-pointer"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
       >
@@ -142,7 +141,7 @@ function Header() {
             : { opacity: 0, pointerEvents: "none" }
         }
         transition={{ duration: 0.3 }}
-        className="fixed top-[70px] left-0 right-0 bg-white border-b border-[#F0F4F4] md:hidden z-50"
+        className="fixed top-[70px] left-0 right-0 bg-white border-b border-[#F0F4F4] min-[800px]:hidden z-50"
       >
         <motion.div
           initial={{ y: -10 }}
@@ -158,11 +157,10 @@ function Header() {
             >
               <Link
                 href={route.href}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(route.href)
+                className={`text-sm font-medium transition-colors ${isActive(route.href)
                     ? "text-black border-l-2 border-black pl-2"
                     : "text-gray-600 hover:text-black"
-                }`}
+                  }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {route.title}
