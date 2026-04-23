@@ -3,7 +3,16 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Mail, Phone, Linkedin, Instagram, Facebook, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Linkedin,
+  Instagram,
+  Facebook,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import Link from "next/link";
 import { Turnstile } from "@marsidev/react-turnstile";
 
@@ -45,7 +54,9 @@ function ContactContent() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Something went wrong. Please try again.");
+        throw new Error(
+          data.error || "Something went wrong. Please try again.",
+        );
       }
 
       setStatus("success");
@@ -160,8 +171,8 @@ function ContactContent() {
                 type="submit"
                 disabled={status === "loading" || status === "success"}
                 className={`w-full cursor-pointer py-5 flex items-center justify-center gap-3 text-black font-extrabold rounded-2xl transition-all shadow-lg ${
-                  status === "success" 
-                    ? "bg-green-400 shadow-green-400/20" 
+                  status === "success"
+                    ? "bg-green-400 shadow-green-400/20"
                     : "bg-cyan-400 hover:scale-[1.02] active:scale-95 shadow-cyan-400/20 disabled:opacity-50 disabled:cursor-not-allowed"
                 }`}
               >
@@ -197,7 +208,10 @@ function ContactContent() {
                   animate={{ opacity: 1 }}
                   className="text-center text-sm font-medium text-green-600"
                 >
-                  {t("contact.form.success_msg", "We'll get back to you shortly.")}
+                  {t(
+                    "contact.form.success_msg",
+                    "We'll get back to you shortly.",
+                  )}
                 </motion.p>
               )}
 
@@ -300,7 +314,7 @@ function ContactContent() {
               </div>
               <Link
                 href="/credits"
-                className="text-xs font-bold tracking-widest text-gray-400 uppercase hover:text-cyan-500 transition-colors"
+                className="text-xs font-bold tracking-widest text-cyan-500 uppercase transition-colors underline underline-offset-4"
               >
                 {t("contact.info.credits")}
               </Link>
