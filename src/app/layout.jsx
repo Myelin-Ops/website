@@ -11,6 +11,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://myelinops.com"),
   title: {
     default: "Myelin Ops | Elevating Human & Organizational Performance",
     template: "%s | Myelin Ops",
