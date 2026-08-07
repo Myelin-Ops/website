@@ -19,7 +19,7 @@ import shieldIcon from "@/assets/images/icons/shield.svg";
 import barutiLogo from "@/assets/images/partners/Baruti-AG-Logo.png";
 import londonSchoolLogo from "@/assets/images/partners/London-School-Logo.png";
 import upLogo from "@/assets/images/partners/up-logo.png";
-import uhzLogo from "@/assets/images/partners/uhz-logo.png";
+import uniprLogo from "@/assets/images/partners/unipr-logo.png";
 import vushtrriaLogo from "@/assets/images/partners/vushtrria-logo.png";
 import cacttusLogo from "@/assets/images/partners/cacttus-logo.png";
 import albiLogo from "@/assets/images/partners/albi-logo.png";
@@ -49,14 +49,14 @@ function AboutUsContent() {
       scale: "scale-110 md:scale-110",
     },
     {
-      src: uhzLogo,
-      label: t("about.partners.uhz"),
-      scale: "scale-120 md:scale-100",
+      src: uniprLogo,
+      label: t("about.partners.up"),
+      scale: "scale-100 md:scale-100",
     },
     {
       src: upLogo,
-      label: t("about.partners.up"),
-      scale: "scale-100 md:scale-100",
+      label: t("about.partners.uhz"),
+      scale: "scale-120 md:scale-100",
     },
     {
       src: vushtrriaLogo,
