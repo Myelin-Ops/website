@@ -9,9 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@marsidev/react-turnstile": "^1.5.0",
+    "@marsidev/react-turnstile": "^1.5.5",
     "@upstash/ratelimit": "^2.0.8",
-    "@upstash/redis": "^1.37.0",
+    "@upstash/redis": "^1.38.2",
     "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.38.0",
     "i18next": "^26.0.1",
@@ -22,7 +22,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-i18next": "^17.0.1",
-    "resend": "^6.12.2"
+    "resend": "^6.18.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
