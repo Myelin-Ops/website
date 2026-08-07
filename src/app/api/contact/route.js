@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { ratelimit } from "@/lib/upstash";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 async function verifyTurnstile(token) {
   const secretKey = process.env.TURNSTILE_SECRET_KEY;
   const response = await fetch(
@@ -22,6 +20,7 @@ async function verifyTurnstile(token) {
 }
 
 export async function POST(request) {
+  const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy");
   try {
     const { name, email, message, turnstileToken } = await request.json();
 

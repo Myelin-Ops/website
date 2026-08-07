@@ -16,6 +16,8 @@ import neuronIcon from "@/assets/images/icons/hub.svg";
 import shieldIcon from "@/assets/images/icons/shield.svg";
 
 // Institution Logos
+import barutiLogo from "@/assets/images/partners/Baruti-AG-Logo.png";
+import londonSchoolLogo from "@/assets/images/partners/London-School-Logo.png";
 import upLogo from "@/assets/images/partners/up-logo.png";
 import uhzLogo from "@/assets/images/partners/uhz-logo.png";
 import vushtrriaLogo from "@/assets/images/partners/vushtrria-logo.png";
@@ -37,13 +39,23 @@ function AboutUsContent() {
 
   const institutions = [
     {
+      src: barutiLogo,
+      label: t("about.partners.baruti"),
+      scale: "scale-110 md:scale-110",
+    },
+    {
+      src: londonSchoolLogo,
+      label: t("about.partners.londonSchool"),
+      scale: "scale-110 md:scale-110",
+    },
+    {
       src: uhzLogo,
-      label: t("about.partners.up"),
+      label: t("about.partners.uhz"),
       scale: "scale-120 md:scale-100",
     },
     {
       src: upLogo,
-      label: t("about.partners.uhz"),
+      label: t("about.partners.up"),
       scale: "scale-100 md:scale-100",
     },
     {
@@ -299,7 +311,7 @@ function AboutUsContent() {
           <motion.div
             animate="visible"
             variants={stagger}
-            className="grid grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-24 gap-x-8 md:gap-x-12 items-start"
+            className="grid grid-cols-2 lg:grid-cols-2 max-w-7xl mx-auto gap-y-12 md:gap-y-24 gap-x-8 md:gap-x-12 items-start"
           >
             {institutions.map((inst, i) => (
               <motion.div

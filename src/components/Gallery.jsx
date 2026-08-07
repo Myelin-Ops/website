@@ -4,11 +4,12 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import gallery1 from "../assets/images/gallery/gallery1.png";
-import gallery2 from "../assets/images/gallery/gallery2.png";
-import gallery3 from "../assets/images/gallery/gallery3.png";
-import gallery4 from "../assets/images/gallery/gallery4.png";
-import gallery5 from "../assets/images/gallery/gallery5.png";
+import gallery1 from "@/assets/images/gallery/gallery1.png";
+import gallery2 from "@/assets/images/gallery/gallery2.png";
+import gallery3 from "@/assets/images/gallery/gallery3.png";
+import gallery4 from "@/assets/images/gallery/gallery4.png";
+import gallery5 from "@/assets/images/gallery/gallery5.png";
+import gallery6 from "@/assets/images/gallery/gallery6.png";
 
 const galleryImages = [
   {
@@ -39,6 +40,12 @@ const galleryImages = [
     id: 5,
     src: gallery5,
     alt: "Team building",
+    span: "col-span-1 md:col-span-2 row-span-1",
+  },
+  {
+    id: 6,
+    src: gallery6,
+    alt: "Corporate event",
     span: "col-span-1 md:col-span-2 row-span-1",
   },
 ];
