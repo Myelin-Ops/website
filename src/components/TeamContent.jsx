@@ -3,7 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
+import { pickImage } from "@/lib/sanityImage";
 import Link from "next/link";
 import { Linkedin } from "lucide-react";
 
@@ -21,13 +22,43 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.2 } },
 };
 
-function TeamContent() {
-  const { t } = useTranslation();
+function TeamContent({ page, members: membersData }) {
+  const { t, sanity, st } = useSanityContent(page);
+  const { sanity: membersSanity } = useSanityContent(membersData);
 
-  const members = [
-    { key: "zanfina", image: zanfinaImg },
-    { key: "ardita", image: arditaImg },
+  const fallbackMembers = [
+    {
+      key: "arnisa",
+      section: "visionary",
+      name: t("team.members.arnisa.name"),
+      role: t("team.members.arnisa.role"),
+      bio: t("team.members.arnisa.bio"),
+      linkedin: t("team.members.arnisa.linkedin"),
+      photo: arnisaImg,
+    },
+    {
+      key: "zanfina",
+      section: "research",
+      name: t("team.members.zanfina.name"),
+      role: t("team.members.zanfina.role"),
+      bio: t("team.members.zanfina.bio"),
+      linkedin: t("team.members.zanfina.linkedin"),
+      photo: zanfinaImg,
+    },
+    {
+      key: "ardita",
+      section: "research",
+      name: t("team.members.ardita.name"),
+      role: t("team.members.ardita.role"),
+      bio: t("team.members.ardita.bio"),
+      linkedin: t("team.members.ardita.linkedin"),
+      photo: arditaImg,
+    },
   ];
+
+  const memberList = membersSanity?.length ? membersSanity : fallbackMembers;
+  const visionary = memberList.find((m) => m.section === "visionary");
+  const researchMembers = memberList.filter((m) => m.section === "research");
 
   return (
     <div className="bg-[#F6F8F8] min-h-screen">
@@ -40,7 +71,7 @@ function TeamContent() {
           variants={fadeUp}
           className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 mb-8 leading-tight"
         >
-          {t("team.hero.title")}
+          {st(sanity?.hero?.title, "team.hero.title")}
         </motion.h1>
         <motion.p
           initial="hidden"
@@ -49,7 +80,7 @@ function TeamContent() {
           variants={fadeUp}
           className="text-sm md:text-base lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
         >
-          {t("team.hero.subtitle")}
+          {st(sanity?.hero?.subtitle, "team.hero.subtitle")}
         </motion.p>
       </section>
 
@@ -59,93 +90,97 @@ function TeamContent() {
           <div className="flex items-center gap-3 mb-12">
             <span className="w-8 h-[2px] bg-cyan-400" />
             <span className="text-lg md:text-xl font-bold tracking-widest text-gray-900 uppercase">
-              {t("team.sections.visionary")}
+              {st(sanity?.sections?.visionary, "team.sections.visionary")}
             </span>
           </div>
 
-          {/* Desktop/Laptop Version (lg and up) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="hidden lg:flex bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex-row items-stretch max-w-6xl mx-auto w-full isolate"
-          >
-            <div className="w-2/5 relative aspect-[2/3]">
-              <Image
-                src={arnisaImg}
-                alt={t("team.members.arnisa.name")}
-                className="w-full h-full object-cover object-top"
-                fill
-              />
-            </div>
-            <div className="w-3/5 p-16 flex flex-col justify-between flex-1">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                  {t("team.members.arnisa.name")}
-                </h2>
-                <span className="text-cyan-500 font-bold text-base tracking-widest uppercase block">
-                  {t("team.members.arnisa.role")}
-                </span>
-              </div>
-              <div className="flex flex-col justify-center flex-1 py-8">
-                <p className="text-gray-600 leading-relaxed text-lg m-0">
-                  {t("team.members.arnisa.bio")}
-                </p>
-              </div>
-              <div>
-                <a
-                  href={t("team.members.arnisa.linkedin")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-100 rounded-lg inline-flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
-                >
-                  <Linkedin size={20} />
-                </a>
-              </div>
-            </div>
-          </motion.div>
+          {visionary && (
+            <>
+              {/* Desktop/Laptop Version (lg and up) */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="hidden lg:flex bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex-row items-stretch max-w-6xl mx-auto w-full isolate"
+              >
+                <div className="w-2/5 relative aspect-[2/3]">
+                  <Image
+                    src={pickImage(visionary.photoUrl, visionary.photo)}
+                    alt={visionary.name}
+                    className="w-full h-full object-cover object-top"
+                    fill
+                  />
+                </div>
+                <div className="w-3/5 p-16 flex flex-col justify-between flex-1">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                      {visionary.name}
+                    </h2>
+                    <span className="text-cyan-500 font-bold text-base tracking-widest uppercase block">
+                      {visionary.role}
+                    </span>
+                  </div>
+                  <div className="flex flex-col justify-center flex-1 py-8">
+                    <p className="text-gray-600 leading-relaxed text-lg m-0">
+                      {visionary.bio}
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href={visionary.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-gray-100 rounded-lg inline-flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
 
-          {/* Mobile/Tablet Version (below lg) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="lg:hidden bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex flex-col max-w-xl mx-auto w-full isolate"
-          >
-            <div className="relative aspect-[4/5] w-full">
-              <Image
-                src={arnisaImg}
-                alt={t("team.members.arnisa.name")}
-                className="w-full h-full object-cover object-center"
-                fill
-              />
-            </div>
-            <div className="p-8 flex flex-col">
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  {t("team.members.arnisa.name")}
-                </h2>
-                <span className="text-cyan-500 font-bold text-sm tracking-widest uppercase block">
-                  {t("team.members.arnisa.role")}
-                </span>
-              </div>
-              <p className="text-gray-600 leading-relaxed text-sm mb-8">
-                {t("team.members.arnisa.bio")}
-              </p>
-              <div>
-                <a
-                  href={t("team.members.arnisa.linkedin")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-100 rounded-lg inline-flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
-                >
-                  <Linkedin size={18} />
-                </a>
-              </div>
-            </div>
-          </motion.div>
+              {/* Mobile/Tablet Version (below lg) */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="lg:hidden bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex flex-col max-w-xl mx-auto w-full isolate"
+              >
+                <div className="relative aspect-[4/5] w-full">
+                  <Image
+                    src={pickImage(visionary.photoUrl, visionary.photo)}
+                    alt={visionary.name}
+                    className="w-full h-full object-cover object-center"
+                    fill
+                  />
+                </div>
+                <div className="p-8 flex flex-col">
+                  <div className="mb-6">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                      {visionary.name}
+                    </h2>
+                    <span className="text-cyan-500 font-bold text-sm tracking-widest uppercase block">
+                      {visionary.role}
+                    </span>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed text-sm mb-8">
+                    {visionary.bio}
+                  </p>
+                  <div>
+                    <a
+                      href={visionary.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-gray-100 rounded-lg inline-flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
+                    >
+                      <Linkedin size={18} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
         </div>
       </section>
 
@@ -156,11 +191,11 @@ function TeamContent() {
             <div className="flex items-center gap-3 mb-4">
               <span className="w-8 h-[2px] bg-cyan-400" />
               <span className="text-base md:text-xl font-bold tracking-widest text-gray-900 uppercase">
-                {t("team.sections.research")}
+                {st(sanity?.sections?.research, "team.sections.research")}
               </span>
             </div>
             <p className="text-gray-500 ml-11 text-sm md:text-lg">
-              {t("team.sections.research_subtitle")}
+              {st(sanity?.sections?.researchSubtitle, "team.sections.research_subtitle")}
             </p>
           </div>
 
@@ -171,32 +206,32 @@ function TeamContent() {
             variants={stagger}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-56 max-w-6xl mx-auto"
           >
-            {members.map((member) => (
+            {researchMembers.map((member) => (
               <motion.div
-                key={member.key}
+                key={member.key || member._id}
                 variants={fadeUp}
                 className="bg-white rounded-3xl overflow-hidden flex flex-col h-full w-full max-w-xl mx-auto isolate"
               >
                 <div className="relative h-[450px] lg:h-[550px] w-full">
                   <Image
-                    src={member.image}
-                    alt={t(`team.members.${member.key}.name`)}
+                    src={pickImage(member.photoUrl, member.photo)}
+                    alt={member.name}
                     className="w-full h-full object-cover object-top"
                     fill
                   />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col flex-1">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                    {t(`team.members.${member.key}.name`)}
+                    {member.name}
                   </h3>
                   <span className="text-cyan-500 font-bold text-sm md:text-base tracking-widest uppercase mb-8 block">
-                    {t(`team.members.${member.key}.role`)}
+                    {member.role}
                   </span>
                   <p className="text-gray-600 leading-relaxed mb-10">
-                    {t(`team.members.${member.key}.bio`)}
+                    {member.bio}
                   </p>
                   <a
-                    href={t(`team.members.${member.key}.linkedin`)}
+                    href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-auto w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyan-500 hover:bg-cyan-50 transition-colors"
@@ -225,14 +260,14 @@ function TeamContent() {
 
           <div className="relative z-10 py-24 px-8 md:px-20 text-center text-white">
             <h2 className="text-xl md:text-3xl lg:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
-              {t("team.cta.title")}
+              {st(sanity?.cta?.title, "team.cta.title")}
             </h2>
             <p className="hidden md:block text-gray-400 text-base mb-12 max-w-2xl mx-auto leading-relaxed">
-              {t("team.cta.subtitle")}
+              {st(sanity?.cta?.subtitle, "team.cta.subtitle")}
             </p>
             <Link href="/contact" className="inline-block">
               <button className="px-8 py-4 cursor-pointer md:px-12 md:py-5 bg-[#00E5E5] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
-                {t("team.cta.button")}
+                {st(sanity?.cta?.button, "team.cta.button")}
               </button>
             </Link>
           </div>

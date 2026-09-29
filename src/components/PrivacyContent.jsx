@@ -2,22 +2,30 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
 import Image from "next/image";
 
-function PrivacyContent() {
-  const { t } = useTranslation();
+const FALLBACK_SECTION_KEYS = [
+  "introduction",
+  "dataCollection",
+  "useOfData",
+  "security",
+  "cookies",
+  "thirdParties",
+  "rights",
+  "updates",
+];
 
-  const sections = [
-    "introduction",
-    "dataCollection",
-    "useOfData",
-    "security",
-    "cookies",
-    "thirdParties",
-    "rights",
-    "updates",
-  ];
+function PrivacyContent({ data }) {
+  const { t, sanity, st } = useSanityContent(data);
+  const title = st(sanity?.title, "privacy.title");
+  const lastUpdated = st(sanity?.lastUpdated, "privacy.lastUpdated");
+  const sections = sanity?.sections?.length
+    ? sanity.sections
+    : FALLBACK_SECTION_KEYS.map((key) => ({
+        title: t(`privacy.${key}.title`),
+        content: t(`privacy.${key}.content`),
+      }));
 
   const containerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -81,13 +89,13 @@ function PrivacyContent() {
             variants={itemVariants}
             className="text-4xl md:text-6xl font-bold text-black mb-6 tracking-tight"
           >
-            {t("privacy.title")}
+            {title}
           </motion.h1>
-          <motion.p 
+          <motion.p
             variants={itemVariants}
             className="text-gray-500 font-medium tracking-widest uppercase text-sm"
           >
-            {t("privacy.lastUpdated")}
+            {lastUpdated}
           </motion.p>
           <motion.div 
             variants={itemVariants}
@@ -97,17 +105,17 @@ function PrivacyContent() {
 
         {/* Content Sections */}
         <div className="space-y-12 md:space-y-20">
-          {sections.map((section) => (
-            <motion.section 
-              key={section} 
+          {sections.map((section, i) => (
+            <motion.section
+              key={i}
               variants={itemVariants}
               className="group"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-black mb-6 group-hover:text-cyan-600 transition-colors">
-                {t(`privacy.${section}.title`)}
+                {section.title}
               </h2>
               <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed font-light italic">
-                {t(`privacy.${section}.content`)}
+                {section.content}
               </div>
               <div className="h-[1px] w-full bg-gray-100 mt-12 md:mt-16" />
             </motion.section>

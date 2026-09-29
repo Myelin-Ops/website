@@ -1,28 +1,42 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
+import Editable from "@/components/admin/Editable";
 
 const TOTAL_TIME = 15000; // 15 seconds in milliseconds
 const TICK_INTERVAL = 20; // Update every 20ms for smooth tracking
 
-function Testimonials() {
-  const { t } = useTranslation();
-  const testimonialsData = t("testimonials.list", { returnObjects: true });
-  const testimonialsList = Array.isArray(testimonialsData)
-    ? testimonialsData
-    : [];
+function TestimonialsSectionBlock({ data, documentId, testimonials }) {
+  const { t, sanity, st } = useSanityContent(data);
+  const { sanity: testimonialsSanity } = useSanityContent(testimonials);
+  const label = st(sanity?.label, "testimonials.label");
+  const path = sanity?._key ? `sections[_key=="${sanity._key}"]` : null;
+  const fallbackList = t("testimonials.list", { returnObjects: true });
+  const testimonialsList = testimonialsSanity?.length
+    ? testimonialsSanity
+    : Array.isArray(fallbackList)
+      ? fallbackList
+      : [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
 
-  if (testimonialsList.length === 0) return null;
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonialsList.length);
+    setTimeLeft(TOTAL_TIME);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonialsList.length) % testimonialsList.length);
+    setTimeLeft(TOTAL_TIME);
+  };
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || testimonialsList.length === 0) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -35,20 +49,10 @@ function Testimonials() {
     }, TICK_INTERVAL);
 
     return () => clearInterval(timer);
-  }, [currentIndex, isPaused]); // Resets when index changes, but PAUSES when isPaused changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex, isPaused, testimonialsList.length]);
 
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + testimonialsList.length) % testimonialsList.length,
-    );
-    setTimeLeft(TOTAL_TIME);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonialsList.length);
-    setTimeLeft(TOTAL_TIME);
-  };
+  if (testimonialsList.length === 0) return null;
 
   const currentTestimonial = testimonialsList[currentIndex];
   const progressPercentage = (timeLeft / TOTAL_TIME) * 100;
@@ -56,7 +60,6 @@ function Testimonials() {
   return (
     <section className="w-full py-20 px-4 bg-white relative">
       <div className="max-w-7xl mx-auto">
-        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,15 +68,13 @@ function Testimonials() {
           className="text-center mb-20 md:mb-10"
         >
           <h2 className="text-2xl md:text-5xl font-bold text-black tracking-widest uppercase">
-            {t("testimonials.label")}
+            <Editable documentId={documentId} path={path && `${path}.label`} value={label} />
           </h2>
           <div className="w-16 h-1 bg-cyan-500 mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        {/* Carousel Container */}
         <div className="max-w-[80rem] mx-auto w-full">
           <div className="flex items-center gap-4 md:gap-12 lg:gap-20">
-            {/* Desktop Navigation */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -84,7 +85,6 @@ function Testimonials() {
               <ChevronLeft size={30} />
             </motion.button>
 
-            {/* Testimonial Card */}
             <div
               className="flex-1 relative"
               onMouseEnter={() => setIsPaused(true)}
@@ -99,13 +99,12 @@ function Testimonials() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="bg-[#FAFAFA] border border-gray-100 rounded-[2.5rem] p-10 md:p-12 lg:p-16 shadow-2xl shadow-gray-200/40 relative overflow-hidden min-h-[300px] flex flex-col justify-center text-center"
                 >
-                  {/* Decorative Quote Mark */}
                   <div className="mb-6 md:mb-8 flex justify-center opacity-10">
                     <Quote size={32} className="text-cyan-600 fill-cyan-600" />
                   </div>
 
                   <p className="text-gray-800 text-base md:text-xl lg:text-2xl font-light italic leading-relaxed mb-8 md:mb-10 max-w-5xl mx-auto">
-                    "{currentTestimonial.quote}"
+                    &quot;{currentTestimonial.quote}&quot;
                   </p>
 
                   <div className="mt-auto">
@@ -115,17 +114,12 @@ function Testimonials() {
                     </p>
                   </div>
 
-                  {/* Resumeable Progress Timer Line */}
                   <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gray-100/50">
-                    <motion.div
-                      style={{ width: `${progressPercentage}%` }}
-                      className="h-full bg-cyan-500"
-                    />
+                    <motion.div style={{ width: `${progressPercentage}%` }} className="h-full bg-cyan-500" />
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Dots */}
               <div className="flex justify-center gap-3 mt-12">
                 {testimonialsList.map((_, index) => (
                   <button
@@ -135,9 +129,7 @@ function Testimonials() {
                       setTimeLeft(TOTAL_TIME);
                     }}
                     className={`h-1.5 transition-all cursor-pointer duration-500 rounded-full ${
-                      index === currentIndex
-                        ? "bg-cyan-500 w-12"
-                        : "bg-gray-200 w-3 hover:bg-gray-300"
+                      index === currentIndex ? "bg-cyan-500 w-12" : "bg-gray-200 w-3 hover:bg-gray-300"
                     }`}
                   />
                 ))}
@@ -160,4 +152,4 @@ function Testimonials() {
   );
 }
 
-export default Testimonials;
+export default TestimonialsSectionBlock;

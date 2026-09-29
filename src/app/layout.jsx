@@ -1,7 +1,11 @@
 import { Analytics } from "@vercel/analytics/next"
 import { Montserrat } from "next/font/google";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
 import "./globals.css";
 import I18nProvider from "@/components/I18nProvider";
+import EditModeProvider from "@/components/admin/EditModeProvider";
+import EditModeToggle from "@/components/admin/EditModeToggle";
 import i18n from "@/i18n";
 
 const montserrat = Montserrat({
@@ -62,12 +66,18 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const { isEnabled: isDraftMode } = await draftMode();
+
   return (
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
-        <I18nProvider i18n={i18n}>{children}</I18nProvider>
+        <EditModeProvider>
+          <I18nProvider i18n={i18n}>{children}</I18nProvider>
+          <EditModeToggle />
+        </EditModeProvider>
         <Analytics />
+        {isDraftMode && <VisualEditing />}
       </body>
     </html>
   );

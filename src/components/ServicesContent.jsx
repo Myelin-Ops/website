@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
 import Link from "next/link";
 import {
   Users,
@@ -31,8 +31,8 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.2 } },
 };
 
-function ServicesContent() {
-  const { t } = useTranslation();
+function ServicesContent({ data }) {
+  const { t, sanity, st } = useSanityContent(data);
 
   const categories = [
     { id: "01", key: "dynamics" },
@@ -99,10 +99,10 @@ function ServicesContent() {
           className="relative z-10"
         >
           <h1 className="text-3xl md:text-7xl font-black text-gray-900 mb-8 leading-tight">
-            {t("services.hero.title")}
+            {st(sanity?.hero?.title, "services.hero.title")}
           </h1>
           <p className="text-sm md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            {t("services.hero.subtitle")}
+            {st(sanity?.hero?.subtitle, "services.hero.subtitle")}
           </p>
         </motion.div>
       </section>
@@ -117,10 +117,10 @@ function ServicesContent() {
             variants={fadeUp}
           >
             <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
-              {t("services.intro.title")}
+              {st(sanity?.intro?.title, "services.intro.title")}
             </h2>
             <p className="text-gray-500 text-sm md:text-xl max-w-4xl mx-auto mb-32 leading-relaxed">
-              {t("services.intro.subtitle")}
+              {st(sanity?.intro?.subtitle, "services.intro.subtitle")}
             </p>
 
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-20 gap-x-12 md:gap-4 items-start">
@@ -137,7 +137,10 @@ function ServicesContent() {
                     {cat.id}
                   </span>
                   <span className="text-sm md:text-lg font-bold text-gray-900 tracking-tight text-center leading-snug max-w-[250px]">
-                    {t(`services.intro.categories.${cat.key}`)}
+                    {st(
+                      sanity?.intro?.categories?.find((c) => c.key === cat.key)?.label,
+                      `services.intro.categories.${cat.key}`
+                    )}
                   </span>
                 </motion.div>
               ))}
@@ -151,10 +154,10 @@ function ServicesContent() {
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-5xl font-black text-gray-900 mb-6">
-              {t("services.methodology.title")}
+              {st(sanity?.methodology?.title, "services.methodology.title")}
             </h2>
             <p className="text-gray-500 text-base md:text-xl">
-              {t("services.methodology.subtitle")}
+              {st(sanity?.methodology?.subtitle, "services.methodology.subtitle")}
             </p>
           </div>
 
@@ -175,10 +178,16 @@ function ServicesContent() {
                   />
                 </div>
                 <h3 className="text-2xl max-[339px]:text-lg font-bold mb-4 max-[339px]:mb-2">
-                  {t(`services.methodology.steps.${step.key}.title`)}
+                  {st(
+                    sanity?.methodology?.steps?.[step.key]?.title,
+                    `services.methodology.steps.${step.key}.title`
+                  )}
                 </h3>
                 <p className="text-gray-500 leading-relaxed text-base max-[339px]:text-xs max-[339px]:leading-snug">
-                  {t(`services.methodology.steps.${step.key}.description`)}
+                  {st(
+                    sanity?.methodology?.steps?.[step.key]?.description,
+                    `services.methodology.steps.${step.key}.description`
+                  )}
                 </p>
               </motion.div>
             ))}
@@ -209,17 +218,21 @@ function ServicesContent() {
                 </div>
 
                 <h3 className="text-2xl md:text-3xl font-bold mb-8 tracking-tight">
-                  {t(`services.list.${service.key}.title`)}
+                  {st(sanity?.list?.[service.key]?.title, `services.list.${service.key}.title`)}
                 </h3>
 
                 <p className="text-gray-500 text-lg mb-10 leading-relaxed">
-                  {t(`services.list.${service.key}.description`)}
+                  {st(
+                    sanity?.list?.[service.key]?.description,
+                    `services.list.${service.key}.description`
+                  )}
                 </p>
 
                 <ul className="mt-auto space-y-5 pt-10 border-t border-gray-100/50">
-                  {t(`services.list.${service.key}.items`, {
-                    returnObjects: true,
-                  }).map((item, idx) => (
+                  {(sanity?.list?.[service.key]?.items?.length
+                    ? sanity.list[service.key].items
+                    : t(`services.list.${service.key}.items`, { returnObjects: true })
+                  ).map((item, idx) => (
                     <li
                       key={idx}
                       className="flex items-start gap-3 text-base text-gray-700 font-medium"
@@ -250,21 +263,21 @@ function ServicesContent() {
 
           <div className="relative z-10 py-24 px-4 text-center text-white">
             <h2 className="text-2xl md:text-5xl font-black md:max-w-[600px] mb-8 max-w-4xl mx-auto leading-tight">
-              {t("services.cta.title")}
+              {st(sanity?.cta?.title, "services.cta.title")}
             </h2>
             <p className="hidden md:block text-gray-400 text-sm md:text-base mb-12 max-w-2xl mx-auto leading-relaxed">
-              {t("services.cta.description")}
+              {st(sanity?.cta?.description, "services.cta.description")}
             </p>
             <Link href="/contact" className="inline-block mb-14">
               <button className="px-4 py-4 cursor-pointer md:px-12 md:py-5 bg-[#13ECEC] text-black font-extrabold rounded-md text-base md:text-lg hover:scale-105 transition-all shadow-2xl shadow-cyan-500/20 active:scale-95">
-                {t("services.cta.button")}
+                {st(sanity?.cta?.button, "services.cta.button")}
               </button>
             </Link>
             <div className="border-t border-white/5 pt-10">
               <p className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0 text-[10px] font-bold tracking-[0.4em] text-gray-500 uppercase">
-                <span>{t("services.cta.frameworks")}</span>
+                <span>{st(sanity?.cta?.frameworks, "services.cta.frameworks")}</span>
                 <span className="md:mx-4">•</span>
-                <span>{t("services.cta.alignment")}</span>
+                <span>{st(sanity?.cta?.alignment, "services.cta.alignment")}</span>
               </p>
             </div>
           </div>

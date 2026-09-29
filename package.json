@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.5.5",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.16.0",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.38.2",
     "@vercel/analytics": "^2.0.1",
@@ -19,10 +21,13 @@
     "lucide": "^1.0.0-rc.1",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
+    "next-sanity": "^13.3.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-i18next": "^17.0.1",
-    "resend": "^6.18.1"
+    "resend": "^6.18.1",
+    "sanity": "^6.16.0",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

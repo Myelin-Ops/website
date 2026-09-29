@@ -1,16 +1,18 @@
-'use client'
+"use client";
 
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
+import { pickImage } from "@/lib/sanityImage";
+import Editable from "@/components/admin/Editable";
 import interneuronLogo from "@/assets/images/partners/Interneuron_Solutions.png";
 import partner1 from "@/assets/images/partners/partner1.png";
 import partner2 from "@/assets/images/partners/partner2.png";
 import partner3 from "@/assets/images/partners/partner3.png";
 import partner4 from "@/assets/images/partners/partner4.png";
 
-const partners = [
+const fallbackPartners = [
   { id: 1, src: interneuronLogo, alt: "Interneuron Solutions", scale: "scale-150 md:scale-170" },
   { id: 2, src: partner1, alt: "Partner 1" },
   { id: 3, src: partner2, alt: "Partner 2" },
@@ -18,33 +20,34 @@ const partners = [
   { id: 5, src: partner4, alt: "Partner 4" },
 ];
 
-// Double the partners for seamless looping
-const doubledPartners = [...partners, ...partners];
+function PartnersBlock({ data, documentId, partners }) {
+  const { sanity, st } = useSanityContent(data);
+  const title = st(sanity?.title, "partners.title");
+  const path = sanity?._key ? `sections[_key=="${sanity._key}"]` : null;
+  const partnersList = partners?.length
+    ? partners.map((partner) => ({
+        id: partner._id,
+        src: pickImage(partner.logoUrl, null),
+        alt: partner.name,
+        scale: partner.scale,
+      }))
+    : fallbackPartners;
 
-function Partners() {
-  const { t } = useTranslation();
+  const doubledPartners = [...partnersList, ...partnersList];
 
   return (
     <section className="w-full py-12 md:py-24 bg-white border-y border-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <h2 className="text-center text-sm font-bold tracking-[0.3em] text-gray-400 uppercase">
-          {t('partners.title')}
+          <Editable documentId={documentId} path={path && `${path}.title`} value={title} />
         </h2>
       </div>
 
-      {/* Infinite Scroll Container */}
       <div className="relative flex items-center overflow-hidden group h-[100px]">
         <motion.div
-          animate={{
-            x: ["0%", "-50%"],
-          }}
-          transition={{
-            duration: 25,
-            ease: "linear",
-            repeat: Infinity,
-          }}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
           className="flex items-center whitespace-nowrap"
-          // Pause on hover
           whileHover={{ animationPlayState: "paused" }}
         >
           {doubledPartners.map((partner, index) => (
@@ -64,7 +67,6 @@ function Partners() {
           ))}
         </motion.div>
 
-        {/* Gradient Overlays for smooth edges */}
         <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
       </div>
@@ -72,4 +74,4 @@ function Partners() {
   );
 }
 
-export default Partners;
+export default PartnersBlock;

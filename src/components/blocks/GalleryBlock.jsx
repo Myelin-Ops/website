@@ -3,7 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
+import { pickImage } from "@/lib/sanityImage";
+import Editable from "@/components/admin/Editable";
 import gallery1 from "@/assets/images/gallery/gallery1.png";
 import gallery2 from "@/assets/images/gallery/gallery2.png";
 import gallery3 from "@/assets/images/gallery/gallery3.png";
@@ -11,70 +13,40 @@ import gallery4 from "@/assets/images/gallery/gallery4.png";
 import gallery5 from "@/assets/images/gallery/gallery5.png";
 import gallery6 from "@/assets/images/gallery/gallery6.png";
 
-const galleryImages = [
-  {
-    id: 1,
-    src: gallery1,
-    alt: "Team collaboration",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    id: 2,
-    src: gallery2,
-    alt: "Meeting presentation",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    id: 3,
-    src: gallery3,
-    alt: "Team group photo",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    id: 4,
-    src: gallery4,
-    alt: "Workshop activity",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    id: 5,
-    src: gallery5,
-    alt: "Team building",
-    span: "col-span-1 md:col-span-2 row-span-1",
-  },
-  {
-    id: 6,
-    src: gallery6,
-    alt: "Corporate event",
-    span: "col-span-1 md:col-span-2 row-span-1",
-  },
+const fallbackGalleryImages = [
+  { id: 1, src: gallery1, alt: "Team collaboration", span: "col-span-1 row-span-1" },
+  { id: 2, src: gallery2, alt: "Meeting presentation", span: "col-span-1 row-span-1" },
+  { id: 3, src: gallery3, alt: "Team group photo", span: "col-span-1 row-span-1" },
+  { id: 4, src: gallery4, alt: "Workshop activity", span: "col-span-1 row-span-1" },
+  { id: 5, src: gallery5, alt: "Team building", span: "col-span-1 md:col-span-2 row-span-1" },
+  { id: 6, src: gallery6, alt: "Corporate event", span: "col-span-1 md:col-span-2 row-span-1" },
 ];
 
-function Gallery() {
-  const { t } = useTranslation();
+function GalleryBlock({ data, documentId, images }) {
+  const { sanity, st } = useSanityContent(data);
+  const title = st(sanity?.title, "gallery.title");
+  const path = sanity?._key ? `sections[_key=="${sanity._key}"]` : null;
+  const galleryImages = images?.length
+    ? images.map((image) => ({
+        id: image._id,
+        src: pickImage(image.imageUrl, null),
+        alt: image.alt,
+        span: image.span,
+      }))
+    : fallbackGalleryImages;
+
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        duration: 0.3,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, duration: 0.3 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
   return (
     <section className="w-full py-12 md:py-24 px-4 bg-[#F9F9F9]">
-      {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -83,13 +55,11 @@ function Gallery() {
         className="text-center mb-12 md:mb-16"
       >
         <h2 className="text-2xl md:text-4xl font-bold text-black tracking-widest uppercase">
-          {t("gallery.title")}
+          <Editable documentId={documentId} path={path && `${path}.title`} value={title} />
         </h2>
       </motion.div>
 
-      {/* Gallery Grid */}
       <div className="max-w-7xl mx-auto">
-        {/* Desktop Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -97,7 +67,7 @@ function Gallery() {
           viewport={{ once: true }}
           className="hidden md:grid grid-cols-2 gap-4 auto-rows-[350px]"
         >
-          {galleryImages.map((image, index) => (
+          {galleryImages.map((image) => (
             <motion.div
               key={image.id}
               variants={itemVariants}
@@ -114,7 +84,6 @@ function Gallery() {
           ))}
         </motion.div>
 
-        {/* Mobile Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -122,7 +91,7 @@ function Gallery() {
           viewport={{ once: true }}
           className="md:hidden grid grid-cols-1 gap-4 auto-rows-[200px]"
         >
-          {galleryImages.map((image, index) => (
+          {galleryImages.map((image) => (
             <motion.div
               key={image.id}
               variants={itemVariants}
@@ -143,4 +112,4 @@ function Gallery() {
   );
 }
 
-export default Gallery;
+export default GalleryBlock;

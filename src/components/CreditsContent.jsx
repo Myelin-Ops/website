@@ -2,15 +2,24 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-function CreditsContent() {
-  const { t } = useTranslation();
+function CreditsContent({ data }) {
+  const { sanity, st } = useSanityContent(data);
+  const heroTitle = st(sanity?.hero?.title, "credits.hero.title");
+  const heroDescription = st(sanity?.hero?.description, "credits.hero.description");
+  const supervisorLabel = st(sanity?.supervisor?.label, "credits.supervisor.label");
+  const supervisorName = st(sanity?.supervisor?.name, "credits.supervisor.name");
+  const leadLabel = st(sanity?.team?.lead?.label, "credits.team.lead.label");
+  const leadName = st(sanity?.team?.lead?.name, "credits.team.lead.name");
+  const developersLabel = st(sanity?.team?.developers?.label, "credits.team.developers.label");
+  const developersNames = st(sanity?.team?.developers?.names, "credits.team.developers.names");
+  const outro = st(sanity?.outro, "credits.outro");
 
   return (
     <div className="bg-white min-h-[70vh] flex items-center justify-center py-20 px-4">
@@ -23,10 +32,10 @@ function CreditsContent() {
           variants={fadeUp}
         >
           <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
-            {t("credits.hero.title")}
+            {heroTitle}
           </h1>
           <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            {t("credits.hero.description")}
+            {heroDescription}
           </p>
         </motion.div>
 
@@ -40,9 +49,9 @@ function CreditsContent() {
           className="pt-4"
         >
           <h2 className="text-lg md:text-xl font-medium text-gray-600">
-            {t("credits.supervisor.label")}{" "}
+            {supervisorLabel}{" "}
             <span className="font-bold text-gray-900">
-              {t("credits.supervisor.name")}
+              {supervisorName}
             </span>
           </h2>
         </motion.div>
@@ -56,15 +65,15 @@ function CreditsContent() {
           transition={{ delay: 0.2 }}
         >
           <p className="text-md md:text-lg text-gray-600">
-            {t("credits.team.lead.label")}{" "}
+            {leadLabel}{" "}
             <span className="font-bold text-gray-900">
-              {t("credits.team.lead.name")}
+              {leadName}
             </span>
           </p>
           <p className="text-md md:text-lg text-gray-600">
-            {t("credits.team.developers.label")}{" "}
+            {developersLabel}{" "}
             <span className="font-bold text-gray-900">
-              {t("credits.team.developers.names")}
+              {developersNames}
             </span>
           </p>
         </motion.div>
@@ -79,7 +88,7 @@ function CreditsContent() {
           className="pt-8"
         >
           <p className="text-gray-500 italic text-lg leading-relaxed max-w-2xl mx-auto">
-            {t("credits.outro")}
+            {outro}
           </p>
         </motion.div>
       </div>

@@ -3,7 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
+import { pickImage } from "@/lib/sanityImage";
 import Link from "next/link";
 import { Brain, ShieldCheck, Lightbulb, Handshake, Zap } from "lucide-react";
 
@@ -37,10 +38,11 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.2 } },
 };
 
-function AboutUsContent() {
-  const { t } = useTranslation();
+function AboutUsContent({ data, institutions: institutionsData }) {
+  const { t, sanity, st } = useSanityContent(data);
+  const { sanity: institutionsSanity } = useSanityContent(institutionsData);
 
-  const institutions = [
+  const fallbackInstitutions = [
     {
       src: barutiLogo,
       label: t("about.partners.baruti"),
@@ -97,6 +99,14 @@ function AboutUsContent() {
     },
   ];
 
+  const institutions = institutionsSanity?.length
+    ? institutionsSanity.map((inst) => ({
+        src: pickImage(inst.logoUrl, null),
+        label: inst.name,
+        scale: inst.scale,
+      }))
+    : fallbackInstitutions;
+
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
@@ -125,7 +135,7 @@ function AboutUsContent() {
             variants={fadeUp}
             className="text-4xl max-[329px]:text-3xl md:text-6xl font-black text-gray-900 mb-8 leading-tight"
           >
-            {t("about.hero.title")}
+            {st(sanity?.hero?.title, "about.hero.title")}
           </motion.h1>
           <motion.p
             initial="hidden"
@@ -134,7 +144,7 @@ function AboutUsContent() {
             variants={fadeUp}
             className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
-            {t("about.hero.subtitle")}
+            {st(sanity?.hero?.subtitle, "about.hero.subtitle")}
           </motion.p>
         </div>
       </section>
@@ -149,7 +159,7 @@ function AboutUsContent() {
               variants={fadeUp}
               className="text-3xl md:text-4xl font-black text-gray-900 mb-6"
             >
-              {t("about.metaphor.title")}
+              {st(sanity?.metaphor?.title, "about.metaphor.title")}
             </motion.h2>
             <motion.p
               initial="hidden"
@@ -158,7 +168,7 @@ function AboutUsContent() {
               variants={fadeUp}
               className="text-gray-600 text-base"
             >
-              {t("about.metaphor.subtitle")}
+              {st(sanity?.metaphor?.subtitle, "about.metaphor.subtitle")}
             </motion.p>
           </div>
 
@@ -178,10 +188,10 @@ function AboutUsContent() {
                 <Brain size={40} color="#13ECEC" />
               </div>
               <h3 className="text-2xl font-bold mb-4 md:mb-6 italic">
-                {t("about.metaphor.cards.brain.title")}
+                {st(sanity?.metaphor?.cards?.brain?.title, "about.metaphor.cards.brain.title")}
               </h3>
               <p className="text-gray-500 leading-relaxed text-base lg:text-lg">
-                {t("about.metaphor.cards.brain.description")}
+                {st(sanity?.metaphor?.cards?.brain?.description, "about.metaphor.cards.brain.description")}
               </p>
             </motion.div>
 
@@ -200,10 +210,10 @@ function AboutUsContent() {
                 />
               </div>
               <h3 className="text-2xl font-bold mb-4 md:mb-6 italic">
-                {t("about.metaphor.cards.neurons.title")}
+                {st(sanity?.metaphor?.cards?.neurons?.title, "about.metaphor.cards.neurons.title")}
               </h3>
               <p className="text-gray-500 leading-relaxed text-base lg:text-lg">
-                {t("about.metaphor.cards.neurons.description")}
+                {st(sanity?.metaphor?.cards?.neurons?.description, "about.metaphor.cards.neurons.description")}
               </p>
             </motion.div>
 
@@ -229,10 +239,10 @@ function AboutUsContent() {
                 />
               </div>
               <h3 className="text-xl font-bold mb-4 md:mb-6 italic">
-                {t("about.metaphor.cards.protective.title")}
+                {st(sanity?.metaphor?.cards?.protective?.title, "about.metaphor.cards.protective.title")}
               </h3>
               <p className="text-gray-600 leading-relaxed text-base lg:text-lg">
-                {t("about.metaphor.cards.protective.description")}
+                {st(sanity?.metaphor?.cards?.protective?.description, "about.metaphor.cards.protective.description")}
               </p>
             </motion.div>
           </motion.div>
@@ -251,26 +261,27 @@ function AboutUsContent() {
               className="bg-[#EAF7F7] p-6 md:p-8 rounded-3xl"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 ">
-                {t("about.approach.title")}
+                {st(sanity?.approach?.title, "about.approach.title")}
               </h2>
               <p className="text-lg text-gray-700 mb-6 font-medium">
-                {t("about.approach.description1")}
+                {st(sanity?.approach?.description1, "about.approach.description1")}
               </p>
               <ul className="space-y-4 mb-8">
-                {t("about.approach.items", { returnObjects: true }).map(
-                  (item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 text-gray-600"
-                    >
-                      <span className="mt-1.5 w-1.5 h-1.5 bg-black rounded-full shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ),
-                )}
+                {(sanity?.approach?.items?.length
+                  ? sanity.approach.items
+                  : t("about.approach.items", { returnObjects: true })
+                ).map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-gray-600"
+                  >
+                    <span className="mt-1.5 w-1.5 h-1.5 bg-black rounded-full shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
               <p className="text-gray-600 italic border-l-4 border-gray-200 pl-6 py-2 ">
-                {t("about.approach.description2")}
+                {st(sanity?.approach?.description2, "about.approach.description2")}
               </p>
             </motion.div>
 
@@ -324,7 +335,7 @@ function AboutUsContent() {
             viewport={{ once: true }}
             className="text-xl md:text-4xl font-bold text-gray-900 mb-12 md:mb-20"
           >
-            {t("about.partners.title")}
+            {st(sanity?.institutionsSection?.title, "about.partners.title")}
           </motion.h2>
           <motion.div
             animate="visible"
@@ -366,7 +377,7 @@ function AboutUsContent() {
               variants={fadeUp}
               className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
             >
-              {t("about.values.title")}
+              {st(sanity?.values?.title, "about.values.title")}
             </motion.h2>
           </div>
 
@@ -387,10 +398,10 @@ function AboutUsContent() {
                 style={{ color: "#13ECEC" }}
               />
               <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
-                {t("about.values.protection.title")}
+                {st(sanity?.values?.items?.protection?.title, "about.values.protection.title")}
               </h3>
               <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
-                {t("about.values.protection.description")}
+                {st(sanity?.values?.items?.protection?.description, "about.values.protection.description")}
               </p>
             </motion.div>
 
@@ -404,10 +415,10 @@ function AboutUsContent() {
                 style={{ color: "#13ECEC" }}
               />
               <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
-                {t("about.values.clarity.title")}
+                {st(sanity?.values?.items?.clarity?.title, "about.values.clarity.title")}
               </h3>
               <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
-                {t("about.values.clarity.description")}
+                {st(sanity?.values?.items?.clarity?.description, "about.values.clarity.description")}
               </p>
             </motion.div>
 
@@ -421,10 +432,10 @@ function AboutUsContent() {
                 style={{ color: "#13ECEC" }}
               />
               <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
-                {t("about.values.trust.title")}
+                {st(sanity?.values?.items?.trust?.title, "about.values.trust.title")}
               </h3>
               <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
-                {t("about.values.trust.description")}
+                {st(sanity?.values?.items?.trust?.description, "about.values.trust.description")}
               </p>
             </motion.div>
 
@@ -438,10 +449,10 @@ function AboutUsContent() {
                 style={{ color: "#13ECEC" }}
               />
               <h3 className="text-xl font-bold mb-4 max-[425px]:text-sm max-[425px]:mb-1">
-                {t("about.values.acceleration.title")}
+                {st(sanity?.values?.items?.acceleration?.title, "about.values.acceleration.title")}
               </h3>
               <p className="text-gray-500 leading-relaxed text-sm md:text-base max-[425px]:leading-tight max-[425px]:text-[10px]">
-                {t("about.values.acceleration.description")}
+                {st(sanity?.values?.items?.acceleration?.description, "about.values.acceleration.description")}
               </p>
             </motion.div>
           </motion.div>
@@ -463,15 +474,15 @@ function AboutUsContent() {
 
           <div className="relative z-10 py-16 md:py-24 px-8 md:px-20 text-center text-white">
             <h2 className="text-2xl md:text-5xl font-black mb-8">
-              {t("about.cta.title")}
+              {st(sanity?.cta?.title, "about.cta.title")}
             </h2>
             <p className="hidden md:block text-gray-400 text-base mb-12 max-w-3xl mx-auto">
-              {t("about.cta.description")}
+              {st(sanity?.cta?.description, "about.cta.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/contact" className="w-full sm:w-auto">
                 <button className="px-8 py-4 cursor-pointer bg-[#00E5E5] text-black font-bold rounded-md text-base hover:scale-105 transition-transform w-full sm:w-[220px]">
-                  {t("about.cta.primaryButton")}
+                  {st(sanity?.cta?.primaryButton, "about.cta.primaryButton")}
                 </button>
               </Link>
               <a
@@ -479,7 +490,7 @@ function AboutUsContent() {
                 download
                 className="px-auto py-4 border border-white/20 text-white font-bold rounded-md text-base hover:bg-white/10 transition-colors flex items-center justify-center w-full sm:w-[220px]"
               >
-                {t("about.cta.secondaryButton")}
+                {st(sanity?.cta?.secondaryButton, "about.cta.secondaryButton")}
               </a>
             </div>
           </div>
