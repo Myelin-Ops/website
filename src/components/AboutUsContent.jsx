@@ -24,6 +24,9 @@ import vushtrriaLogo from "@/assets/images/partners/vushtrria-logo.png";
 import cacttusLogo from "@/assets/images/partners/cacttus-logo.png";
 import albiLogo from "@/assets/images/partners/albi-logo.png";
 import kosovajobLogo from "@/assets/images/partners/kosovajob-logo.png";
+import caritasAustriaLogo from "@/assets/images/partners/Caritas_Austria.gif";
+import austriaMohLogo from "@/assets/images/partners/Austria-MoH.png";
+import caritasKosovaLogo from "@/assets/images/partners/social_logo_caritas.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -75,6 +78,21 @@ function AboutUsContent() {
     {
       src: kosovajobLogo,
       label: t("about.partners.kosovajob"),
+      scale: "scale-120 md:scale-120",
+    },
+    {
+      src: caritasAustriaLogo,
+      label: t("about.partners.caritasAustria"),
+      scale: "scale-120 md:scale-120",
+    },
+    {
+      src: austriaMohLogo,
+      label: t("about.partners.austriaMoh"),
+      scale: "scale-110 md:scale-110",
+    },
+    {
+      src: caritasKosovaLogo,
+      label: t("about.partners.caritasKosova"),
       scale: "scale-120 md:scale-120",
     },
   ];
@@ -311,13 +329,13 @@ function AboutUsContent() {
           <motion.div
             animate="visible"
             variants={stagger}
-            className="grid grid-cols-2 lg:grid-cols-2 max-w-7xl mx-auto gap-y-12 md:gap-y-24 gap-x-8 md:gap-x-12 items-start"
+            className="grid grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto gap-y-12 md:gap-y-24 gap-x-8 md:gap-x-12 items-start justify-items-center"
           >
             {institutions.map((inst, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="flex flex-col items-center"
+                className={`flex flex-col items-center ${i === 8 ? "lg:col-start-1" : ""}`}
               >
                 <div className="h-32 md:h-52 w-full flex items-center justify-center mb-6 md:mb-8 px-4">
                   <Image
