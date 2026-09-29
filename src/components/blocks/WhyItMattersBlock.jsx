@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ImageUp } from "lucide-react";
 import { useSanityContent } from "@/lib/useSanityContent";
 import Editable from "@/components/admin/Editable";
+import { useEditMode } from "@/components/admin/EditModeProvider";
+import { shrinkImage } from "@/lib/shrinkImage";
+import { pickImage } from "@/lib/sanityImage";
 import Image from "next/image";
 
 import whyItMatters1 from "@/assets/images/background/why-it-matters-1.png";
@@ -15,6 +20,33 @@ function WhyItMattersBlock({ data, documentId }) {
   const { sanity, st } = useSanityContent(data);
   const containerRef = useRef(null);
   const basePath = sanity?._key ? `sections[_key=="${sanity._key}"]` : null;
+  const { isEditing } = useEditMode();
+  const pathname = usePathname();
+  const router = useRouter();
+  const fileInputRef = useRef(null);
+  const uploadTarget = useRef(null);
+  const [uploading, setUploading] = useState(null); // slide id being uploaded
+  const [uploadError, setUploadError] = useState("");
+
+  const replacePicture = async (slide, file) => {
+    setUploading(slide.id);
+    setUploadError("");
+    try {
+      const form = new FormData();
+      form.append("file", await shrinkImage(file));
+      form.append("documentId", documentId);
+      form.append("path", slide.imagePath);
+      form.append("pagePath", pathname);
+      const res = await fetch("/api/admin/section-image", { method: "POST", body: form });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || "Could not upload the image.");
+      router.refresh();
+    } catch (err) {
+      setUploadError(err.message);
+    } finally {
+      setUploading(null);
+    }
+  };
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -37,7 +69,8 @@ function WhyItMattersBlock({ data, documentId }) {
       titlePath: basePath && `${basePath}.title`,
       description: st(sanity?.description, "whyItMatters.description"),
       descriptionPath: basePath && `${basePath}.description`,
-      image: whyItMatters1,
+      image: pickImage(sanity?.imageUrl, whyItMatters1),
+      imagePath: basePath && `${basePath}.image`,
       y: 0,
       zIndex: 10,
     },
@@ -47,7 +80,8 @@ function WhyItMattersBlock({ data, documentId }) {
       titlePath: basePath && `${basePath}.insights[0].title`,
       description: st(insightAt(0)?.description, "scrollableInsights.card1.description"),
       descriptionPath: basePath && `${basePath}.insights[0].description`,
-      image: whyItMatters2,
+      image: pickImage(insightAt(0)?.imageUrl, whyItMatters2),
+      imagePath: basePath && `${basePath}.insights[0].image`,
       y: y2,
       zIndex: 20,
     },
@@ -57,7 +91,8 @@ function WhyItMattersBlock({ data, documentId }) {
       titlePath: basePath && `${basePath}.insights[1].title`,
       description: st(insightAt(1)?.description, "scrollableInsights.card2.description"),
       descriptionPath: basePath && `${basePath}.insights[1].description`,
-      image: whyItMatters3,
+      image: pickImage(insightAt(1)?.imageUrl, whyItMatters3),
+      imagePath: basePath && `${basePath}.insights[1].image`,
       y: y3,
       zIndex: 30,
     },
@@ -67,7 +102,8 @@ function WhyItMattersBlock({ data, documentId }) {
       titlePath: basePath && `${basePath}.insights[2].title`,
       description: st(insightAt(2)?.description, "scrollableInsights.card3.description"),
       descriptionPath: basePath && `${basePath}.insights[2].description`,
-      image: whyItMatters4,
+      image: pickImage(insightAt(2)?.imageUrl, whyItMatters4),
+      imagePath: basePath && `${basePath}.insights[2].image`,
       y: y4,
       zIndex: 40,
     },
@@ -75,6 +111,22 @@ function WhyItMattersBlock({ data, documentId }) {
 
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-[#030708] overflow-visible">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        hidden
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          e.target.value = "";
+          if (file && uploadTarget.current) replacePicture(uploadTarget.current, file);
+        }}
+      />
+      {uploadError && (
+        <p className="fixed top-20 left-1/2 -translate-x-1/2 z-[60] px-4 py-2 rounded-lg bg-red-600 text-white text-sm shadow-lg">
+          {uploadError}
+        </p>
+      )}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {sections.map((section, index) => (
           <motion.div
@@ -113,6 +165,7 @@ function WhyItMattersBlock({ data, documentId }) {
                   </p>
                 </motion.div>
 
+                <div className="hidden md:block relative mx-auto">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -121,7 +174,7 @@ function WhyItMattersBlock({ data, documentId }) {
                     maskImage: "radial-gradient(circle, black 40%, transparent 80%)",
                     WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 80%)",
                   }}
-                  className="hidden md:block relative aspect-square mx-auto h-72 md:h-96 lg:h-[32rem] rounded-full overflow-hidden"
+                  className="relative aspect-square mx-auto h-72 md:h-96 lg:h-[32rem] rounded-full overflow-hidden"
                 >
                   <Image
                     src={section.image}
@@ -132,6 +185,21 @@ function WhyItMattersBlock({ data, documentId }) {
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-[#0F1A24]/40 to-transparent pointer-events-none" />
                 </motion.div>
+                {isEditing && section.imagePath && (
+                  <button
+                    type="button"
+                    disabled={uploading !== null}
+                    onClick={() => {
+                      uploadTarget.current = section;
+                      fileInputRef.current?.click();
+                    }}
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full bg-white text-gray-800 shadow-lg hover:bg-gray-100 disabled:opacity-60 cursor-pointer"
+                  >
+                    <ImageUp size={16} />
+                    {uploading === section.id ? "Uploading..." : "Replace picture"}
+                  </button>
+                )}
+                </div>
               </div>
             </div>
           </motion.div>

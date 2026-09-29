@@ -2,13 +2,9 @@
 
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Layers, ChevronUp, ChevronDown, X, Plus } from "lucide-react";
+import { Layers, ChevronUp, ChevronDown, X } from "lucide-react";
 import { useEditMode } from "./EditModeProvider";
 import { PAGE_BLOCK_TYPES } from "@/lib/pageBuilderConfig";
-
-function randomKey() {
-  return Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
-}
 
 function blockLabel(type, options) {
   return options.find((o) => o.type === type)?.label || type;
@@ -20,7 +16,6 @@ export default function ManageSectionsPanel({ documentId, pageType, sections }) 
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [localSections, setLocalSections] = useState(sections || []);
-  const [addType, setAddType] = useState("");
   const [saving, setSaving] = useState(false);
 
   const options = PAGE_BLOCK_TYPES[pageType];
@@ -39,20 +34,22 @@ export default function ManageSectionsPanel({ documentId, pageType, sections }) 
     setLocalSections(localSections.filter((_, i) => i !== index));
   };
 
-  const add = () => {
-    if (!addType) return;
-    setLocalSections([...localSections, { _type: addType, _key: randomKey() }]);
-    setAddType("");
-  };
-
   const save = async () => {
     setSaving(true);
     try {
-      await fetch("/api/admin/sections", {
+      const res = await fetch("/api/admin/sections", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ documentId, sections: localSections, pagePath: pathname }),
+        body: JSON.stringify({
+          documentId,
+          sections: localSections.map(({ _key, _type }) => ({ _key, _type })),
+          pagePath: pathname,
+        }),
       });
+      if (!res.ok) {
+        window.alert("Could not save the section order. Please try again.");
+        return;
+      }
       router.refresh();
       setOpen(false);
     } finally {
@@ -93,28 +90,6 @@ export default function ManageSectionsPanel({ documentId, pageType, sections }) 
               <li className="text-sm text-gray-400 text-center py-4">No sections yet</li>
             )}
           </ul>
-
-          <div className="flex gap-2 mb-4">
-            <select
-              value={addType}
-              onChange={(e) => setAddType(e.target.value)}
-              className="flex-1 text-sm border border-gray-200 rounded-lg px-2 py-2 bg-white"
-            >
-              <option value="">Add a section...</option>
-              {options.map((o) => (
-                <option key={o.type} value={o.type}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-            <button
-              onClick={add}
-              disabled={!addType}
-              className="px-3 py-2 bg-gray-100 rounded-lg text-gray-700 hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
-            >
-              <Plus size={16} />
-            </button>
-          </div>
 
           <button
             onClick={save}

@@ -8,9 +8,21 @@ export const metadata = {
   description: "Meet the experts at Myelin Ops. Our psychologists and consultants work at the intersection of human behavior and business performance.",
 };
 
+// Shown until the Team page document has sections in Sanity; each block falls
+// back to its i18next copy (team.json).
 const DEFAULT_SECTIONS = [
   { _type: "heroBlock", _key: "hero-1" },
+  { _type: "teamSectionBlock", _key: "team-1" },
+  { _type: "ctaBlock", _key: "cta-1" },
 ];
+
+const I18N_PREFIX = {
+  heroBlock: "team.hero",
+  teamSectionBlock: "team",
+  ctaBlock: "team.cta",
+};
+
+const VARIANT = { heroBlock: "team", ctaBlock: "team" };
 
 const DOCUMENT_ID = "teamPage";
 
@@ -34,14 +46,15 @@ export default async function TeamPage() {
   return (
     <>
       <Header siteSettings={siteSettings} />
-      <main>
+      <main className="bg-[#F6F8F8]">
         {sectionsEn.map((section, i) => (
           <BlockRenderer
             key={section._key ?? i}
             block={{ en: sectionsEn[i], sq: sectionsSq[i] }}
             documentId={DOCUMENT_ID}
             teamMembers={teamMembersData}
-            variant={section._type === "heroBlock" ? "simple" : undefined}
+            variant={VARIANT[section._type]}
+            i18nPrefix={I18N_PREFIX[section._type]}
           />
         ))}
       </main>

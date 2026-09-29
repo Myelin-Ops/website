@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useSanityContent } from "@/lib/useSanityContent";
+import Editable from "@/components/admin/Editable";
 import { ShieldCheck, Lightbulb, Handshake, Zap } from "lucide-react";
 
 const fadeUp = {
@@ -21,8 +22,12 @@ const iconMap = {
   acceleration: Zap,
 };
 
-function ValuesBlock({ data }) {
+const DEFAULT_KEYS = ["protection", "clarity", "trust", "acceleration"];
+
+function ValuesBlock({ data, documentId, i18nPrefix = "values" }) {
   const { sanity, st } = useSanityContent(data);
+  const path = sanity?._key ? `sections[_key=="${sanity._key}"]` : null;
+  const keys = Object.keys(sanity?.items || {}).length ? Object.keys(sanity.items) : DEFAULT_KEYS;
 
   return (
     <section className="min-h-0 md:min-h-screen flex items-center px-4 md:px-12 max-w-7xl mx-auto">
@@ -35,7 +40,11 @@ function ValuesBlock({ data }) {
             variants={fadeUp}
             className="text-3xl md:text-5xl font-bold text-gray-900 mb-6"
           >
-            {st(sanity?.title, "values.title")}
+            <Editable
+              documentId={documentId}
+              path={path && `${path}.title`}
+              value={st(sanity?.title, `${i18nPrefix}.title`)}
+            />
           </motion.h2>
         </div>
 
@@ -46,7 +55,8 @@ function ValuesBlock({ data }) {
           variants={stagger}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
         >
-          {Object.entries(sanity?.items || {}).map(([key, item]) => {
+          {keys.map((key) => {
+            const item = sanity?.items?.[key];
             const IconComponent = iconMap[key];
             return (
               <motion.div
@@ -58,10 +68,10 @@ function ValuesBlock({ data }) {
                   <IconComponent className="w-10 h-10 mb-6" style={{ color: "#13ECEC" }} />
                 )}
                 <h3 className="text-xl font-bold mb-4">
-                  {st(item?.title, `values.${key}.title`)}
+                  {st(item?.title, `${i18nPrefix}.${key}.title`)}
                 </h3>
                 <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-                  {st(item?.description, `values.${key}.description`)}
+                  {st(item?.description, `${i18nPrefix}.${key}.description`)}
                 </p>
               </motion.div>
             );

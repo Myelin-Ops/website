@@ -88,33 +88,65 @@ function HomeHero({ documentId, path, title, subtitle, highlight, description })
 }
 
 // Simpler hero used on About/Services/Team/Contact/Credits: centered title + subtitle only.
-function SimpleHero({ documentId, path, title, subtitle }) {
+// Each page keeps the exact sizing/glow it had before the block migration.
+const SIMPLE_HERO_STYLES = {
+  about: {
+    section:
+      "relative min-h-[50vh] md:min-h-[80vh] flex flex-col justify-center px-4 md:px-12 text-center max-w-5xl mx-auto overflow-hidden",
+    glow: "blur-[80px] opacity-90 scale-125",
+    glowOpacity: 0.8,
+    title: "text-4xl max-[329px]:text-3xl md:text-6xl font-black text-gray-900 mb-8 leading-tight",
+    subtitle: "text-sm md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed",
+  },
+  services: {
+    section:
+      "relative min-h-[40vh] md:min-h-[60vh] flex flex-col justify-center px-4 md:px-12 text-center max-w-6xl mx-auto py-12 md:py-20 overflow-hidden",
+    glow: "blur-[80px] opacity-70 scale-125",
+    glowOpacity: 1,
+    title: "text-3xl md:text-7xl font-black text-gray-900 mb-8 leading-tight",
+    subtitle: "text-sm md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed",
+  },
+  team: {
+    section:
+      "min-h-[40vh] lg:min-h-[50vh] flex flex-col justify-center px-4 md:px-8 text-center max-w-5xl mx-auto py-20",
+    title: "text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 mb-8 leading-tight",
+    subtitle: "text-sm md:text-base lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed",
+  },
+  contact: {
+    section: "pt-24 pb-16 px-4 md:px-12 text-center max-w-5xl mx-auto",
+    title: "text-3xl md:text-5xl xl:text-7xl font-bold text-gray-900 mb-6",
+    subtitle: "text-base md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed",
+  },
+  credits: {
+    section: "pt-20 pb-10 px-4 text-center max-w-4xl mx-auto",
+    title: "text-2xl md:text-3xl lg:text-5xl font-bold text-gray-900 mb-6",
+    subtitle: "text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed",
+  },
+};
+
+function SimpleHero({ documentId, path, title, subtitle, style }) {
   return (
-    <section className="relative min-h-[40vh] md:min-h-[60vh] flex flex-col justify-center px-4 md:px-12 text-center max-w-6xl mx-auto py-12 md:py-20 overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5 }}
-        className="absolute left-1/2 top-0 -translate-x-1/2 pointer-events-none z-0"
-      >
-        <Image
-          src="/background-blur.svg"
-          alt=""
-          width={1000}
-          height={1000}
-          className="blur-[80px] opacity-70 scale-125"
-        />
-      </motion.div>
+    <section className={style.section}>
+      {style.glow && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: style.glowOpacity, y: 0 }}
+          transition={{ duration: 1.5 }}
+          className="absolute left-1/2 top-0 -translate-x-1/2 pointer-events-none z-0"
+        >
+          <Image src="/background-blur.svg" alt="" width={1000} height={1000} className={style.glow} />
+        </motion.div>
+      )}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="relative z-10"
       >
-        <h1 className="text-3xl md:text-7xl font-black text-gray-900 mb-8 leading-tight">
+        <h1 className={style.title}>
           <Editable documentId={documentId} path={path && `${path}.title`} value={title} />
         </h1>
-        <p className="text-sm md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <p className={style.subtitle}>
           <Editable documentId={documentId} path={path && `${path}.subtitle`} value={subtitle} />
         </p>
       </motion.div>
@@ -123,9 +155,12 @@ function SimpleHero({ documentId, path, title, subtitle }) {
 }
 
 function HeroBlock({ data, documentId, i18nPrefix = "hero", variant = "home" }) {
-  const { sanity, st } = useSanityContent(data);
+  const { t, sanity, st } = useSanityContent(data);
   const title = st(sanity?.title, `${i18nPrefix}.title`);
-  const subtitle = st(sanity?.subtitle, `${i18nPrefix}.subtitle`);
+  // Some pages (Credits) keep their hero copy under "description" instead of "subtitle".
+  const subtitle = st(sanity?.subtitle, `${i18nPrefix}.subtitle`, {
+    defaultValue: t(`${i18nPrefix}.description`),
+  });
   const highlight = st(sanity?.highlight, `${i18nPrefix}.highlight`);
   const description = st(sanity?.description, `${i18nPrefix}.description`);
   const path = sanity?._key ? `sections[_key=="${sanity._key}"]` : null;
@@ -142,7 +177,16 @@ function HeroBlock({ data, documentId, i18nPrefix = "hero", variant = "home" }) 
       />
     );
   }
-  return <SimpleHero documentId={documentId} path={path} title={title} subtitle={subtitle} />;
+  // variant names a page's hero style (about, services, team, contact, credits).
+  return (
+    <SimpleHero
+      documentId={documentId}
+      path={path}
+      title={title}
+      subtitle={subtitle}
+      style={SIMPLE_HERO_STYLES[variant] ?? SIMPLE_HERO_STYLES.services}
+    />
+  );
 }
 
 export default HeroBlock;

@@ -46,9 +46,11 @@ function resolveSection(section, lang) {
         label: localize(section.label, lang),
         title: localize(section.title, lang),
         description: localize(section.description, lang),
+        imageUrl: section.imageUrl || null,
         insights: (section.insights || []).map((insight) => ({
           title: localize(insight.title, lang),
           description: localize(insight.description, lang),
+          imageUrl: insight.imageUrl || null,
         })),
       };
     case "testimonialsSectionBlock":
@@ -193,7 +195,15 @@ function resolveSection(section, lang) {
 // ============ HOME PAGE ============
 export async function getHomePage(lang = "en") {
   const data = await sanityFetch(
-    `*[_type == "homePage" && _id == "homePage"][0]{ sections }`
+    // Picture references are expanded to URLs for the Why It Matters block
+    // (its own picture and one per insight).
+    `*[_type == "homePage" && _id == "homePage"][0]{
+      sections[]{
+        ...,
+        "imageUrl": image.asset->url,
+        insights[]{ ..., "imageUrl": image.asset->url }
+      }
+    }`
   );
   if (!data) return { sections: [] };
 
@@ -206,15 +216,20 @@ export async function getHomePage(lang = "en") {
 export async function getTestimonials(lang = "en") {
   const data = await sanityFetch(
     `*[_type == "testimonial"] | order(order asc) {
+      _id,
       quote,
       author,
       order
     }`
   );
 
+  // Falls back to the other language so a testimonial added in only one
+  // language (e.g. translation unavailable) still shows up.
+  const other = lang === "en" ? "sq" : "en";
   return data.map((t) => ({
-    quote: localize(t.quote, lang),
-    author: localize(t.author, lang),
+    _id: t._id,
+    quote: localize(t.quote, lang) || localize(t.quote, other),
+    author: localize(t.author, lang) || localize(t.author, other),
   }));
 }
 

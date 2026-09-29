@@ -6,6 +6,7 @@ const whyItMattersBlock = {
     { name: "label", type: "localeString" },
     { name: "title", type: "localeString" },
     { name: "description", type: "localeText" },
+    { name: "image", title: "Picture", type: "image", options: { hotspot: true } },
     {
       name: "insights",
       title: "Insights (scroll-through cards)",
@@ -17,6 +18,7 @@ const whyItMattersBlock = {
           fields: [
             { name: "title", type: "localeString" },
             { name: "description", type: "localeText" },
+            { name: "image", title: "Picture", type: "image", options: { hotspot: true } },
           ],
         },
       ],
