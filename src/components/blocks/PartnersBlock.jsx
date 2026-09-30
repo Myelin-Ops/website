@@ -8,6 +8,7 @@ import { Plus, X } from "lucide-react";
 import { useSanityContent } from "@/lib/useSanityContent";
 import { pickImage } from "@/lib/sanityImage";
 import { shrinkImage } from "@/lib/shrinkImage";
+import { fetchAsFile, seedFromBuiltIn } from "@/lib/adminSeed";
 import Editable from "@/components/admin/Editable";
 import ConfirmDeleteModal from "@/components/admin/ConfirmDeleteModal";
 import { useEditMode } from "@/components/admin/EditModeProvider";
@@ -45,6 +46,7 @@ function PartnersBlock({ data, documentId, partners }) {
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [progress, setProgress] = useState("");
   const [deleting, setDeleting] = useState(null); // logo being confirmed for removal
   const addInputRef = useRef(null);
 
@@ -59,36 +61,27 @@ function PartnersBlock({ data, documentId, partners }) {
     return json.id;
   };
 
-  const removeDocs = (ids) =>
-    Promise.all(
-      ids.map((id) =>
-        fetch("/api/admin/partners", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id, pagePath: pathname }),
-        }),
-      ),
-    );
-
   // The site shows its built-in logos until Sanity has any. Before the first
   // change, copy them into Sanity so they aren't lost. Returns the Sanity ids in
-  // the same order as the list. All or nothing: a failure removes what was copied.
+  // list order. The logos are uploaded first and the whole list is created in
+  // one step, so it's never half-copied.
   const ensureSanityPartners = async () => {
     if (usingSanityPartners) return partnersList.map((partner) => partner.id);
-    const ids = [];
     try {
-      for (const partner of fallbackPartners) {
-        const res = await fetch(partner.src.src);
-        if (!res.ok) throw new Error("Could not prepare the built-in logos.");
-        const blob = await res.blob();
-        const file = new File([blob], `${partner.alt}.png`, { type: blob.type || "image/png" });
-        ids.push(await upload(file, { name: partner.alt, scale: partner.scale }));
-      }
-    } catch (err) {
-      await removeDocs(ids);
-      throw new Error(err.message || "Could not copy the built-in logos. Nothing was changed.");
+      setProgress(`Setting up the logos (first time only): 0 of ${fallbackPartners.length}...`);
+      const entries = await Promise.all(
+        fallbackPartners.map(async (partner) => ({
+          file: await fetchAsFile(partner.src.src, `${partner.alt}.png`),
+          name: partner.alt,
+          scale: partner.scale,
+        })),
+      );
+      return await seedFromBuiltIn("/api/admin/partners", entries, pathname, (done, total) =>
+        setProgress(`Setting up the logos (first time only): ${done} of ${total}...`),
+      );
+    } finally {
+      setProgress("");
     }
-    return ids;
   };
 
   const addLogo = async (file) => {
@@ -157,6 +150,7 @@ function PartnersBlock({ data, documentId, partners }) {
             new one.
           </p>
           {error && !deleting && <p className="text-center text-sm text-red-600 mb-4">{error}</p>}
+          {busy && progress && <p className="text-center text-sm text-cyan-700 mb-4">{progress}</p>}
           <div className="flex flex-wrap justify-center gap-4">
             {partnersList.map((partner) => (
               <div
@@ -226,6 +220,7 @@ function PartnersBlock({ data, documentId, partners }) {
           title="Remove this logo?"
           message="This removes it from the partners strip on the website. This can't be undone."
           busy={busy}
+          progress={progress}
           error={error}
           onCancel={() => setDeleting(null)}
           onConfirm={removeLogo}

@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { DEFAULT_SECTIONS_BY_DOCUMENT } from "@/lib/defaultSections";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import Footer from "@/components/Footer";
 import { getAboutPage, getInstitutions, getSiteSettings } from "@/lib/sanityQueries";
@@ -8,16 +9,8 @@ export const metadata = {
   description: "Learn about Myelin Ops' mission to strengthen organizations. We specialize in psychological safety, operational resilience, and human performance.",
 };
 
-// Shown until the About page document has sections in Sanity; each block falls
-// back to its i18next copy (about.json) when it has no Sanity content.
-const DEFAULT_SECTIONS = [
-  { _type: "heroBlock", _key: "hero-1" },
-  { _type: "metaphorBlock", _key: "metaphor-1" },
-  { _type: "approachBlock", _key: "approach-1" },
-  { _type: "institutionsSectionBlock", _key: "institutions-1" },
-  { _type: "valuesBlock", _key: "values-1" },
-  { _type: "ctaBlock", _key: "cta-1" },
-];
+// Built-in layout, shown until the page has sections in Sanity (see lib/defaultSections.js).
+const DEFAULT_SECTIONS = DEFAULT_SECTIONS_BY_DOCUMENT.aboutPage;
 
 // i18next key prefix per block type (About copy lives under "about.*").
 const I18N_PREFIX = {

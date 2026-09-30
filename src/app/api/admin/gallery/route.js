@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { isAdminSession } from "@/lib/adminAuth";
 import { getWriteClient } from "@/lib/sanity";
+import { seedCollection, assetRef } from "@/lib/seedCollection";
 
 // Vercel rejects request bodies over ~4.5MB, so keep uploads under that.
 const MAX_BYTES = 4 * 1024 * 1024;
@@ -16,6 +17,38 @@ function refresh(pagePath) {
 async function requireAdmin() {
   if (await isAdminSession()) return null;
   return NextResponse.json({ error: "Not logged in" }, { status: 401 });
+}
+
+// Copies the built-in gallery pictures into Sanity in one step. The pictures were
+// already uploaded through /api/admin/assets; `items` refer to them by asset id.
+export async function PUT(request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
+  const { items, pagePath } = await request.json();
+  if (!Array.isArray(items) || items.length === 0 || items.some((item) => typeof item?.assetId !== "string")) {
+    return NextResponse.json({ error: "Missing items" }, { status: 400 });
+  }
+
+  try {
+    const { ids } = await seedCollection(
+      getWriteClient(),
+      "galleryImage",
+      items,
+      (item, index) => ({
+        _type: "galleryImage",
+        alt: String(item.alt || ""),
+        image: assetRef(item.assetId),
+        span: SPANS.includes(item.span) ? item.span : SPANS[0],
+        order: index + 1,
+      }),
+      pagePath,
+    );
+    return NextResponse.json({ success: true, ids });
+  } catch (err) {
+    console.error("Admin galleryImage seed error:", err);
+    return NextResponse.json({ error: "Could not copy the built-in pictures." }, { status: 500 });
+  }
 }
 
 // Uploads one picture. With `replaceId` it swaps the picture on that gallery

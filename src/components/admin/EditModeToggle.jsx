@@ -16,15 +16,13 @@ export default function EditModeToggle() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-      {isEditing && (
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-2 px-3 py-3 rounded-full bg-white border border-gray-200 shadow-lg text-gray-600 hover:text-black transition-colors cursor-pointer"
-          aria-label="Log out of edit mode"
-        >
-          <LogOut size={18} />
-        </button>
-      )}
+      <button
+        onClick={handleLogout}
+        className="flex items-center gap-2 px-3 py-3 rounded-full bg-white border border-gray-200 shadow-lg text-gray-600 hover:text-black transition-colors cursor-pointer"
+        aria-label="Log out"
+      >
+        <LogOut size={18} />
+      </button>
       <button
         onClick={() => setIsEditing(!isEditing)}
         className={`flex items-center gap-2 px-5 py-3 rounded-full shadow-lg font-semibold text-sm transition-colors cursor-pointer ${

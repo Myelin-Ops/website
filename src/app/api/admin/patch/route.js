@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { isAdminSession } from "@/lib/adminAuth";
 import { getWriteClient } from "@/lib/sanity";
+import { ensurePageDocument } from "@/lib/ensurePageDocument";
 import { translateLong } from "@/lib/translateLong";
 
 export async function POST(request) {
@@ -17,6 +18,8 @@ export async function POST(request) {
 
   try {
     const client = getWriteClient();
+    // Pages that only exist in code get their document created on the first edit.
+    await ensurePageDocument(client, documentId);
     const set = { [path]: value };
     let translationOk = true;
 

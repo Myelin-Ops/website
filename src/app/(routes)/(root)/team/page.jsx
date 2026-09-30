@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { DEFAULT_SECTIONS_BY_DOCUMENT } from "@/lib/defaultSections";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import Footer from "@/components/Footer";
 import { getTeamPage, getTeamMembers, getSiteSettings } from "@/lib/sanityQueries";
@@ -8,13 +9,8 @@ export const metadata = {
   description: "Meet the experts at Myelin Ops. Our psychologists and consultants work at the intersection of human behavior and business performance.",
 };
 
-// Shown until the Team page document has sections in Sanity; each block falls
-// back to its i18next copy (team.json).
-const DEFAULT_SECTIONS = [
-  { _type: "heroBlock", _key: "hero-1" },
-  { _type: "teamSectionBlock", _key: "team-1" },
-  { _type: "ctaBlock", _key: "cta-1" },
-];
+// Built-in layout, shown until the page has sections in Sanity (see lib/defaultSections.js).
+const DEFAULT_SECTIONS = DEFAULT_SECTIONS_BY_DOCUMENT.teamPage;
 
 const I18N_PREFIX = {
   heroBlock: "team.hero",

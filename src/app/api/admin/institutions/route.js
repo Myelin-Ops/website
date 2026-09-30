@@ -3,6 +3,7 @@ import { revalidatePath, revalidateTag } from "next/cache";
 import { isAdminSession } from "@/lib/adminAuth";
 import { getWriteClient } from "@/lib/sanity";
 import { seedCollection, assetRef } from "@/lib/seedCollection";
+import { translateLong } from "@/lib/translateLong";
 
 // Vercel rejects request bodies over ~4.5MB, so keep uploads under that.
 const MAX_BYTES = 4 * 1024 * 1024;
@@ -18,7 +19,7 @@ async function requireAdmin() {
   return NextResponse.json({ error: "Not logged in" }, { status: 401 });
 }
 
-// Copies the built-in partner logos into Sanity in one step. The pictures were already
+// Copies the built-in institutions into Sanity in one step. The pictures were already
 // uploaded through /api/admin/assets; `items` refer to them by asset id.
 export async function PUT(request) {
   const denied = await requireAdmin();
@@ -32,11 +33,11 @@ export async function PUT(request) {
   try {
     const { ids } = await seedCollection(
       getWriteClient(),
-      "partner",
+      "institution",
       items,
       (item, index) => ({
-        _type: "partner",
-        name: String(item.name || ""),
+        _type: "institution",
+        name: { en: String(item.nameEn || ""), sq: String(item.nameSq || item.nameEn || "") },
         logo: assetRef(item.assetId),
         ...(item.scale ? { scale: String(item.scale) } : {}),
         order: index + 1,
@@ -45,12 +46,15 @@ export async function PUT(request) {
     );
     return NextResponse.json({ success: true, ids });
   } catch (err) {
-    console.error("Admin partner seed error:", err);
+    console.error("Admin institution seed error:", err);
     return NextResponse.json({ error: "Could not copy the built-in list." }, { status: 500 });
   }
 }
 
-// Adds a partner logo at the end of the list.
+// Adds an institution (logo + name) at the end of the list.
+//   - Normal add: `name` written in `lang`. Written in English, the Albanian
+//     name is filled in by translation; written in Albanian it's Albanian only.
+//   - Copying the built-in list into Sanity: `nameEn` and `nameSq` given directly.
 export async function POST(request) {
   const denied = await requireAdmin();
   if (denied) return denied;
@@ -61,10 +65,29 @@ export async function POST(request) {
     const pagePath = form.get("pagePath");
 
     if (!file || typeof file === "string" || !file.type?.startsWith("image/")) {
-      return NextResponse.json({ error: "Please choose an image file." }, { status: 400 });
+      return NextResponse.json({ error: "Please choose a logo image." }, { status: 400 });
     }
     if (file.size > MAX_BYTES) {
       return NextResponse.json({ error: "That image is too large (max 4MB)." }, { status: 413 });
+    }
+
+    const text = (key) => String(form.get(key) || "").trim();
+    const name = {};
+    if (text("nameEn") || text("nameSq")) {
+      if (text("nameEn")) name.en = text("nameEn");
+      if (text("nameSq")) name.sq = text("nameSq");
+    } else {
+      const typed = text("name");
+      if (!typed) {
+        return NextResponse.json({ error: "Please enter the institution's name." }, { status: 400 });
+      }
+      if (form.get("lang") === "sq") {
+        name.sq = typed;
+      } else {
+        name.en = typed;
+        // Institution names are often the same in both languages; keep the original if translation fails.
+        name.sq = (await translateLong(typed, "en", "sq")) || typed;
+      }
     }
 
     const client = getWriteClient();
@@ -72,21 +95,21 @@ export async function POST(request) {
       filename: file.name,
       contentType: file.type,
     });
-    const lastOrder = await client.fetch(`*[_type == "partner"] | order(order desc)[0].order`);
-    const scale = form.get("scale");
+    const lastOrder = await client.fetch(`*[_type == "institution"] | order(order desc)[0].order`);
+    const scale = text("scale");
 
     const created = await client.create({
-      _type: "partner",
-      name: String(form.get("name") || "").trim() || file.name.replace(/\.[^.]+$/, ""),
+      _type: "institution",
+      name,
       logo: { _type: "image", asset: { _type: "reference", _ref: asset._id } },
-      ...(typeof scale === "string" && scale ? { scale } : {}),
+      ...(scale ? { scale } : {}),
       order: (typeof lastOrder === "number" ? lastOrder : 0) + 1,
     });
     refresh(pagePath);
     return NextResponse.json({ success: true, id: created._id });
   } catch (err) {
-    console.error("Admin partner upload error:", err);
-    return NextResponse.json({ error: "Failed to upload the logo." }, { status: 500 });
+    console.error("Admin institution upload error:", err);
+    return NextResponse.json({ error: "Failed to save the institution." }, { status: 500 });
   }
 }
 
@@ -109,7 +132,7 @@ export async function DELETE(request) {
     refresh(pagePath);
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Admin partner delete error:", err);
+    console.error("Admin institution delete error:", err);
     return NextResponse.json({ error: "Failed to delete" }, { status: 500 });
   }
 }

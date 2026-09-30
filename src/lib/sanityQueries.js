@@ -83,6 +83,8 @@ function resolveSection(section, lang) {
         description1: localize(section.description1, lang),
         items: localizeArray(section.items, lang),
         description2: localize(section.description2, lang),
+        imageOneUrl: section.imageOneUrl || null,
+        imageTwoUrl: section.imageTwoUrl || null,
       };
     case "valuesBlock":
       return {
@@ -263,7 +265,16 @@ export async function getPartners() {
 
 // ============ ABOUT PAGE ============
 export async function getAboutPage(lang = "en") {
-  const data = await sanityFetch(`*[_type == "aboutPage" && _id == "aboutPage"][0]{ sections }`);
+  // Picture references are expanded to URLs for the Approach block's two pictures.
+  const data = await sanityFetch(
+    `*[_type == "aboutPage" && _id == "aboutPage"][0]{
+      sections[]{
+        ...,
+        "imageOneUrl": imageOne.asset->url,
+        "imageTwoUrl": imageTwo.asset->url
+      }
+    }`
+  );
   if (!data) return { sections: [] };
 
   return {
@@ -276,7 +287,7 @@ export async function getInstitutions(lang = "en") {
   return await sanityFetch(
     `*[_type == "institution"] | order(order asc) {
       _id,
-      "name": name.${lang},
+      "name": coalesce(name.${lang}, name.en, name.sq),
       "logoUrl": logo.asset->url,
       logo,
       scale,

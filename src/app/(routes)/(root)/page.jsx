@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { DEFAULT_SECTIONS_BY_DOCUMENT } from "@/lib/defaultSections";
 import Footer from "@/components/Footer";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import ManageSectionsPanel from "@/components/admin/ManageSectionsPanel";
@@ -15,17 +16,8 @@ export const metadata = {
   description: "Myelin Ops is the protective layer for organizations. We help businesses thrive through operational excellence and strategic growth.",
 };
 
-// Today's fixed home page layout, used whenever no sections have been
-// configured yet in Sanity Studio (i.e. the page builder hasn't been touched).
-// Stable _keys so "Manage Sections" can save this layout as real content.
-const DEFAULT_SECTIONS = [
-  { _type: "heroBlock", _key: "default-hero" },
-  { _type: "testimonialsSectionBlock", _key: "default-testimonials" },
-  { _type: "gallerySectionBlock", _key: "default-gallery" },
-  { _type: "partnersSectionBlock", _key: "default-partners" },
-  { _type: "whyItMattersBlock", _key: "default-why-it-matters" },
-  { _type: "ctaBlock", _key: "default-cta" },
-];
+// Built-in layout, shown until the page has sections in Sanity (see lib/defaultSections.js).
+const DEFAULT_SECTIONS = DEFAULT_SECTIONS_BY_DOCUMENT.homePage;
 
 const DOCUMENT_ID = "homePage";
 

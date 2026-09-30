@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Plus, Trash2, ImageUp, Maximize2, Minimize2 } from "lucide-react";
 import { shrinkImage } from "@/lib/shrinkImage";
+import { fetchAsFile, seedFromBuiltIn } from "@/lib/adminSeed";
 import { useSanityContent } from "@/lib/useSanityContent";
 import { pickImage } from "@/lib/sanityImage";
 import Editable from "@/components/admin/Editable";
@@ -52,6 +53,7 @@ function GalleryBlock({ data, documentId, images }) {
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [progress, setProgress] = useState("");
   const [deleting, setDeleting] = useState(null); // image being confirmed for deletion
   const addInputRef = useRef(null);
   const replaceInputRef = useRef(null);
@@ -70,39 +72,29 @@ function GalleryBlock({ data, documentId, images }) {
 
   // The site shows its built-in photos until Sanity has any. Before the first
   // change, copy them into Sanity so they aren't lost. Returns the Sanity ids in
-  // the same order as the grid.
+  // grid order. The pictures are uploaded first and the whole set is created in
+  // one step, so the gallery is never left with only some of its pictures.
   const ensureSanityImages = async () => {
     if (usingSanityImages) return galleryImages.map((image) => image.id);
-    const ids = [];
     try {
-      for (const image of fallbackGalleryImages) {
-        // The originals are 2-24MB; the optimised copy is what visitors already see.
-        const optimised = `/_next/image?url=${encodeURIComponent(image.src.src)}&w=1920&q=75`;
-        const res = await fetch(optimised);
-        if (!res.ok) throw new Error("Could not prepare the built-in pictures.");
-        const blob = await res.blob();
-        const file = new File([blob], `${image.alt}.webp`, { type: blob.type || "image/webp" });
-        try {
-          ids.push(await upload(file, { alt: image.alt, span: image.span }));
-        } catch {
-          // One retry for a transient failure.
-          ids.push(await upload(file, { alt: image.alt, span: image.span }));
-        }
-      }
-    } catch (err) {
-      // All or nothing: never leave the gallery with only some of its pictures.
-      await Promise.all(
-        ids.map((id) =>
-          fetch("/api/admin/gallery", {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id, pagePath: pathname }),
-          }),
-        ),
+      setProgress(`Setting up the gallery (first time only): 0 of ${fallbackGalleryImages.length}...`);
+      const entries = await Promise.all(
+        fallbackGalleryImages.map(async (image) => ({
+          // The originals are 2-24MB; the optimised copy is what visitors already see.
+          file: await fetchAsFile(
+            `/_next/image?url=${encodeURIComponent(image.src.src)}&w=1920&q=75`,
+            `${image.alt}.webp`,
+          ),
+          alt: image.alt,
+          span: image.span,
+        })),
       );
-      throw new Error(err.message || "Could not copy the built-in pictures. Nothing was changed.");
+      return await seedFromBuiltIn("/api/admin/gallery", entries, pathname, (done, total) =>
+        setProgress(`Setting up the gallery (first time only): ${done} of ${total}...`),
+      );
+    } finally {
+      setProgress("");
     }
-    return ids;
   };
 
   const run = async (action) => {
@@ -166,11 +158,6 @@ function GalleryBlock({ data, documentId, images }) {
     } finally {
       setBusy(false);
     }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1, duration: 0.3 } },
   };
 
   const itemVariants = {
@@ -251,6 +238,7 @@ function GalleryBlock({ data, documentId, images }) {
             on a picture to replace, resize or delete it, or add a new one.
           </p>
           {error && !deleting && <p className="text-sm text-red-600 mt-2">{error}</p>}
+          {busy && progress && <p className="text-sm text-cyan-700 mt-2">{progress}</p>}
         </div>
       )}
 
@@ -278,16 +266,13 @@ function GalleryBlock({ data, documentId, images }) {
       />
 
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="hidden md:grid grid-cols-2 grid-flow-dense gap-4 auto-rows-[350px]"
-        >
+        <div className="hidden md:grid grid-cols-2 grid-flow-dense gap-4 auto-rows-[350px]">
           {galleryImages.map((image) => (
             <motion.div
               key={image.id}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
               variants={itemVariants}
               className={`${image.span || NORMAL_SPAN} rounded-2xl overflow-hidden group relative`}
             >
@@ -302,18 +287,15 @@ function GalleryBlock({ data, documentId, images }) {
             </motion.div>
           ))}
           {addTile("col-span-1 row-span-1")}
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="md:hidden grid grid-cols-1 gap-4 auto-rows-[200px]"
-        >
+        <div className="md:hidden grid grid-cols-1 gap-4 auto-rows-[200px]">
           {galleryImages.map((image) => (
             <motion.div
               key={image.id}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
               variants={itemVariants}
               className="rounded-2xl overflow-hidden cursor-pointer group relative"
             >
@@ -328,7 +310,7 @@ function GalleryBlock({ data, documentId, images }) {
             </motion.div>
           ))}
           {addTile("")}
-        </motion.div>
+        </div>
       </div>
 
       {deleting && (
@@ -336,6 +318,7 @@ function GalleryBlock({ data, documentId, images }) {
           title="Delete this picture?"
           message="This removes it from the gallery on the website. This can't be undone."
           busy={busy}
+          progress={progress}
           error={error}
           onCancel={() => setDeleting(null)}
           onConfirm={deletePicture}

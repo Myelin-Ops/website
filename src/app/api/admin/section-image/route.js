@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { isAdminSession } from "@/lib/adminAuth";
 import { getWriteClient } from "@/lib/sanity";
+import { ensurePageDocument } from "@/lib/ensurePageDocument";
 
 // Vercel rejects request bodies over ~4.5MB, so keep uploads under that.
 const MAX_BYTES = 4 * 1024 * 1024;
@@ -9,7 +10,9 @@ const MAX_BYTES = 4 * 1024 * 1024;
 // Only these picture fields on a page-builder section can be replaced:
 //   sections[_key=="x"].image              (the block's own picture)
 //   sections[_key=="x"].insights[2].image  (a per-insight picture)
-const IMAGE_PATH = /^(sections\[_key=="[A-Za-z0-9_-]+"\])(?:\.insights\[(\d)\])?\.image$/;
+//   sections[_key=="x"].imageOne / .imageTwo (the two Approach pictures)
+const IMAGE_PATH =
+  /^(sections\[_key=="[A-Za-z0-9_-]+"\])(?:\.insights\[(\d)\]\.image|\.image|\.imageOne|\.imageTwo)$/;
 
 // Replaces one picture on a page-builder section with an uploaded image.
 export async function POST(request) {
@@ -36,6 +39,7 @@ export async function POST(request) {
     }
 
     const client = getWriteClient();
+    await ensurePageDocument(client, documentId);
     const asset = await client.assets.upload("image", Buffer.from(await file.arrayBuffer()), {
       filename: file.name,
       contentType: file.type,

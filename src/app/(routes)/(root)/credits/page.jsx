@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { DEFAULT_SECTIONS_BY_DOCUMENT } from "@/lib/defaultSections";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import Footer from "@/components/Footer";
 import { getCreditsPage, getSiteSettings } from "@/lib/sanityQueries";
@@ -8,12 +9,8 @@ export const metadata = {
   description: "Acknowledge the team and partners who contributed to the development of the Myelin Ops digital experience.",
 };
 
-// Shown until the Credits page document has sections in Sanity; each block
-// falls back to its i18next copy (credits.json).
-const DEFAULT_SECTIONS = [
-  { _type: "heroBlock", _key: "hero-1" },
-  { _type: "creditsBodyBlock", _key: "credits-1" },
-];
+// Built-in layout, shown until the page has sections in Sanity (see lib/defaultSections.js).
+const DEFAULT_SECTIONS = DEFAULT_SECTIONS_BY_DOCUMENT.creditsPage;
 
 const I18N_PREFIX = {
   heroBlock: "credits.hero",

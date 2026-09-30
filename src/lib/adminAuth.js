@@ -1,8 +1,10 @@
 import crypto from "crypto";
 import { cookies } from "next/headers";
 
-const COOKIE_NAME = "myelin_admin_session";
-const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+// Renamed from "myelin_admin_session" so logins remembered under the old 30-day
+// rule stop working and editors sign in again.
+const COOKIE_NAME = "myelin_admin_session_v2";
+const SESSION_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours
 
 function sign(payload) {
   return crypto
@@ -47,4 +49,3 @@ export function verifyPassword(candidate) {
 }
 
 export const ADMIN_SESSION_COOKIE = COOKIE_NAME;
-export const ADMIN_SESSION_MAX_AGE = SESSION_TTL_MS / 1000;

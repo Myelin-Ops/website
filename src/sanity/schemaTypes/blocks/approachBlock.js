@@ -7,6 +7,8 @@ const approachBlock = {
     { name: "description1", type: "localeText" },
     { name: "items", title: "Items", type: "localeStringList" },
     { name: "description2", type: "localeText" },
+    { name: "imageOne", title: "First picture", type: "image", options: { hotspot: true } },
+    { name: "imageTwo", title: "Second picture", type: "image", options: { hotspot: true } },
   ],
   preview: {
     select: { title: "title.en" },

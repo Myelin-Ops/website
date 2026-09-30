@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { DEFAULT_SECTIONS_BY_DOCUMENT } from "@/lib/defaultSections";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import Footer from "@/components/Footer";
 import { getPrivacyPage, getSiteSettings } from "@/lib/sanityQueries";
@@ -8,23 +9,8 @@ export const metadata = {
   description: "Your privacy is important to Myelin Ops. Read our policy on how we handle and protect your personal information.",
 };
 
-// Shown until the Privacy page document has sections in Sanity. Each section's
-// _key doubles as its i18next key (privacy.json), so it falls back to that copy.
-const FALLBACK_SECTION_KEYS = [
-  "introduction",
-  "dataCollection",
-  "useOfData",
-  "security",
-  "cookies",
-  "thirdParties",
-  "rights",
-  "updates",
-];
-
-const DEFAULT_SECTIONS = [
-  { _type: "legalHeaderBlock", _key: "header-1" },
-  ...FALLBACK_SECTION_KEYS.map((key) => ({ _type: "legalSectionBlock", _key: key })),
-];
+// Built-in layout, shown until the page has sections in Sanity (see lib/defaultSections.js).
+const DEFAULT_SECTIONS = DEFAULT_SECTIONS_BY_DOCUMENT.privacyPage;
 
 const i18nPrefixFor = (section) =>
   section._type === "legalHeaderBlock" ? "privacy" : `privacy.${section._key}`;

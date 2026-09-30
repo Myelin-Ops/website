@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { isAdminSession } from "@/lib/adminAuth";
 import { getWriteClient } from "@/lib/sanity";
+import { ensurePageDocument } from "@/lib/ensurePageDocument";
 
 export async function POST(request) {
   if (!(await isAdminSession())) {
@@ -18,6 +19,7 @@ export async function POST(request) {
     const client = getWriteClient();
     // The page may still be showing built-in default sections with no Sanity
     // document behind them yet, so make sure the document exists first.
+    await ensurePageDocument(client, documentId);
     await client.createIfNotExists({ _id: documentId, _type: documentId });
 
     // `sections` only carries the desired order/membership ({ _key, _type }).

@@ -4,7 +4,6 @@ import {
   verifyPassword,
   createSessionToken,
   ADMIN_SESSION_COOKIE,
-  ADMIN_SESSION_MAX_AGE,
 } from "@/lib/adminAuth";
 
 export async function POST(request) {
@@ -20,7 +19,7 @@ export async function POST(request) {
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: ADMIN_SESSION_MAX_AGE,
+    // No maxAge: a session cookie, so closing the browser logs the editor out.
   });
 
   return NextResponse.json({ success: true });

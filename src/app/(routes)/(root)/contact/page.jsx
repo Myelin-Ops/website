@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { DEFAULT_SECTIONS_BY_DOCUMENT } from "@/lib/defaultSections";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import Footer from "@/components/Footer";
 import { getContactPage, getSiteSettings } from "@/lib/sanityQueries";
@@ -8,13 +9,8 @@ export const metadata = {
   description: "Get in touch with Myelin Ops. Connect with us for consultations, partnerships, or professional inquiries.",
 };
 
-// Shown until the Contact page document has sections in Sanity; each block
-// falls back to its i18next copy (contact.json).
-const DEFAULT_SECTIONS = [
-  { _type: "heroBlock", _key: "hero-1" },
-  { _type: "contactInfoBlock", _key: "info-1" },
-  { _type: "contactFormBlock", _key: "form-1" },
-];
+// Built-in layout, shown until the page has sections in Sanity (see lib/defaultSections.js).
+const DEFAULT_SECTIONS = DEFAULT_SECTIONS_BY_DOCUMENT.contactPage;
 
 const I18N_PREFIX = {
   heroBlock: "contact.hero",

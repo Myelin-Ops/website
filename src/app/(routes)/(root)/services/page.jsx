@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { DEFAULT_SECTIONS_BY_DOCUMENT } from "@/lib/defaultSections";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import Footer from "@/components/Footer";
 import { getServicesPage, getSiteSettings } from "@/lib/sanityQueries";
@@ -8,15 +9,8 @@ export const metadata = {
   description: "Discover our organizational interventions, neuro-leadership training, and strategic growth services designed for excellence.",
 };
 
-// Shown until the Services page document has sections in Sanity; each block
-// falls back to its i18next copy (services.json).
-const DEFAULT_SECTIONS = [
-  { _type: "heroBlock", _key: "hero-1" },
-  { _type: "categoriesBlock", _key: "categories-1" },
-  { _type: "methodologyBlock", _key: "methodology-1" },
-  { _type: "interventionsBlock", _key: "interventions-1" },
-  { _type: "ctaBlock", _key: "cta-1" },
-];
+// Built-in layout, shown until the page has sections in Sanity (see lib/defaultSections.js).
+const DEFAULT_SECTIONS = DEFAULT_SECTIONS_BY_DOCUMENT.servicesPage;
 
 const I18N_PREFIX = {
   heroBlock: "services.hero",

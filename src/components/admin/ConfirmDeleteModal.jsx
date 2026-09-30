@@ -1,12 +1,24 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { Trash2 } from "lucide-react";
 
 // Small confirmation dialog for destructive edits (delete a picture, etc.).
-export default function ConfirmDeleteModal({ title, message, busy, error, onCancel, onConfirm, children }) {
-  return (
+// Rendered into document.body so it covers the whole page, including the
+// floating edit buttons, whatever section it was opened from.
+export default function ConfirmDeleteModal({
+  title,
+  message,
+  busy,
+  progress,
+  error,
+  onCancel,
+  onConfirm,
+  children,
+}) {
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 px-4"
       onClick={() => !busy && onCancel()}
       onKeyDown={(e) => e.key === "Escape" && !busy && onCancel()}
       role="dialog"
@@ -27,6 +39,7 @@ export default function ConfirmDeleteModal({ title, message, busy, error, onCanc
         </div>
         <p className="text-sm text-gray-500 mb-3">{message}</p>
         {children}
+        {busy && progress && <p className="text-sm text-cyan-700 mt-2">{progress}</p>}
         {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
         <div className="flex justify-end gap-2 mt-5">
           <button
@@ -46,6 +59,7 @@ export default function ConfirmDeleteModal({ title, message, busy, error, onCanc
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
