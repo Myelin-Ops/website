@@ -4,7 +4,10 @@ import { cookies } from "next/headers";
 // Renamed from "myelin_admin_session" so logins remembered under the old 30-day
 // rule stop working and editors sign in again.
 const COOKIE_NAME = "myelin_admin_session_v2";
-const SESSION_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours
+// The session ends after this much inactivity. Every bit of editing activity
+// renews it (see issueSessionCookie), and it is a browser-session cookie too, so
+// closing the browser ends it sooner.
+const SESSION_TTL_MS = 30 * 60 * 1000; // 30 minutes
 
 function sign(payload) {
   return crypto
@@ -36,6 +39,18 @@ export function verifySessionToken(token) {
 export async function isAdminSession() {
   const cookieStore = await cookies();
   return verifySessionToken(cookieStore.get(COOKIE_NAME)?.value);
+}
+
+// Sets (or renews) the editor session cookie: a session cookie with a fresh
+// 30-minute expiry. Call from route handlers only (login, status).
+export function issueSessionCookie(cookieStore) {
+  cookieStore.set(COOKIE_NAME, createSessionToken(), {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    // No maxAge: closing the browser logs the editor out.
+  });
 }
 
 export function verifyPassword(candidate) {

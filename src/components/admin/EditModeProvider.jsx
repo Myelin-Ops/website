@@ -33,6 +33,40 @@ export default function EditModeProvider({ children }) {
     };
   }, []);
 
+  // Inactivity timeout: while logged in, real activity (click/typing/scroll)
+  // renews the server's 30-minute timer, at most once a minute. A plain check
+  // every minute notices when the session has ended, and hides the editing
+  // controls instead of leaving them on a dead session.
+  useEffect(() => {
+    if (!isAdmin) return undefined;
+
+    let lastTouch = Date.now();
+    const ping = (touch) =>
+      fetch(`/api/admin/status${touch ? "?touch=1" : ""}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data.isAdmin) {
+            setIsAdmin(false);
+            setIsEditing(false);
+          }
+        })
+        .catch(() => {});
+
+    const onActivity = () => {
+      if (Date.now() - lastTouch < 60 * 1000) return;
+      lastTouch = Date.now();
+      ping(true);
+    };
+    const events = ["click", "keydown", "scroll", "pointerdown"];
+    events.forEach((name) => window.addEventListener(name, onActivity, { passive: true }));
+    const interval = setInterval(() => ping(false), 60 * 1000);
+
+    return () => {
+      events.forEach((name) => window.removeEventListener(name, onActivity));
+      clearInterval(interval);
+    };
+  }, [isAdmin]);
+
   return (
     <EditModeContext.Provider value={{ isAdmin, isEditing: isAdmin && isEditing, setIsEditing }}>
       {children}

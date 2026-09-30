@@ -34,11 +34,16 @@ function Editable({ as: Tag = "span", documentId, path, value, className }) {
 
     setSaving(true);
     try {
-      await fetch("/api/admin/patch", {
+      const res = await fetch("/api/admin/patch", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ documentId, path: fullPath, value: next, pagePath: pathname }),
       });
+      if (res.status === 401) {
+        // The session timed out: send the editor to log in again.
+        window.location.href = "/admin/login";
+        return;
+      }
       router.refresh();
     } finally {
       setSaving(false);
