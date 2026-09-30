@@ -8,7 +8,11 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // Enable CDN for faster reads in production
+  // Sanity's public CDN can keep serving old content for 20-40+ seconds after an
+  // edit, so visitors wouldn't see a saved change. Reads go straight to the API
+  // instead; the tagged Next.js data cache below already keeps pages fast, and
+  // it's cleared the moment an editor saves.
+  useCdn: false,
 });
 
 // Image URL builder for Sanity hosted images
