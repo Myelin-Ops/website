@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
 import {
   Mail,
   Phone,
@@ -21,8 +21,10 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-function ContactContent() {
-  const { t } = useTranslation();
+function ContactContent({ data }) {
+  const { t, sanity, st } = useSanityContent(data);
+  const emailValue = sanity?.info?.email?.value || t("contact.info.email.value");
+  const phoneValue = sanity?.info?.phone?.value || t("contact.info.phone.value");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -83,7 +85,7 @@ function ContactContent() {
           variants={fadeUp}
           className="text-3xl md:text-5xl xl:text-7xl font-bold text-gray-900 mb-6"
         >
-          {t("contact.hero.title")}
+          {st(sanity?.hero?.title, "contact.hero.title")}
         </motion.h1>
         <motion.p
           initial="hidden"
@@ -91,7 +93,7 @@ function ContactContent() {
           variants={fadeUp}
           className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
         >
-          {t("contact.hero.subtitle")}
+          {st(sanity?.hero?.subtitle, "contact.hero.subtitle")}
         </motion.p>
       </section>
 
@@ -107,20 +109,20 @@ function ContactContent() {
             className="order-1 lg:order-2 bg-white p-8 md:p-12 rounded-[40px] shadow-2xl shadow-gray-200/50 border border-gray-50"
           >
             <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-10">
-              {t("contact.form.title")}
+              {st(sanity?.form?.title, "contact.form.title")}
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-8">
               <div>
                 <label className="block text-sm font-bold text-gray-900 mb-3">
-                  {t("contact.form.name.label")}
+                  {st(sanity?.form?.name?.label, "contact.form.name.label")}
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder={t("contact.form.name.placeholder")}
+                  placeholder={st(sanity?.form?.name?.placeholder, "contact.form.name.placeholder")}
                   required
                   className="w-full bg-gray-50 border-none rounded-xl p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all"
                 />
@@ -128,14 +130,14 @@ function ContactContent() {
 
               <div>
                 <label className="block text-sm font-bold text-gray-900 mb-3">
-                  {t("contact.form.email.label")}
+                  {st(sanity?.form?.email?.label, "contact.form.email.label")}
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder={t("contact.form.email.placeholder")}
+                  placeholder={st(sanity?.form?.email?.placeholder, "contact.form.email.placeholder")}
                   required
                   className="w-full bg-gray-50 border-none rounded-xl p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all"
                 />
@@ -143,13 +145,13 @@ function ContactContent() {
 
               <div>
                 <label className="block text-sm font-bold text-gray-900 mb-3">
-                  {t("contact.form.message.label")}
+                  {st(sanity?.form?.message?.label, "contact.form.message.label")}
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder={t("contact.form.message.placeholder")}
+                  placeholder={st(sanity?.form?.message?.placeholder, "contact.form.message.placeholder")}
                   required
                   rows={6}
                   className="w-full bg-gray-50 border-none rounded-xl p-4 text-gray-900 placeholder:text-gray-300 focus:ring-2 focus:ring-cyan-400 transition-all resize-none"
@@ -187,7 +189,7 @@ function ContactContent() {
                     {t("contact.form.sent", "Message Sent!")}
                   </>
                 ) : (
-                  t("contact.form.submit")
+                  st(sanity?.form?.submit, "contact.form.submit")
                 )}
               </button>
 
@@ -216,12 +218,12 @@ function ContactContent() {
               )}
 
               <p className="text-center text-[11px] text-gray-400">
-                {t("contact.form.agreement")}{" "}
+                {st(sanity?.form?.agreement, "contact.form.agreement")}{" "}
                 <Link
                   href="/privacy"
                   className="underline hover:text-gray-900 transition-colors"
                 >
-                  {t("contact.form.privacy_link")}
+                  {st(sanity?.form?.privacy_link, "contact.form.privacy_link")}
                 </Link>
               </p>
             </form>
@@ -243,16 +245,16 @@ function ContactContent() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {t("contact.info.email.title")}
+                    {st(sanity?.info?.email?.title, "contact.info.email.title")}
                   </h3>
                   <p className="text-sm text-gray-400 mb-4">
-                    {t("contact.info.email.subtitle")}
+                    {st(sanity?.info?.email?.subtitle, "contact.info.email.subtitle")}
                   </p>
                   <a
-                    href={`mailto:${t("contact.info.email.value")}`}
+                    href={`mailto:${emailValue}`}
                     className="text-gray-900 font-bold hover:text-cyan-500 transition-colors"
                   >
-                    {t("contact.info.email.value")}
+                    {emailValue}
                   </a>
                 </div>
               </div>
@@ -266,16 +268,16 @@ function ContactContent() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {t("contact.info.phone.title")}
+                    {st(sanity?.info?.phone?.title, "contact.info.phone.title")}
                   </h3>
                   <p className="text-sm text-gray-400 mb-4">
-                    {t("contact.info.phone.subtitle")}
+                    {st(sanity?.info?.phone?.subtitle, "contact.info.phone.subtitle")}
                   </p>
                   <a
-                    href={`tel:${t("contact.info.phone.value").replace(/\s/g, "")}`}
+                    href={`tel:${phoneValue.replace(/\s/g, "")}`}
                     className="text-gray-900 font-bold hover:text-cyan-500 transition-colors"
                   >
-                    {t("contact.info.phone.value")}
+                    {phoneValue}
                   </a>
                 </div>
               </div>
@@ -284,7 +286,7 @@ function ContactContent() {
             {/* Socials & Credits */}
             <div className="pt-8 text-center md:text-left">
               <span className="text-xs font-bold tracking-widest text-gray-400 uppercase block mb-6">
-                {t("contact.info.connect")}
+                {st(sanity?.info?.connect, "contact.info.connect")}
               </span>
               <div className="flex gap-4 mb-16 justify-center md:justify-start">
                 {[
@@ -316,7 +318,7 @@ function ContactContent() {
                 href="/credits"
                 className="text-xs font-bold tracking-widest text-cyan-500 uppercase transition-colors underline underline-offset-4"
               >
-                {t("contact.info.credits")}
+                {st(sanity?.info?.credits, "contact.info.credits")}
               </Link>
             </div>
           </motion.div>

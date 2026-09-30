@@ -6,9 +6,11 @@ import { usePathname } from "next/navigation";
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useSanityContent } from "@/lib/useSanityContent";
 
-function Header() {
-  const { t, i18n } = useTranslation();
+function Header({ siteSettings }) {
+  const { i18n } = useTranslation();
+  const { sanity, st } = useSanityContent(siteSettings);
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -26,11 +28,11 @@ function Header() {
   }, [isMenuOpen]);
 
   const routes = [
-    { href: "/", title: t("navigation.home") || "HOME" },
-    { href: "/about-us", title: t("navigation.aboutuspage") || "ABOUT US" },
-    { href: "/services", title: t("navigation.servicesNav") || "SERVICES" },
-    { href: "/team", title: t("navigation.team") || "TEAM" },
-    { href: "/contact", title: t("navigation.contactNav") || "CONTACT" },
+    { href: "/", title: st(sanity?.navigation?.home, "navigation.home") },
+    { href: "/about-us", title: st(sanity?.navigation?.aboutUs, "navigation.aboutuspage") },
+    { href: "/services", title: st(sanity?.navigation?.services, "navigation.servicesNav") },
+    { href: "/team", title: st(sanity?.navigation?.team, "navigation.team") },
+    { href: "/contact", title: st(sanity?.navigation?.contact, "navigation.contactNav") },
   ];
 
   const isActive = (href) => {

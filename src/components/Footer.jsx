@@ -3,12 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import { Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
+import { useSanityContent } from "@/lib/useSanityContent";
 
-function Footer() {
-  const { t, i18n } = useTranslation();
+function Footer({ siteSettings }) {
+  const { sanity, st } = useSanityContent(siteSettings);
   const currentYear = new Date().getFullYear();
+  const copyright = st(sanity?.footer?.copyright, "footer.copyright", { year: currentYear }).replace(
+    "{{year}}",
+    String(currentYear)
+  );
 
   const socialLinks = [
     {
@@ -70,7 +74,7 @@ function Footer() {
               />
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed px-4 md:px-0">
-              {t("footer.brand.description")}
+              {st(sanity?.footer?.brandDescription, "footer.brand.description")}
             </p>
           </motion.div>
 
@@ -80,7 +84,7 @@ function Footer() {
             className="flex flex-col items-center md:items-start"
           >
             <h3 className="font-bold text-black mb-6 uppercase tracking-widest text-xs">
-              {t("footer.contact.title")}
+              {st(sanity?.footer?.contactTitle, "footer.contact.title")}
             </h3>
             <ul className="space-y-3 text-sm text-gray-600 flex flex-col items-center md:items-start text-center md:text-left">
               <li>
@@ -108,7 +112,7 @@ function Footer() {
             className="flex flex-col items-center md:items-start"
           >
             <h3 className="font-bold text-black mb-6 uppercase tracking-widest text-xs">
-              {t("footer.legal.title")}
+              {st(sanity?.footer?.legalTitle, "footer.legal.title")}
             </h3>
             <ul className="space-y-3 text-sm text-gray-600 flex flex-col items-center md:items-start text-center md:text-left">
               <li>
@@ -116,7 +120,7 @@ function Footer() {
                   href="/privacy"
                   className="hover:text-black transition-colors"
                 >
-                  {t("footer.legal.privacy")}
+                  {st(sanity?.footer?.privacyLabel, "footer.legal.privacy")}
                 </Link>
               </li>
               <li>
@@ -124,7 +128,7 @@ function Footer() {
                   href="/terms"
                   className="hover:text-black transition-colors"
                 >
-                  {t("footer.legal.terms")}
+                  {st(sanity?.footer?.termsLabel, "footer.legal.terms")}
                 </Link>
               </li>
             </ul>
@@ -136,7 +140,7 @@ function Footer() {
             className="flex flex-col items-center md:items-start"
           >
             <h3 className="font-bold text-black mb-6 uppercase tracking-widest text-xs">
-              {t("footer.social.title")}
+              {st(sanity?.footer?.socialTitle, "footer.social.title")}
             </h3>
             <div className="flex flex-wrap gap-4 lg:gap-6 justify-center md:justify-start">
               {socialLinks.map((social, index) => {
@@ -177,7 +181,7 @@ function Footer() {
             variants={itemVariants}
             className="flex justify-center items-center text-xs text-gray-500"
           >
-            <p>{t("footer.copyright", { year: currentYear })}</p>
+            <p>{copyright}</p>
           </motion.div>
         </div>
       </motion.div>
